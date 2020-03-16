@@ -1,0 +1,18 @@
+.data-container{
+    width: 100vw;
+    height: 93.91vh;
+    border: solid 2px blue;
+    padding: 5px;
+}
+
+/* .container-fluid{
+    height: 100%;
+} */
+
+.totals{
+    border: solid 2px black;
+}
+
+#trends, #maps, #other_graphs{
+    border: solid 2px yellow;
+}
