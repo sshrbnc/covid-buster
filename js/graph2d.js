@@ -15,8 +15,8 @@ function generateColors() {
         var g = Math.floor(Math.random() * 255);
         var b = Math.floor(Math.random() * 255);
         stringColor = "rgba(" + r + "," + g + "," + b;
-        colors[i] = stringColor + ",0.5)";
-        pieColors[i] = stringColor + ",0.4)";
+        colors[i] = stringColor + ",0.8)";
+        pieColors[i] = stringColor + ",0.5)";
     }
 }
 
@@ -31,7 +31,7 @@ async function drawPie() {
     pieChart = new Chart(ctx, {
         type: "doughnut",
         options: {
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             plugins: {
                 labels: {
                     render: 'percentage',
