@@ -109,14 +109,15 @@
             </div>
 
             <div class="col-5" style="padding: 2px;">                
-                <div style="color: #fff; height: 100%; border: solid 1px gray;">
+                <div id="maps" style="color: #fff; height: 100%; border: solid 1px gray;">
                     MAP
                 </div>
             </div>
 
             <div class="col" style="padding: 2px;">
                 <div style="color: #fff; height: 50%; border: solid 1px gray;">
-                    CHART1
+                    <!-- CHART1 -->
+                    <canvas id="piechart"></canvas>
                 </div>
                 <div style="color: #fff; height: 49.5%; border: solid 1px gray; margin-top: 3px;">
                     CHART2
@@ -161,7 +162,7 @@
     <!-- Chart JS -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script> -->
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
@@ -169,8 +170,8 @@
     crossorigin=""></script>
 
     <!-- Custom JS -->
-    <!-- <script src="js/map-test.js"></script>
-    <script src="js/graph2d.js"></script> -->
+    <script src="js/map-test.js"></script>
+    <script src="js/graph2d.js"></script>
 
     <script>
         // var ctxTrend = document.getElementById('trendgraph').getContext('2d');
