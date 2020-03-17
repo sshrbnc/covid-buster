@@ -22,7 +22,21 @@ function generateColors() {
 
 async function drawPie() {
     let displayData = [15, 14, 14, 5, 3, 1, 1, 2, 2, 4, 1, 1, 1];
-    let displayLabel = ["San Juan", "Quezon City"];
+    let displayLabel = [
+        "San Juan", 
+        "Quezon City", 
+        "Makati", 
+        "Taguig", 
+        "Mandaluyong", 
+        "Pampanga",
+        "Bataan",
+        "Laguna",
+        "Batangas",
+        "Cavite",
+        "Rizal",
+        "Negros Oriental",
+        "Bohol",
+    ];
     
     if (pieChart != null) {
         pieChart.destroy();
@@ -30,15 +44,6 @@ async function drawPie() {
 
     pieChart = new Chart(ctx, {
         type: "doughnut",
-        options: {
-            maintainAspectRatio: true,
-            plugins: {
-                labels: {
-                    render: 'percentage',
-                    precision: 2
-                }
-            }
-        },
         data: {
             labels: displayLabel,
             datasets: [
@@ -49,6 +54,18 @@ async function drawPie() {
                     borderWidth: 1
                 }
             ]
+        },
+        options: {
+            maintainAspectRatio: false,
+            legend: {
+                position: 'left'
+            },
+            // plugins: {
+            //     labels: {
+            //         render: 'percentage',
+            //         precision: 2
+            //     }
+            // }
         }
     });
 }
