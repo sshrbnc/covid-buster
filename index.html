@@ -120,7 +120,8 @@
                     <canvas id="piechart"></canvas>
                 </div>
                 <div style="color: #fff; height: 49.5%; border: solid 1px gray; margin-top: 3px;">
-                    CHART2
+                    <!-- CHART2 -->
+                    <canvas id="bargraph"></canvas>
                 </div>
             </div>
         </div>
@@ -159,6 +160,13 @@
         </div>
     </div>
 
+    <!-- Firebase core Javascript-->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"> </script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-messaging.js"> </script> -->
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-storage.js"></script>
+    <script src="js/firestore.js"> </script>
+
     <!-- Chart JS -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
@@ -170,12 +178,14 @@
     crossorigin=""></script>
 
     <!-- Custom JS -->
+    <script src="js/windowloader.js"></script>
+    <script src="js/dataloader.js"></script>
     <script src="js/map-test.js"></script>
     <script src="js/graph2d.js"></script>
 
     <script>
         // var ctxTrend = document.getElementById('trendgraph').getContext('2d');
-        // var ctx2d = document.getElementById('bargraph').getContext('2d');
+        var ctx_bargraph = document.getElementById('bargraph').getContext('2d');
         var ctx = document.getElementById('piechart').getContext('2d');
     </script>
 </body>
