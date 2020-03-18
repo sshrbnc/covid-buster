@@ -1,4 +1,4 @@
-let config = {
+var firebaseConfig = {
     apiKey: "AIzaSyDhHun-d9dhgGigsYJ28Q_yX3nMCy3dIcM",
     authDomain: "covid19-buster.firebaseapp.com",
     databaseURL: "https://covid19-buster.firebaseio.com",
@@ -9,7 +9,9 @@ let config = {
     measurementId: "G-TGYYR36DCW"
 };
 
-firebase.initializeApp(config);
-let db = firebase.firestore();
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
 console.log("Cloud Firestores Loaded");
-sessionStorage.setItem("isLoaded", false);
+
+let db = firebase.firestore();

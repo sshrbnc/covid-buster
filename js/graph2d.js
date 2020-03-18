@@ -10,8 +10,8 @@ function generateColors() {
         var g = Math.floor(Math.random() * 255);
         var b = Math.floor(Math.random() * 255);
         stringColor = "rgba(" + r + "," + g + "," + b;
-        colors[i] = stringColor + ",0.8)";
-        pieColors[i] = stringColor + ",0.5)";
+        colors[i] = stringColor + ", 0.6)";
+        pieColors[i] = stringColor + ", 0.5)";
     }
 }
 

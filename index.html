@@ -33,7 +33,7 @@
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalScrollable" style="color: #FAFFEA;"><i class="fa fa-bullhorn"></i>&nbsp;File Report</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="" data-target="#" style="color: #FAFFEA;"><i class="fa fa-mobile" ></i>&nbsp;Mobile</a>
+                <a class="nav-link" href="mobile.html" data-toggle="" data-target="#" style="color: #FAFFEA;"><i class="fa fa-mobile" ></i>&nbsp;Mobile</a>
             </li>
           </ul>
         </div>
@@ -47,22 +47,15 @@
                             <div class="card-header collapsed" style="padding: 5px;">
                                 <a class="card-title"> <strong>CONFIRMED</strong> </a>                                    
                             </div>
-                            <span id="confirmed_total"><strong>142</strong></span>                            
+                            <span id="confirmed_total"></span>                            
                             <div id="confirmed_card">
                                 <ul style="text-decoration: none; list-style-type: none; margin: 0 7px; padding: 0;">
-                                    <li>San Juan <span>15</span></li>                                    
-                                    <li>Quezon City <span>14</span></li>
-                                    <li>Makati <span>14</span></li>
-                                    <li>Mandaluyong <span>5</span></li>
-                                    <li>Pampanga <span>3</span></li>
-                                    <li>Bataan <span>1</span></li>
-                                    <li>Laguna <span>1</span></li>
-                                    <li>Batanags <span>2</span></li>
-                                    <li>Cavite <span>2</span></li>
-                                    <li>Rizal <span>4</span></li>
-                                    <li>Negros Oriental <span>1</span></li>
-                                    <li>Bohol <span>1</span></li>
-                                    <li>Misamis Oriental <span>1</span></li>
+                                    <li>St. Luke's Medical Center <span>10</span></li>                                    
+                                    <li>Philippine Heart Center <span>14</span></li>
+                                    <li>Research Institute for Tropical Medicine <span>11</span></li>
+                                    <li>San Lazaro Hospital <span>10</span></li>
+                                    <li>East Avenue Medical Center <span>5</span></li>                                    
+                                    <li>The Medical City <span>9</span></li>
                                 </ul>
                             </div>
                         </div>  
@@ -72,17 +65,13 @@
                             <div class="card-header collapsed" style="padding: 5px;">
                                 <a class="card-title"> <strong>DECEASED</strong> </a>                                    
                             </div>
-                            <span id="deceased_total"><strong>12</strong></span>
+                            <span id="deceased_total"></span>
                             <div id="deceased_card">
                                 <ul style="text-decoration: none; list-style-type: none; margin: 0 7px; padding: 0;">
-                                    <li>Rizal <span>2</span></li>
-                                    <li>Marikina <span>1</span></li>
-                                    <li>Manila <span>1</span></li>
-                                    <li>Makati <span>2</span></li>
-                                    <li>Pasig <span>2</span></li>
-                                    <li>Negros Oriental<span>1</span></li>
-                                    <li>Lanao del Sur <span>1</span></li>
-                                    <li>Pampanga<span>1</span></li>
+                                    <li>The Medical City <span>2</span></li>
+                                    <li>San Lazaro Hospital <span>1</span></li>
+                                    <li>East Avenue Medical Center <span>1</span></li>
+                                    <li>St. Luke's Medical Center <span>1</span></li> 
                                 </ul>
                             </div>
                         </div>  
@@ -92,10 +81,10 @@
                             <div class="card-header collapsed" style="padding: 5px;">
                                 <a class="card-title"> <strong>RECOVERED </strong> </a>                                    
                             </div>
-                            <span id="recovered_total" ><strong>2</strong></span>
+                            <span id="recovered_total" ></span>
                             <div id="recovered_card">
                                 <ul style="text-decoration: none; list-style-type: none; margin: 0 7px; padding: 0;">
-                                    <li>Pasay <span>1</span></li>
+                                    <li>San Lazaro Hospital<span>1</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -139,33 +128,66 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                          <label for="exampleFormControlInput1">Age</label>
-                          <input type="text" class="form-control" id="user_age">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="admitted" id="admitted_true" onclick="handleClick(true)">
+                                <label class="form-check-label" for="admitted_true">Admitted to a Hospital</label><br>
+                            </div>
+                            <div class="form-check form-check-inline" style="float: right; right: 0;">
+                                <input class="form-check-input" type="radio" name="admitted" id="admitted_false" onclick="handleClick(false)">
+                                <label class="form-check-label" for="admitted_false">Not Admitted to a Hospital</label><br>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Sex</label>
-                            <input type="text" class="form-control" id="user_sex">
+                          <label for="exampleFormControlInput1">Age*</label>
+                          <input type="number" class="form-control" id="user_age" min="0">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Symptoms</label>
-                            <input type="text" class="form-control" id="user_symptoms">
+                            <label for="exampleFormControlInput1">Sex*</label>
+                            <select class="form-control" id="user_sex">
+                                <option selected disabled>Please select one...</option>
+                                <option>Female</option>
+                                <option>Male</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="address_home" hidden>
+                            <label for="exampleFormControlInput1">Current Address*</label>
+                            <input type="text" class="form-control" id="user_home-address">
+                        </div>
+                        <div class="form-group" id="address_hospital" hidden>
+                            <label for="exampleFormControlInput1">Hospital Address*</label>
+                            <input type="text" class="form-control" id="user_hospital-address">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Symptoms</label><br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="symptom_cough" id="symptom_cough">
+                                <label class="form-check-label" for="symptom_cough">Cough</label><br>
+                                <input class="form-check-input" type="checkbox" name="symptom_fever" id="symptom_fever">
+                                <label class="form-check-label" for="symptom_fever">Fever</label><br>
+                                <input class="form-check-input" type="checkbox" name="symptom_pneumonia" id="symptom_pneumonia">
+                                <label class="form-check-label" for="symptom_pneumonia">Pneumonia</label><br>
+                                <input class="form-check-input" type="checkbox" name="symptom_sore-throat" id="symptom_sore-throat">
+                                <label class="form-check-label" for="symptom_sore-throat">Sore Throat</label><br>
+                                <input class="form-check-input" type="checkbox" name="symptom_others" id="symptom_others" onclick="setOthers()">
+                                <label class="form-check-label" for="symptom_others">Others (Please specify) <input type="text" id="user_other-symptoms" disabled></label>
+                            </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="submitReport()">Submit</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Firebase core Javascript-->
-    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"> </script>
-    <!-- <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-messaging.js"> </script> -->
-    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-storage.js"></script>
-    <script src="js/firestore.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-storage.js"></script>
 
     <!-- Chart JS -->
     <script type="text/javascript"
@@ -177,9 +199,19 @@
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
 
+    <!-- Firestore JS -->
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-storage.js"></script> -->
+
     <!-- Custom JS -->
+    <script src="js/firestore.js"></script>
     <script src="js/windowloader.js"></script>
     <script src="js/dataloader.js"></script>
+    <script src="js/index.js"></script>
     <script src="js/map-test.js"></script>
     <script src="js/graph2d.js"></script>
 
