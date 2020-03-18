@@ -127,19 +127,34 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                          <label for="exampleFormControlInput1">Age</label>
-                          <input type="number" class="form-control" id="user_age">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="admitted" id="admitted_true" onclick="handleClick(true)">
+                                <label class="form-check-label" for="admitted_true">Admitted to a Hospital</label><br>
+                            </div>
+                            <div class="form-check form-check-inline" style="float: right; right: 0;">
+                                <input class="form-check-input" type="radio" name="admitted" id="admitted_false" onclick="handleClick(false)">
+                                <label class="form-check-label" for="admitted_false">Not Admitted to a Hospital</label><br>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Sex</label>
+                          <label for="exampleFormControlInput1">Age*</label>
+                          <input type="number" class="form-control" id="user_age" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Sex*</label>
                             <select class="form-control" id="user_sex">
+                                <option selected disabled>Please select one...</option>
                                 <option>Female</option>
                                 <option>Male</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Current Address</label>
-                            <input type="text" class="form-control" id="user_address">
+                        <div class="form-group" id="address_home" hidden>
+                            <label for="exampleFormControlInput1">Current Address*</label>
+                            <input type="text" class="form-control" id="user_home-address">
+                        </div>
+                        <div class="form-group" id="address_hospital" hidden>
+                            <label for="exampleFormControlInput1">Hospital Address*</label>
+                            <input type="text" class="form-control" id="user_hospital-address">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Symptoms</label><br>
@@ -152,14 +167,14 @@
                                 <label class="form-check-label" for="symptom_pneumonia">Pneumonia</label><br>
                                 <input class="form-check-input" type="checkbox" name="symptom_sore-throat" id="symptom_sore-throat">
                                 <label class="form-check-label" for="symptom_sore-throat">Sore Throat</label><br>
-                                <input class="form-check-input" type="checkbox" name="symptom_others" id="symptom_others">
-                                <label class="form-check-label" for="symptom_others">Others (Please specify)<input type="text" id="user_other-symptoms"></label>
+                                <input class="form-check-input" type="checkbox" name="symptom_others" id="symptom_others" onclick="setOthers()">
+                                <label class="form-check-label" for="symptom_others">Others (Please specify) <input type="text" id="user_other-symptoms" disabled></label>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
                 <button type="button" class="btn btn-primary" onclick="submitReport()">Submit</button>
                 </div>
             </div>
