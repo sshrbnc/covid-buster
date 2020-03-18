@@ -1,5 +1,4 @@
 async function submitReport(){
-    // console.log("Added Patient");
     var home_address = document.getElementById("user_home-address").value;
     var hospital_address = document.getElementById("user_hospital-address").value;
     var admitted_true = document.getElementById("admitted_true");
@@ -22,6 +21,8 @@ async function submitReport(){
         var admitted = "";
         if(admitted_true.checked == true){
             admitted = true;
+        } else if(admitted_false.checked == true){
+            admitted = false;
         }
     
         var created = firebase.firestore.FieldValue.serverTimestamp();
@@ -43,9 +44,7 @@ async function submitReport(){
             symptoms.push(document.getElementById("user_other-symptoms").value);
         }
     
-        var report_details = {address, age, created, id, sex, symptoms};
-    
-        console.log(report_details);
+        var report_details = {address, admitted, age, created, id, sex, symptoms};
     
         //Get the latest report count, increment it by 1, then set the sum as the new report's id
         await db.collection("counter").get().then(function (querySnapshot) {
@@ -73,6 +72,9 @@ function clearRedfield(){
     for(var i = 0; i < checkboxes.length; i++){
         checkboxes[i].checked = false;
     }
+    document.getElementById("address_hospital").setAttribute("hidden", "hidden");
+    document.getElementById("address_home").setAttribute("hidden", "hidden");
+    $('#exampleModalScrollable').modal('hide');
 }
 
 function handleClick(admitted){
