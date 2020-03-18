@@ -1,3 +1,10 @@
+window.addEventListener("load", async () => {
+    isloaded = true;
+    await displayTotal();   
+    // await displayEachTotal();
+});
+
+
 async function submitReport(){
     // console.log("Added Patient");
 
@@ -40,3 +47,56 @@ async function submitReport(){
 
     db.collection("reports").add(report_details);
 };
+
+async function displayTotal(){
+    var total_confirmed = 0;
+    var total_deceased = 0;
+    var total_recovered = 0;
+
+    var patients_total = db.collection("patients");
+
+    patients_total.where("status", "==", "Admitted	-	Stable")
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // console.log(doc.data().status);
+                // console.log(doc.data().hospital_admitted);
+                total_confirmed += 1;                
+            });
+        console.log(total_confirmed);
+        $('#confirmed_total').append("<strong>" + total_confirmed + "</strong>");
+        })
+    
+    patients_total.where("status", "==", "Deceased")
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                total_deceased += 1;                
+            });
+        console.log(total_deceased);
+        $('#deceased_total').append("<strong>" + total_deceased + "</strong>");
+        })
+
+    patients_total.where("status", "==", "Recovered")
+        .get()
+        .then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                total_recovered += 1;                
+            });
+        console.log(total_recovered);
+        $('#recovered_total').append("<strong>" + total_recovered + "</strong>");
+        })   
+};
+
+// async function displayEachTotal(){
+//     var countt = 0;
+//     db.collection("patients").orderBy("hospital_admitted")
+//         .get()
+//         .then(function (querySnapshot) {
+//             querySnapshot.forEach(function (doc) {
+//                 console.log(doc.data().hospital_admitted);
+//                 countt += 1; 
+//                 console.log(countt);
+//             });
+//         });
+// };
