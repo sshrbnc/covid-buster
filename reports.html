@@ -11,6 +11,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
+    <!-- DataTable -->
+    <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -19,11 +21,11 @@
     
     <script src="https://use.fontawesome.com/a3df52c0c9.js"></script>
 
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/reports.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light py-0 py-md-0">
-        <a class="navbar-brand" href="#" style="color: #FAFFEA;">COVID-19 CASES IN THE PHILIPPINES</a>
+        <a class="navbar-brand" href="index.html" style="color: #FAFFEA;">COVID-19 CASES IN THE PHILIPPINES</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,80 +43,16 @@
     <div class="container-fluid">
         <div class="row data-container">
             <div class="col">
-                <div class="row" style="height: 45%;">                                    
-                    <div class="col-sm totals mr-1" style="height: 100%;">                        
-                        <div class="card mb-0" style="height: 100%;">
-                            <div class="card-header collapsed" style="padding: 5px;">
-                                <a class="card-title"> <strong>CONFIRMED</strong> </a>                                    
-                            </div>
-                            <span id="confirmed_total"></span>                            
-                            <div id="confirmed_card">
-                                <ul style="text-decoration: none; list-style-type: none; margin: 0 7px; padding: 0;">
-                                    <li>St. Luke's Medical Center <span>10</span></li>                                    
-                                    <li>Philippine Heart Center <span>14</span></li>
-                                    <li>Research Institute for Tropical Medicine <span>11</span></li>
-                                    <li>San Lazaro Hospital <span>10</span></li>
-                                    <li>East Avenue Medical Center <span>5</span></li>                                    
-                                    <li>The Medical City <span>9</span></li>
-                                </ul>
-                            </div>
-                        </div>  
+                <h2 style="text-align: center; color: white;">Internal Reported Cases</h2>
+                <div class="row" style="height: 100%; color: #fff; padding: 3px;">
+                    <div id="reportsPlaceholder" class="col-sm-12">
+                        <!-- Reports table goes here -->
                     </div>
-                    <div class="col-sm totals mr-1" style="height: 100%;">                                        
-                        <div class="card mb-0" style="height: 100%;">
-                            <div class="card-header collapsed" style="padding: 5px;">
-                                <a class="card-title"> <strong>DECEASED</strong> </a>                                    
-                            </div>
-                            <span id="deceased_total"></span>
-                            <div id="deceased_card">
-                                <ul style="text-decoration: none; list-style-type: none; margin: 0 7px; padding: 0;">
-                                    <li>The Medical City <span>2</span></li>
-                                    <li>San Lazaro Hospital <span>1</span></li>
-                                    <li>East Avenue Medical Center <span>1</span></li>
-                                    <li>St. Luke's Medical Center <span>1</span></li> 
-                                </ul>
-                            </div>
-                        </div>  
-                    </div>                       
-                    <div class="col-sm totals" style="height: 100%;">   
-                        <div class="card mb-0" style="height: 100%;">                  
-                            <div class="card-header collapsed" style="padding: 5px;">
-                                <a class="card-title"> <strong>RECOVERED </strong> </a>                                    
-                            </div>
-                            <span id="recovered_total" ></span>
-                            <div id="recovered_card">
-                                <ul style="text-decoration: none; list-style-type: none; margin: 0 7px; padding: 0;">
-                                    <li>San Lazaro Hospital<span>1</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div> 
-                </div>
-                <div id="trends" class="row" style="height: 55%; color: #fff; padding: 3px;">
-                    <div class="col-sm-12" style="border: solid 1px gray; padding: 0;">
-                        TRENDS
-                    </div>
-                </div>                
-            </div>
-
-            <div class="col-5" style="padding: 2px;">                
-                <div id="maps" style="color: #fff; height: 100%; border: solid 1px gray;">
-                    MAP
-                </div>
-            </div>
-
-            <div class="col" style="padding: 2px;">
-                <div style="color: #fff; height: 50%; border: solid 1px gray;">
-                    <!-- CHART1 -->
-                    <canvas id="piechart"></canvas>
-                </div>
-                <div style="color: #fff; height: 49.5%; border: solid 1px gray; margin-top: 3px;">
-                    <!-- CHART2 -->
-                    <canvas id="bargraph"></canvas>
-                </div>
+                </div>            
             </div>
         </div>
     </div>
+
     <!-- Report Modal -->
     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -182,6 +120,10 @@
         </div>
     </div>
 
+    <!-- Datatables -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+
     <!-- Firebase core Javascript-->
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script> -->
@@ -189,28 +131,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"> </script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-storage.js"></script>
 
-    <!-- Chart JS -->
-    <script type="text/javascript"
-        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script> -->
-
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-    crossorigin=""></script>
-
     <!-- Custom JS -->
     <script src="js/firestore.js"></script>
-    <script src="js/windowloader.js"></script>
     <script src="js/dataloader.js"></script>
-    <script src="js/index.js"></script>
-    <script src="js/map-test.js"></script>
-    <script src="js/graph2d.js"></script>
-
-    <script>
-        // var ctxTrend = document.getElementById('trendgraph').getContext('2d');
-        var ctx_bargraph = document.getElementById('bargraph').getContext('2d');
-        var ctx = document.getElementById('piechart').getContext('2d');
-    </script>
+    <script src="js/reports.js"></script>
 </body>
 </html>

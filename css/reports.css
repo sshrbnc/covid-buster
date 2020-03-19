@@ -1,0 +1,74 @@
+body{
+    background-color: #1D1128;
+}
+nav{
+    background-color: #514F59;
+}
+
+.data-container{
+    width: 100vw;
+    height: 93.91vh;
+    /* border: solid 2px blue; */
+    padding: 5px;
+}
+
+.totals{
+    border: solid 2px black;
+    padding: 0;
+    height: 20px;
+}
+
+#confirmed_card, #deceased_card, #recovered_card{
+    overflow: auto;
+}
+
+#trends, #maps, #other_graphs{
+    /* border: solid 2px gray; */
+    /* margin: 1px; */
+}
+
+/* .accordion .card-header:after {
+    font-family: 'FontAwesome';  
+    content: "\f0d7";
+    float: right; 
+}
+.accordion .card-header.collapsed:after {
+    content: "\f0d8"; 
+} */
+
+.card-header{
+    background-color: transparent;
+    text-align: center;
+    color: #1D1128;
+}
+
+#confirmed_total, #deceased_total, #recovered_total{
+    font-size: 40px;
+    text-align: center;
+    color: #1D1128;
+}
+
+#confirmed_card ul li span, #deceased_card ul li span, #recovered_card ul li span{
+    float: right;
+}
+
+/* ------ Scrollbar ------ */
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}

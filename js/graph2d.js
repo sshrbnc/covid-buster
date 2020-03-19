@@ -89,7 +89,7 @@ async function drawVisualization2d() {
             }]
         },
         options: {
-            maintainAspectRatio: true,
+            maintainAspectRatio: false,
             legend: {
                 position: 'top',
                 labels: {
@@ -108,7 +108,7 @@ async function drawVisualization2d() {
                     },
                     scaleLabel: {
                         display: true,
-                        labelString: 'Count',
+                        labelString: 'Number of Patients',
                         fontSize: 14,
                         ticks: {
                             beginAtZero: true,
@@ -120,7 +120,7 @@ async function drawVisualization2d() {
                     scaleLabel: {
                         fontSize: 14,
                         display: true,
-                        //labelString: labelStr
+                        labelString: 'Status'
                     }
                 }]
             },

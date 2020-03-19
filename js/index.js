@@ -105,7 +105,7 @@ async function displayTotal(){
 
     var patients_total = db.collection("patients");
 
-    patients_total.where("status", "==", "Admitted	-	Stable")
+    patients_total.where("status", "in", ["Admitted	-	Stable", "Admitted", "Admitted	-	Critical", "Admitted	-	Serious"])
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {

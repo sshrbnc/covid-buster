@@ -56,7 +56,7 @@
         <div id="Map" class="tabcontent">
           <div style="border: solid 1px gray; height: 85.9%;">
             <h3>MAP</h3>
-          </div>
+            <div id="map-mobile"></div>
         </div>
 
         <div id="Graph" class="tabcontent">
@@ -64,13 +64,13 @@
             <h3>PIE GRAPH</h3>
           </div>
           <div style="border: solid 1px gray; height: 45%;">
-            <h3>PIE GRAPH</h3>
-          </div>
+            <canvas id="piechart"></canvas>
+          </div>            
         </div>
 
         <div id="Trend" class="tabcontent">
-          <div style="border: solid 1px gray; height: 85.9%;">
-            <h3>TREND GRAPH</h3>
+          <div style="border: solid 1px gray; height: 85.9%;">            
+            <canvas id="bargraph"></canvas>
           </div>
         </div>
 
@@ -220,10 +220,17 @@
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"> </script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-storage.js"></script>
     
+    <!-- Firebase core Javascript-->
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-storage.js"></script>
+
     <!-- Chart JS -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script> -->
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
@@ -232,7 +239,17 @@
 
     <!-- Custom JS -->
     <script src="js/firestore.js"></script>
-    <script src="js/index.js"></script>
     <script src="js/mobile.js"></script>
+    <script src="js/windowloader.js"></script>
+    <script src="js/dataloader.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/map-mobile.js"></script>
+    <script src="js/graph2d.js"></script>
+
+    <script>
+        // var ctxTrend = document.getElementById('trendgraph').getContext('2d');
+        var ctx_bargraph = document.getElementById('bargraph').getContext('2d');
+        var ctx = document.getElementById('piechart').getContext('2d');
+    </script>
 </body>
 </html>
