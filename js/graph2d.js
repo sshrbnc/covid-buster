@@ -22,7 +22,7 @@ async function drawPie() {
         return 0;
     });
 
-    let displayData = count_cases_in_location.map(a => a.confirmed);
+    let displayData = count_cases_in_location.map(a => a.confirmed != 0);
     let displayLabel = count_cases_in_location.map(a => a.location);
     
     if (pie_chart != null) {
