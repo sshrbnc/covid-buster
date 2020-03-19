@@ -32,42 +32,194 @@
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalScrollable"><i class="fa fa-bullhorn"></i>&nbsp;Report</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="index.html" data-toggle="" data-target="#"><i class="fa fa-mobile" ></i>&nbsp;Desktop</a>
+                <a class="nav-link" href="index.html" data-toggle="" data-target="#"><i class="fa fa-desktop" ></i>&nbsp;Desktop</a>
             </li>
           </ul>
         </div>
     </nav>
-    <div style="height: 85.9%;">
+    <div style="height: 85.9%;">     
         
         <div id="Cases" class="tabcontent">
-            <h5>CONFIRMED</h5>
-            <h3>202</h3>
-            <h5>DECEASED</h5>
-            <h3>17</h3>
-            <h5>RECOVERED</h5>
-            <h3>7</h3>
+          <div class="cases_detail">
+            <p style="font-size: 40px; padding: 0; margin-bottom: 0;">CONFIRMED</p>
+            <h3 id="confirmed_total_m" style="color: #6D72C3; font-size: 60px; padding: 0;"></h3>
+          </div>
+          <div class="cases_detail" style="margin: 3px 0;">
+            <p style="font-size: 40px; padding: 0; margin-bottom: 0;">DECEASED</p>
+            <h3 id="deceased_total_m" style="color: #6D72C3; font-size: 60px; padding: 0;"></h3>
+          </div>
+          <div class="cases_detail">
+            <p style="font-size: 40px; padding: 0; margin-bottom: 0;">RECOVERED</p>
+            <h3 id="recovered_total_m" style="color: #6D72C3; font-size: 60px; padding: 0;"></h3>
+          </div>           
         </div>
 
         <div id="Map" class="tabcontent">
-            <h3>MAP</h3>
-            <div id="map-mobile"></div>
+          <div style="border: solid 1px gray; height: 87%;">            
+            <div id="map-mobile" style="height: 100%;"></div>
+          </div>
         </div>
 
         <div id="Graph" class="tabcontent">
+          <!-- <div style="border: solid 1px gray; height: 45%;">
             <h3>PIE GRAPH</h3>
+          </div> -->
+          <div style="border: solid 1px gray; height: 85.9%;">
             <canvas id="piechart"></canvas>
+          </div>            
         </div>
 
         <div id="Trend" class="tabcontent">
-            <h3>TREND GRAPH</h3>
+          <div style="border: solid 1px gray; height: 85.9%;">            
             <canvas id="bargraph"></canvas>
+          </div>
         </div>
-        <button class="tablink" onclick="openPage('Cases', this, 'rosybrown')" id="defaultOpen">Cases</button>
-        <button class="tablink" onclick="openPage('Map', this, 'lightblue')">Map</button>
-        <button class="tablink" onclick="openPage('Graph', this, 'palegreen')">Graph</button>
-        <button class="tablink" onclick="openPage('Trend', this, 'wheat')">Trend</button>
-
+        <div>
+          <button class="tablink" onclick="openPage('Cases', this, '#1D1128')" >Cases</button>
+          <button class="tablink" onclick="openPage('Map', this, '#1D1128')" id="defaultOpen">Map</button>
+          <button class="tablink" onclick="openPage('Graph', this, '#1D1128')">Graph</button>
+          <button class="tablink" onclick="openPage('Trend', this, '#1D1128')">Trend</button>
+        </div> 
+        
     </div>
+    <!-- Report Modal -->
+    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalScrollableTitle">File a Report</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              </div>
+              <div class="modal-body">
+                  <form>
+                      <div class="form-group">
+                          <div class="form-check form-check-inline">
+                              <input class="form-check-input" type="radio" name="admitted" id="admitted_true" onclick="handleClick(true)">
+                              <label class="form-check-label" for="admitted_true">Admitted to a Hospital</label><br>
+                          </div>
+                          <div class="form-check form-check-inline" style="float: right; right: 0;">
+                              <input class="form-check-input" type="radio" name="admitted" id="admitted_false" onclick="handleClick(false)">
+                              <label class="form-check-label" for="admitted_false">Not Admitted to a Hospital</label><br>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlInput1">Age*</label>
+                        <input type="number" class="form-control" id="user_age" min="0">
+                      </div>
+                      <div class="form-group">
+                          <label for="exampleFormControlInput1">Sex*</label>
+                          <select class="form-control" id="user_sex">
+                              <option selected disabled>Please select one...</option>
+                              <option>Female</option>
+                              <option>Male</option>
+                          </select>
+                      </div>
+                      <div class="form-group" id="address_home" hidden>
+                          <label for="exampleFormControlInput1">Current Address*</label>
+                          <input type="text" class="form-control" id="user_home-address">
+                      </div>
+                      <div class="form-group" id="address_hospital" hidden>
+                          <label for="exampleFormControlInput1">Hospital Address*</label>
+                          <input type="text" class="form-control" id="user_hospital-address">
+                      </div>
+                      <div class="form-group">
+                          <label for="exampleFormControlInput1">Symptoms</label><br>
+                          <div class="form-check">
+                              <input class="form-check-input" type="checkbox" name="symptom_cough" id="symptom_cough">
+                              <label class="form-check-label" for="symptom_cough">Cough</label><br>
+                              <input class="form-check-input" type="checkbox" name="symptom_fever" id="symptom_fever">
+                              <label class="form-check-label" for="symptom_fever">Fever</label><br>
+                              <input class="form-check-input" type="checkbox" name="symptom_pneumonia" id="symptom_pneumonia">
+                              <label class="form-check-label" for="symptom_pneumonia">Pneumonia</label><br>
+                              <input class="form-check-input" type="checkbox" name="symptom_sore-throat" id="symptom_sore-throat">
+                              <label class="form-check-label" for="symptom_sore-throat">Sore Throat</label><br>
+                              <input class="form-check-input" type="checkbox" name="symptom_others" id="symptom_others" onclick="setOthers()">
+                              <label class="form-check-label" for="symptom_others">Others (Please specify) <input type="text" id="user_other-symptoms" disabled></label>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+              <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
+              <button type="button" class="btn btn-primary" onclick="submitReport()">Submit</button>
+              </div>
+          </div>
+      </div>
+  </div><!-- Report Modal -->
+    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalScrollableTitle">File a Report</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="admitted" id="admitted_true" onclick="handleClick(true)">
+                                <label class="form-check-label" for="admitted_true">Admitted to a Hospital</label><br>
+                            </div>
+                            <div class="form-check form-check-inline" style="float: right; right: 0;">
+                                <input class="form-check-input" type="radio" name="admitted" id="admitted_false" onclick="handleClick(false)">
+                                <label class="form-check-label" for="admitted_false">Not Admitted to a Hospital</label><br>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleFormControlInput1">Age*</label>
+                          <input type="number" class="form-control" id="user_age" min="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Sex*</label>
+                            <select class="form-control" id="user_sex">
+                                <option selected disabled>Please select one...</option>
+                                <option>Female</option>
+                                <option>Male</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="address_home" hidden>
+                            <label for="exampleFormControlInput1">Current Address*</label>
+                            <input type="text" class="form-control" id="user_home-address">
+                        </div>
+                        <div class="form-group" id="address_hospital" hidden>
+                            <label for="exampleFormControlInput1">Hospital Address*</label>
+                            <input type="text" class="form-control" id="user_hospital-address">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Symptoms</label><br>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="symptom_cough" id="symptom_cough">
+                                <label class="form-check-label" for="symptom_cough">Cough</label><br>
+                                <input class="form-check-input" type="checkbox" name="symptom_fever" id="symptom_fever">
+                                <label class="form-check-label" for="symptom_fever">Fever</label><br>
+                                <input class="form-check-input" type="checkbox" name="symptom_pneumonia" id="symptom_pneumonia">
+                                <label class="form-check-label" for="symptom_pneumonia">Pneumonia</label><br>
+                                <input class="form-check-input" type="checkbox" name="symptom_sore-throat" id="symptom_sore-throat">
+                                <label class="form-check-label" for="symptom_sore-throat">Sore Throat</label><br>
+                                <input class="form-check-input" type="checkbox" name="symptom_others" id="symptom_others" onclick="setOthers()">
+                                <label class="form-check-label" for="symptom_others">Others (Please specify) <input type="text" id="user_other-symptoms" disabled></label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="submitReport()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase core Javascript-->
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"> </script>
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-storage.js"></script>
     
     <!-- Firebase core Javascript-->
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
@@ -88,6 +240,7 @@
 
     <!-- Custom JS -->
     <script src="js/firestore.js"></script>
+    <script src="js/mobile.js"></script>
     <script src="js/windowloader.js"></script>
     <script src="js/dataloader.js"></script>
     <script src="js/index.js"></script>
@@ -98,25 +251,6 @@
         // var ctxTrend = document.getElementById('trendgraph').getContext('2d');
         var ctx_bargraph = document.getElementById('bargraph').getContext('2d');
         var ctx = document.getElementById('piechart').getContext('2d');
-    </script>
-
-    <script>
-        function openPage(pageName,elmnt,color) {
-          var i, tabcontent, tablinks;
-          tabcontent = document.getElementsByClassName("tabcontent");
-          for (i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none";
-          }
-          tablinks = document.getElementsByClassName("tablink");
-          for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].style.backgroundColor = "";
-          }
-          document.getElementById(pageName).style.display = "block";
-          elmnt.style.backgroundColor = color;
-        }
-        
-        // Get the element with id="defaultOpen" and click on it
-        document.getElementById("defaultOpen").click();
     </script>
 </body>
 </html>
