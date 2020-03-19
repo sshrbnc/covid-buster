@@ -1,17 +1,28 @@
 window.addEventListener("load", async () => {
-    await getPatientData();
-    populateLocations();
-    populateHospital();
-    populateAge();
-    populateDateTestedPositive();
-    populateStatus();
-    countStatus();
-    countCasesInLocation();
-
-    await displayTotal();
-    await displayEachTotal();
+    var element = document.getElementById("reportsPageLabel");
+ 
     
-    generateColors();
-    drawPie();
-    drawVisualization2d();
+    if(typeof(element) != 'undefined' && element != null){
+        // IN THE REPORTS PAGE
+        await getReportsData();
+        populateReportsTable();
+    } else {
+        // IN THE DASHBOARD
+        await getPatientData();
+        populateLocations();
+        populateHospital();
+        populateAge();
+        populateDateTestedPositive();
+        populateStatus();
+        countStatus();
+        countCasesInLocation();
+
+        await displayTotal();
+        await displayEachTotal();
+        
+        generateColors();
+        drawPie();
+        drawVisualization2d();
+    }
 });
+
