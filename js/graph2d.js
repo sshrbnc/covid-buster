@@ -5,7 +5,7 @@ var pieColors = [];
 
 function generateColors() {
 
-    for (let i = 0; i < 13; i++) {
+    for (let i = 0; i < count_cases_in_location.length; i++) {
         var r = Math.floor(Math.random() * 255);
         var g = Math.floor(Math.random() * 255);
         var b = Math.floor(Math.random() * 255);
@@ -16,22 +16,14 @@ function generateColors() {
 }
 
 async function drawPie() {
-    let displayData = [15, 14, 14, 5, 3, 1, 1, 2, 2, 4, 1, 1, 1];
-    let displayLabel = [
-        "San Juan", 
-        "Quezon City", 
-        "Makati", 
-        "Taguig", 
-        "Mandaluyong", 
-        "Pampanga",
-        "Bataan",
-        "Laguna",
-        "Batangas",
-        "Cavite",
-        "Rizal",
-        "Negros Oriental",
-        "Bohol",
-    ];
+    count_cases_in_location.sort(function(a, b){
+        if (a.location < b.location) return -1;
+        if (a.location > b.location) return 1;
+        return 0;
+    });
+
+    let displayData = count_cases_in_location.map(a => a.confirmed != 0);
+    let displayLabel = count_cases_in_location.map(a => a.location);
     
     if (pie_chart != null) {
         pie_chart.destroy();
@@ -66,6 +58,12 @@ async function drawPie() {
 }
 
 async function drawVisualization2d() {
+    count_status.sort(function(a, b){
+        if (a.status < b.status) return -1;
+        if (a.status > b.status) return 1;
+        return 0;
+    });
+    
     let displayLabel =  count_status.map(a => a.status);
     let displayData =  count_status.map(a => a.count);
 
