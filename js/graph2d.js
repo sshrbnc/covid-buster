@@ -69,9 +69,6 @@ async function drawVisualization2d() {
     let displayLabel =  count_status.map(a => a.status);
     let displayData =  count_status.map(a => a.count);
 
-    console.log(displayLabel);
-    console.log(displayData);
-
     if (bar_graph_status != null) {
         bar_graph_status.destroy();
     }

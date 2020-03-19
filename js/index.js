@@ -1,10 +1,3 @@
-window.addEventListener("load", async () => {
-    isloaded = true;
-    await displayTotal();   
-    // await displayEachTotal();
-});
-
-
 async function submitReport(){
     var home_address = document.getElementById("user_home-address").value;
     var hospital_address = document.getElementById("user_hospital-address").value;
@@ -67,7 +60,7 @@ async function submitReport(){
     
         clearRedfield();
     }
-};
+}
 
 function clearRedfield(){
     document.getElementById("user_home-address").value = "";
@@ -96,7 +89,7 @@ function handleClick(admitted){
     }
 
     db.collection("reports").add(report_details);
-};
+}
 
 async function displayTotal(){
     var total_confirmed = 0;
@@ -136,20 +129,24 @@ async function displayTotal(){
         console.log(total_recovered);
         $('#recovered_total').append("<strong>" + total_recovered + "</strong>");
         })   
-};
+}
 
-// async function displayEachTotal(){
-//     var countt = 0;
-//     db.collection("patients").orderBy("hospital_admitted")
-//         .get()
-//         .then(function (querySnapshot) {
-//             querySnapshot.forEach(function (doc) {
-//                 console.log(doc.data().hospital_admitted);
-//                 countt += 1; 
-//                 console.log(countt);
-//             });
-//         });
-// };
+async function displayEachTotal(){
+    for(cases of count_cases_in_location){
+        if(!cases["confirmed"] == 0){
+            $("#confirmed_card_list").append('<li>' + cases["location"] + '<span>' + cases["confirmed"] + '</span></li>');
+        }
+
+        if(!cases["deceased"] == 0){
+            $("#deceased_card_list").append('<li>' + cases["location"] + '<span>' + cases["deceased"] + '</span></li>');
+        }
+
+        if(!cases["recovered"] == 0){
+            $("#recovered_card_list").append('<li>' + cases["location"] + '<span>' + cases["recovered"] + '</span></li>');
+        }
+    }
+}
+
 function setOthers(){
     var others = document.getElementById("user_other-symptoms");
     if(others.hasAttribute("disabled")){
