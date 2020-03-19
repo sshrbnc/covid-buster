@@ -10,6 +10,8 @@ var status_category = [];
 
 var count_status = [];
 
+var reportsData = [];
+
 async function getPatientData(){
     console.log("Getting data...");
     await db
@@ -73,5 +75,16 @@ function countStatus(){
     console.log(statuses);
 }
 
-
+async function getReportsData(){
+    console.log("Getting data...");
+    await db
+        .collection("reports")
+        .orderBy("id")
+        .get()
+        .then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                reportsData.push(doc.data());
+            });
+        });
+}
 
