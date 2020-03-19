@@ -115,6 +115,7 @@ async function displayTotal(){
             });
         console.log(total_confirmed);
         $('#confirmed_total').append("<strong>" + total_confirmed + "</strong>");
+        $('#confirmed_total_m').append("<strong>" + total_confirmed + "</strong>");
         })
     
     patients_total.where("status", "==", "Deceased")
@@ -125,6 +126,7 @@ async function displayTotal(){
             });
         console.log(total_deceased);
         $('#deceased_total').append("<strong>" + total_deceased + "</strong>");
+        $('#deceased_total_m').append("<strong>" + total_deceased + "</strong>");
         })
 
     patients_total.where("status", "==", "Recovered")
@@ -135,6 +137,7 @@ async function displayTotal(){
             });
         console.log(total_recovered);
         $('#recovered_total').append("<strong>" + total_recovered + "</strong>");
+        $('#recovered_total_m').append("<strong>" + total_recovered + "</strong>");
         })   
 };
 
