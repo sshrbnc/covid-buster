@@ -5,12 +5,14 @@ var date_tested_positive = [];
 var date_deceased = [];
 var hospital_admitted = [];
 var hospital_location = [];
-var sex = [];
 var patient_status = [];
 var status_category = [];
 
 var count_status = [];
 var count_cases_in_location = [];
+var count_sex = {M: 0, F: 0};
+var count_sex_for_each_status_M = [];
+var count_sex_for_each_status_F = [];
 
 var reportsData = [];
 
@@ -164,4 +166,29 @@ function countCasesInLocation(){
             }
         }
     }
+
+}
+
+function countSex(){
+    for(patient of patientData){
+        switch(patient.sex){
+            case "M":
+                count_sex.M += 1;
+                break;
+            case "F":
+                count_sex.F += 1;
+                break;
+        }
+    }
+
+    console.log(count_sex);
+
+}
+
+function countSexForEachStatus(){
+    // for(patient of patientData){
+    //     if (){
+
+    //     }
+    // }
 }

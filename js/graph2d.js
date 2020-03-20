@@ -22,7 +22,7 @@ async function drawPie() {
         return 0;
     });
 
-    let displayData = count_cases_in_location.map(a => a.confirmed != 0);
+    let displayData = count_cases_in_location.map(a => a.confirmed);
     let displayLabel = count_cases_in_location.map(a => a.location);
     
     if (pie_chart != null) {
@@ -45,7 +45,7 @@ async function drawPie() {
         options: {
             maintainAspectRatio: false,
             legend: {
-                position: 'left'
+                position: 'top'
             },
             // plugins: {
             //     labels: {
