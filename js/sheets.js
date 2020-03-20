@@ -14,6 +14,10 @@
   // Make sure the client is loaded and sign-in is complete before calling this method.
   function execute() {
     return gapi.client.sheets.spreadsheets.values.batchGet({
+
+      // 1wdxIwD0b58znX4UrH6JJh_0IhnZP0YWn23Uqs7lHB6Q == r/covid spreadsheet
+      // 1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0 == replica spreadsheet
+
       "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
       "dateTimeRenderOption": "FORMATTED_STRING",
       "majorDimension": "ROWS",
@@ -29,7 +33,7 @@
                 // Handle the results here (response.result has the parsed body).
                 // console.log("Response", response);
                 data = response.result.valueRanges[0].values;
-                console.log(data);
+                // console.log(data);
               },
               function(err) { console.error("Execute error", err); });
   }
