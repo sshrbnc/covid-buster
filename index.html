@@ -90,9 +90,9 @@
                         </div>
                     </div> 
                 </div>
-                <div id="trends" class="row" style="height: 55%; color: #fff; padding: 3px;">
+                <div id="trends" class="row" style="max-height: 500px;width:510px; color: #fff; padding: 3px;">
                     <div class="col-sm-12" style="border: solid 1px gray; padding: 0;">
-                        TRENDS
+                        <a class="twitter-timeline" data-width="510" data-height="500" data-theme="dark" href="https://twitter.com/hahahanikeyt/lists/covid19?ref_src=twsrc%5Etfw"></a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                     </div>
                 </div>                
             </div>
@@ -208,6 +208,11 @@
     <script src="js/graph2d.js"></script>
 
     <script>
+        $(window).resize(function() {
+    if (document.documentElement.clientWidth <= 1024) {    
+         location.href = "mobile.html";
+        }
+    }).resize()
         // var ctxTrend = document.getElementById('trendgraph').getContext('2d');
         var ctx_bargraph = document.getElementById('bargraph').getContext('2d');
         var ctx = document.getElementById('piechart').getContext('2d');
