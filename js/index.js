@@ -121,8 +121,6 @@ function handleClick(admitted){
         document.getElementById("address_home").setAttribute("hidden", "hidden");
         document.getElementById("user_home-address").value = "";
     }
-
-    db.collection("reports").add(report_details);
 }
 
 async function displayTotal(){
