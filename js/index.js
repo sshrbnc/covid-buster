@@ -9,8 +9,9 @@ async function submitReport(){
     if(home_address=="" && hospital_address=="" || admitted_true.checked==false && admitted_false.checked==false || age=="" || sex==""){
         alert("Please fill in all required fields.");
     } else {
-        var id = 0;
 
+        //GET VALUES
+        var id = 0;
         var address = ""
         if(home_address != ""){
             address = home_address;
@@ -20,12 +21,11 @@ async function submitReport(){
     
         var admitted = "";
         if(admitted_true.checked == true){
-            admitted = true;
+            admitted = "Yes";
         } else if(admitted_false.checked == true){
-            admitted = false;
+            admitted = "No";
         }
-    
-        var created = firebase.firestore.FieldValue.serverTimestamp();
+
         var symptoms = [];
     
         if(document.getElementById("symptom_cough").checked == true){
@@ -43,21 +43,55 @@ async function submitReport(){
         if(document.getElementById("symptom_others").checked == true){
             symptoms.push(document.getElementById("user_other-symptoms").value);
         }
-    
-        var report_details = {address, admitted, age, created, id, sex, symptoms};
-    
-        //Get the latest report count, increment it by 1, then set the sum as the new report's id
-        await db.collection("counter").get().then(function (querySnapshot) {
-            report_details.id = querySnapshot.docs[0].data().report_count + 1;
-            querySnapshot.forEach(function (doc) {
-                db.collection("counter").doc(doc.id).update({
-                    report_count: report_details.id
-                });
-            });
-        });
-    
-        db.collection("reports").add(report_details);
-    
+        
+        //ESTABLISH CONNECTION
+        await authenticate().then(loadClient);
+        await execute();
+
+        //GET LAST ID
+        var dataBatch = gapi.client.sheets.spreadsheets.values.batchGet({
+            "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
+            "dateTimeRenderOption": "FORMATTED_STRING",
+            "majorDimension": "ROWS",
+            "ranges": [
+              "'reports'"
+            ],
+            "valueRenderOption": "UNFORMATTED_VALUE"
+        }).then(function(response) {
+            //WRITE TO SPREADSHEET
+            data = response.result.valueRanges[0].values;
+            newId = parseInt(data[data.length - 1][0]) + 1;
+            size = data.length + 1;
+            var thisRange = "'reports'!A" + size + ":F" + size;
+
+            return gapi.client.sheets.spreadsheets.values.update({
+                "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
+                "range": thisRange,
+                "includeValuesInResponse": false,
+                "responseDateTimeRenderOption": "SERIAL_NUMBER",
+                "responseValueRenderOption": "UNFORMATTED_VALUE",
+                "valueInputOption": "RAW",
+                "resource": {
+                    "majorDimension": "ROWS",
+                    "values": [
+                        [
+                            newId,
+                            age,
+                            sex,
+                            address,
+                            admitted,
+                            symptoms.toString()
+                        ]
+                    ],
+                    "range": thisRange
+                }
+            }).then(function(response) {
+                alert("Report submitted successfully!");
+            },
+            function(err) { console.error("Execute error", err); });
+        },
+        function(err) { console.error("Execute error", err); });
+
         clearRedfield();
     }
 }
@@ -87,8 +121,6 @@ function handleClick(admitted){
         document.getElementById("address_home").setAttribute("hidden", "hidden");
         document.getElementById("user_home-address").value = "";
     }
-
-    db.collection("reports").add(report_details);
 }
 
 async function displayTotal(){

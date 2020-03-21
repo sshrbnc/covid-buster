@@ -18,21 +18,6 @@ var count_sex = {M: 0, F: 0};
 var count_sex_for_each_status_M = {ASt: 0,  A: 0, AC: 0, ASe: 0, D: 0, R: 0};
 var count_sex_for_each_status_F = {ASt: 0,  A: 0, AC: 0, ASe: 0, D: 0, R: 0};
 
-// var reportsData = [];
-
-// async function getReportsData(){
-//     console.log("Getting data...");
-//     await db
-//         .collection("reports")
-//         .orderBy("id")
-//         .get()
-//         .then(function (querySnapshot) {
-//             querySnapshot.forEach(function (doc) {
-//                 reportsData.push(doc.data());
-//             });
-//         });
-// }
-
 async function getPatientData(){
     console.log("Getting data...");
     await db
@@ -130,52 +115,6 @@ function populateStatus(){
             count_status.push({status: patient.status, count: 0});
         }
     }
-}
-
-function populateReportsTable(){
-    $('#reportsPlaceholder').html("");
-
-    let head = 
-        "<table id='reportsTable' class='table table-striped' style='width:100%; background-color: lightgrey; color: #1D1128;'>" +
-        "<thead>" +
-        "<tr>" +
-        "<th>ID</th>" +
-        "<th>Age</th>" +
-        "<th>Sex</th>" +
-        "<th>Address</th>" +
-        "<th>Admitted?</th>" +
-        "<th>Symptoms</th>"
-        "</thead>";
-
-    let body = "<tbody>";
-
-    reportsData.forEach(function (report){
-        body +=
-            "<tr>" +
-            "<td>" + report.id + "</td>" +
-            "<td>" + report.age + "</td>" +
-            "<td>" + report.sex + "</td>" +
-            "<td>" + report.address + "</td>";
-        
-        if(report.admitted == true){
-            body += "<td>Yes</td>";
-        } else {
-            body += "<td>No</td>";
-        }
-        
-        if(report.symptoms == ""){
-            body += "<td>Asymptomatic (No symptoms)</td>";
-        } else {
-            body += "<td>" + report.symptoms + "</td>";
-        }
-        body += "</tr>";
-    });
-
-    $('#reportsPlaceholder').html(head + body + "</tbody></table>");
-
-    $('#reportsTable').DataTable({
-        responsive: true
-    });
 }
 
 // Populate arrays end
