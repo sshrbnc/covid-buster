@@ -98,7 +98,7 @@ async function displayTotal(){
 
     var patients_total = db.collection("patients");
 
-    patients_total.where("status", "in", ["Admitted	-	Stable", "Admitted", "Admitted	-	Critical", "Admitted	-	Serious"])
+    patients_total.where("status", "in", ["Admitted	-	Stable", "Admitted	-	(For Validation)", "Admitted	-	Critical", "Admitted	-	Serious"])
         .get()
         .then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
@@ -106,7 +106,7 @@ async function displayTotal(){
                 // console.log(doc.data().hospital_admitted);
                 total_confirmed += 1;                
             });
-        console.log(total_confirmed);
+        
         $('#confirmed_total').append("<strong>" + total_confirmed + "</strong>");
         $('#confirmed_total_m').append("<strong>" + total_confirmed + "</strong>");
         })
@@ -117,7 +117,7 @@ async function displayTotal(){
             querySnapshot.forEach(function(doc) {
                 total_deceased += 1;                
             });
-        console.log(total_deceased);
+        
         $('#deceased_total').append("<strong>" + total_deceased + "</strong>");
         $('#deceased_total_m').append("<strong>" + total_deceased + "</strong>");
         })
@@ -128,7 +128,7 @@ async function displayTotal(){
             querySnapshot.forEach(function(doc) {
                 total_recovered += 1;                
             });
-        console.log(total_recovered);
+        
         $('#recovered_total').append("<strong>" + total_recovered + "</strong>");
         $('#recovered_total_m').append("<strong>" + total_recovered + "</strong>");
         })   

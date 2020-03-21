@@ -50,12 +50,7 @@
                             <span id="confirmed_total"></span>                            
                             <div id="confirmed_card">
                                 <ul id="confirmed_card_list" style="text-decoration: none; list-style-type: none; margin: 0 7px; padding: 0;">
-                                    <!-- <li>St. Luke's Medical Center <span>10</span></li>                                    
-                                    <li>Philippine Heart Center <span>14</span></li>
-                                    <li>Research Institute for Tropical Medicine <span>11</span></li>
-                                    <li>San Lazaro Hospital <span>10</span></li>
-                                    <li>East Avenue Medical Center <span>5</span></li>                                    
-                                    <li>The Medical City <span>9</span></li> -->
+                                    
                                 </ul>
                             </div>
                         </div>  
@@ -68,15 +63,12 @@
                             <span id="deceased_total"></span>
                             <div id="deceased_card">
                                 <ul id="deceased_card_list" style="text-decoration: none; list-style-type: none; margin: 0 7px; padding: 0;">
-                                    <!-- <li>The Medical City <span>2</span></li>
-                                    <li>San Lazaro Hospital <span>1</span></li>
-                                    <li>East Avenue Medical Center <span>1</span></li>
-                                    <li>St. Luke's Medical Center <span>1</span></li>  -->
+                                    
                                 </ul>
                             </div>
                         </div>  
                     </div>                       
-                    <div class="col-sm totals" style="height: 100%;">   
+                    <div class="col-sm totals mr-1" style="height: 100%;">   
                         <div class="card mb-0" style="height: 100%;">                  
                             <div class="card-header collapsed" style="padding: 5px;">
                                 <a class="card-title"> <strong>RECOVERED </strong> </a>                                    
@@ -84,20 +76,23 @@
                             <span id="recovered_total" ></span>
                             <div id="recovered_card">
                                 <ul id="recovered_card_list" style="text-decoration: none; list-style-type: none; margin: 0 7px; padding: 0;">
-                                    <!-- <li>San Lazaro Hospital<span>1</span></li> -->
+                                    
                                 </ul>
                             </div>
                         </div>
                     </div> 
                 </div>
-                <div id="trends" class="row" style="height: 55%; color: #fff; padding: 3px;">
+                <div class="row" style="height: 55%; color: #fff; padding: 3px;">
                     <div class="col-sm-12" style="border: solid 1px gray; padding: 0;">
-                        TRENDS
+                        <!-- TRENDS -->
+                        <!-- <canvas id="trendgraph"></canvas> -->
+                        <div id="timeline"></div>
+                        <span id="for_validation"></span>
                     </div>
                 </div>                
             </div>
 
-            <div class="col-5" style="padding: 2px;">                
+            <div class="col-4" style="padding: 2px;">                
                 <div id="maps" style="color: #fff; height: 100%; border: solid 1px gray;">
                     MAP
                 </div>
@@ -106,11 +101,13 @@
             <div class="col" style="padding: 2px;">
                 <div style="color: #fff; height: 50%; border: solid 1px gray;">
                     <!-- CHART1 -->
-                    <canvas id="piechart"></canvas>
+                    <!-- <canvas id="piechart"></canvas> -->
+                    <div id="doughnut"></div>
                 </div>
-                <div style="color: #fff; height: 49.5%; border: solid 1px gray; margin-top: 3px;">
+                <div style="color: #fff; height: 50%; border: solid 1px gray; margin-top: 3px;">
                     <!-- CHART2 -->
-                    <canvas id="bargraph"></canvas>
+                    <!-- <canvas id="bargraph"></canvas> -->
+                    <div id="bargraph"></div>
                 </div>
             </div>
         </div>
@@ -184,15 +181,18 @@
 
     <!-- Firebase core Javascript-->
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script> -->
+    <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"> </script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-storage.js"></script>
 
+    <!-- Apex Chart JS -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
     <!-- Chart JS -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
-    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
@@ -205,12 +205,13 @@
     <script src="js/windowloader.js"></script>
     <script src="js/index.js"></script>
     <script src="js/map-web.js"></script>
-    <script src="js/graph2d.js"></script>
+    <script src="js/graph.js"></script>
+    <!-- <script src="js/graph2d.js"></script> -->
 
     <script>
-        // var ctxTrend = document.getElementById('trendgraph').getContext('2d');
-        var ctx_bargraph = document.getElementById('bargraph').getContext('2d');
-        var ctx = document.getElementById('piechart').getContext('2d');
+        //var ctx_trend = document.getElementById('trendgraph').getContext('2d');
+        // var ctx_bargraph = document.getElementById('bargraph').getContext('2d');
+        // var ctx = document.getElementById('piechart').getContext('2d');
     </script>
 </body>
 </html>

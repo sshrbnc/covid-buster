@@ -4,6 +4,7 @@ window.addEventListener("load", async () => {
     await authenticate().then(loadClient);
     await execute();
     reportsData = data;
+    console.log(reportsData);
     populateReportsTable();
 });
 

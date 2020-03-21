@@ -3,31 +3,35 @@ var patientData = [];
 var age = [];
 var date_tested_positive = [];
 var date_deceased = [];
+var date_recovered = [];
 var hospital_admitted = [];
 var hospital_location = [];
 var patient_status = [];
 var status_category = [];
+var dates = [];
 
+var for_validation_count = 0;
 var count_status = [];
 var count_cases_in_location = [];
 var count_sex = {M: 0, F: 0};
-var count_sex_for_each_status_M = [];
-var count_sex_for_each_status_F = [];
 
-var reportsData = [];
+var count_sex_for_each_status_M = {ASt: 0,  A: 0, AC: 0, ASe: 0, D: 0, R: 0};
+var count_sex_for_each_status_F = {ASt: 0,  A: 0, AC: 0, ASe: 0, D: 0, R: 0};
 
-async function getReportsData(){
-    console.log("Getting data...");
-    await db
-        .collection("reports")
-        .orderBy("id")
-        .get()
-        .then(function (querySnapshot) {
-            querySnapshot.forEach(function (doc) {
-                reportsData.push(doc.data());
-            });
-        });
-}
+// var reportsData = [];
+
+// async function getReportsData(){
+//     console.log("Getting data...");
+//     await db
+//         .collection("reports")
+//         .orderBy("id")
+//         .get()
+//         .then(function (querySnapshot) {
+//             querySnapshot.forEach(function (doc) {
+//                 reportsData.push(doc.data());
+//             });
+//         });
+// }
 
 async function getPatientData(){
     console.log("Getting data...");
@@ -69,10 +73,53 @@ function populateAge(){
 
 function populateDateTestedPositive(){
     for(patient of patientData){
-        if (!date_tested_positive.includes(patient.date_tested_positive)){
-            date_tested_positive.push(patient.date_tested_positive);
+        if (!date_tested_positive.includes(patient.date_tested_positive) && patient.date_tested_positive != '(For Validation)'){
+            date_tested_positive.push({x: new Date(patient.date_tested_positive).getTime(), y: 0});
+        } else {
+            for_validation_count += 1;
         }
     }
+    date_tested_positive.sort(function(a, b){
+        if (a.x < b.x) return -1;
+        if (a.x > b.x) return 1;
+        return 0;
+    });
+}
+
+function populateDateDeceased(){
+    for(patient of patientData){
+        if (patient.hasOwnProperty('date_deceased')){
+            if (!date_deceased.includes(patient.date_deceased) && patient.date_deceased != '(For Validation)'){
+                date_deceased.push({x: new Date(patient.date_deceased).getTime(), y: 0});
+            } else {
+                for_validation_count += 1;
+            }
+        }
+    }
+    date_deceased.sort(function(a, b){
+        if (a.x < b.x) return -1;
+        if (a.x > b.x) return 1;
+        return 0;
+    });
+}
+
+function populateDateRecovered(){
+    for(patient of patientData){
+        if (patient.hasOwnProperty('date_recovered')){
+            if (!date_recovered.includes(patient.date_recovered) && patient.date_recovered != '(For Validation)'){
+                date_recovered.push({x: new Date(patient.date_recovered).getTime(), y: 0});
+            } else {
+                for_validation_count += 1;
+            }
+        }
+        
+    }
+    date_recovered.sort(function(a, b){
+        if (a.x < b.x) return -1;
+        if (a.x > b.x) return 1;
+        return 0;
+    });
+    
 }
 
 function populateStatus(){
@@ -151,7 +198,7 @@ function countCasesInLocation(){
             if (count_cases_in_location[i]["location"] === patient.hospital_location){
                 switch(patient.status){
                     case "Admitted	-	Stable":
-                    case "Admitted":
+                    case "Admitted	-	(For Validation)":
                     case "Admitted	-	Critical":
                     case "Admitted	-	Serious":
                         count_cases_in_location[i]["confirmed"] += 1;
@@ -181,14 +228,93 @@ function countSex(){
         }
     }
 
-    console.log(count_sex);
+}
 
+function countDateTestedPositive(){
+    for(patient of patientData){
+        for(let i = 0; i < date_tested_positive.length; i++){
+            if (date_tested_positive[i]["x"] === (new Date(patient.date_tested_positive).getTime()) ){
+                date_tested_positive[i]["y"] += 1;
+            }
+        }
+    }
+
+}
+
+function countDateDeceased(){
+    for(patient of patientData){
+        if (patient.hasOwnProperty('date_deceased')){
+            for(let i = 0; i < date_deceased.length; i++){
+                if (date_deceased[i]["x"] === (new Date(patient.date_deceased).getTime()) ){
+                    date_deceased[i]["y"] += 1;
+                }
+            }
+        }
+    }
+
+}
+
+function countDateRecovered(){
+    for(patient of patientData){
+        if (patient.hasOwnProperty('date_recovered')){
+            for(let i = 0; i < date_recovered.length; i++){
+                if (date_recovered[i]["x"] === (new Date(patient.date_recovered).getTime()) ){
+                    date_recovered[i]["y"] += 1;
+                }
+            }
+        }
+    }
+    
 }
 
 function countSexForEachStatus(){
-    // for(patient of patientData){
-    //     if (){
+    for(patient of patientData){
+        if (patient.sex === "F"){
+            switch(patient.status){
+                case "Admitted	-	Stable": 
+                    count_sex_for_each_status_F.ASt += 1;
+                    break;
+                case "Admitted	-	(For Validation)":
+                    count_sex_for_each_status_F.A += 1;
+                    break;
+                case "Admitted	-	Critical":
+                    count_sex_for_each_status_F.AC += 1;
+                    break;
+                case "Admitted	-	Serious":
+                    count_sex_for_each_status_F.ASe += 1;
+                    break;
+                case "Deceased":
+                    count_sex_for_each_status_F.D += 1;
+                    break;
+                case "Recovered":
+                    count_sex_for_each_status_F.R += 1;
+                    break;
+            }
+        } else if (patient.sex === "M"){
+            switch(patient.status){
+                case "Admitted	-	Stable": 
+                    count_sex_for_each_status_M.ASt += 1;
+                    break;
+                case "Admitted	-	(For Validation)":
+                    count_sex_for_each_status_M.A += 1;
+                    break;
+                case "Admitted	-	Critical":
+                    count_sex_for_each_status_M.AC += 1;
+                    break;
+                case "Admitted	-	Serious":
+                    count_sex_for_each_status_M.ASe += 1;
+                    break;
+                case "Deceased":
+                    count_sex_for_each_status_M.D += 1;
+                    break;
+                case "Recovered":
+                    count_sex_for_each_status_M.R += 1;
+                    break;
+            }
+        }
 
-    //     }
-    // }
+    }
+
 }
+
+

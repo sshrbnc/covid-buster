@@ -13,16 +13,29 @@ window.addEventListener("load", async () => {
         populateHospital();
         populateAge();
         populateDateTestedPositive();
+        populateDateDeceased();
+        populateDateRecovered();
         populateStatus();
+        
         countStatus();
         countCasesInLocation();
+        countSex();
+        countSexForEachStatus();
+        countDateTestedPositive();
+        countDateDeceased();
+        countDateRecovered();
 
         await displayTotal();
         await displayEachTotal();
         
-        generateColors();
-        drawPie();
-        drawVisualization2d();
+        //generateColors();
+        drawDoughnut();
+        drawTimeline();
+        drawBargraph();
+        //drawPie();
+        //drawVisualization2d();
+        //drawVisualizationTrend();
+        //drawVisualizationTimeline();
     }
 });
 
