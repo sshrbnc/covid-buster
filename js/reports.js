@@ -3,8 +3,7 @@ var reportsData = "";
 window.addEventListener("load", async () => {
     await authenticate().then(loadClient);
     await execute();
-    reportsData = data;
-    console.log(reportsData);
+    reportsData = data_reports;
     populateReportsTable();
 });
 
