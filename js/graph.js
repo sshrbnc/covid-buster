@@ -52,7 +52,7 @@ async function drawDonut(){
         },
         toolbox: {
           show: true,
-          left: 'auto',
+          right: 'auto',
           top: 'auto',
           bottom: 'auto',
           orient: 'horizontal',
@@ -63,7 +63,7 @@ async function drawDonut(){
                   title: 'Save as PNG',
                   emphasis: {
                     iconStyle: {
-                        textPosition: 'right'
+                        textPosition: 'bottom'
                     }
                   }
               }
