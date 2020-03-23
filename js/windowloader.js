@@ -29,8 +29,9 @@ window.addEventListener("load", async () => {
         await displayEachTotal();
         
         //generateColors();
-        drawDoughnut();
-        drawTimeline();
+        drawDonut();
+        //drawDoughnut();
+        //drawTimeline();
         drawBargraph();
         //drawPie();
         //drawVisualization2d();

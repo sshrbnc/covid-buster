@@ -26,6 +26,90 @@ function generateColor() {
     return color;
 }
 
+async function drawDonut(){
+    let myChart = echarts.init(document.getElementById('doughnut'));
+
+    count_cases_in_location.sort(function(a, b){
+        if (a.location < b.location) return -1;
+        if (a.location > b.location) return 1;
+        return 0;
+    });
+
+    let newDisplayData = count_cases_in_location.map(function(val){
+        return {name: val.location, value: val.confirmed}
+    });
+
+    let displayLabel = count_cases_in_location.map(a => a.location);
+
+    let option = {
+        title: {
+            text: 'Number of Cases',
+            subtext: 'per Area',
+            left: 'center',
+            textStyle: {
+                color: '#fff'
+            },
+        },
+        toolbox: {
+          show: true,
+          left: 'auto',
+          top: 'auto',
+          bottom: 'auto',
+          orient: 'horizontal',
+          feature: {
+              saveAsImage: {
+                  show: true,
+                  type: 'png',
+                  title: 'Save as PNG',
+                  emphasis: {
+                    iconStyle: {
+                        textPosition: 'right'
+                    }
+                  }
+              }
+          }
+        },
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        legend: {
+            show: false,
+            align: 'left',
+            type: 'scroll',
+            orient: 'vertical',
+            right: '1%',
+            top: '15%',
+            data: displayLabel,
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        series: [
+            {
+                name: 'Location',
+                type: 'pie',
+                radius: ['30%', '50%'],
+                center: ['50%', '60%'],//['30%', '60%'],
+                data: newDisplayData,
+                minShowLabelAngle: 1,
+                label: {
+                    color: '#fff'
+                },
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    }
+
+    myChart.setOption(option);
+}
+
 // Doughnut
 async function drawDoughnut(){
     count_cases_in_location.sort(function(a, b){
