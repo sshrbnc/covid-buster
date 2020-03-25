@@ -1,8 +1,8 @@
-  var reports = [];
+  var reports;
 
   function authenticate() {
     return gapi.auth2.getAuthInstance()
-        .signIn({scope: "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/spreadsheets.readonly"})
+        // .signIn({scope: "https://www.googleapis.com/auth/drive https://www.googleapis.com/auth/drive.file https://www.googleapis.com/auth/drive.readonly https://www.googleapis.com/auth/spreadsheets https://www.googleapis.com/auth/spreadsheets.readonly"})
         .then(function() { console.log("Sign-in successful"); },
               function(err) { console.error("Error signing in", err); });
   }
@@ -28,6 +28,7 @@
     })
         .then(function(response) {
                 // Handle the results here (response.result has the parsed body).
+                reports = [];
                 var temp_reports = response.result.valueRanges[0].values;
 
                 var id = 0, name = "", dev = "", date_start = "", date_end = "", shortness_of_breath = "", fever = false, dry_cough = false, fatigue = false, sore_throat = false, nasal_congestion = false, runny_nose = false, diarrhea = false, others = false;

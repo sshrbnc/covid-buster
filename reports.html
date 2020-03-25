@@ -67,48 +67,34 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="admitted" id="admitted_true" onclick="handleClick(true)">
-                                <label class="form-check-label" for="admitted_true">Admitted to a Hospital</label><br>
-                            </div>
-                            <div class="form-check form-check-inline" style="float: right; right: 0;">
-                                <input class="form-check-input" type="radio" name="admitted" id="admitted_false" onclick="handleClick(false)">
-                                <label class="form-check-label" for="admitted_false">Not Admitted to a Hospital</label><br>
-                            </div>
+                            <label for="exampleFormControlInput1">Date Start*</label>
+                            <input type="date" class="form-control" id="date_start">
                         </div>
                         <div class="form-group">
-                          <label for="exampleFormControlInput1">Age*</label>
-                          <input type="number" class="form-control" id="user_age" min="0">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Sex*</label>
-                            <select class="form-control" id="user_sex">
-                                <option selected disabled>Please select one...</option>
-                                <option>Female</option>
-                                <option>Male</option>
-                            </select>
-                        </div>
-                        <div class="form-group" id="address_home" hidden>
-                            <label for="exampleFormControlInput1">Current Address*</label>
-                            <input type="text" class="form-control" id="user_home-address">
-                        </div>
-                        <div class="form-group" id="address_hospital" hidden>
-                            <label for="exampleFormControlInput1">Hospital Address*</label>
-                            <input type="text" class="form-control" id="user_hospital-address">
+                            <label for="exampleFormControlInput1">Date End*</label>
+                            <input type="date" class="form-control" id="date_end">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Symptoms</label><br>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="symptom_cough" id="symptom_cough">
-                                <label class="form-check-label" for="symptom_cough">Cough</label><br>
-                                <input class="form-check-input" type="checkbox" name="symptom_fever" id="symptom_fever">
-                                <label class="form-check-label" for="symptom_fever">Fever</label><br>
-                                <input class="form-check-input" type="checkbox" name="symptom_pneumonia" id="symptom_pneumonia">
-                                <label class="form-check-label" for="symptom_pneumonia">Pneumonia</label><br>
-                                <input class="form-check-input" type="checkbox" name="symptom_sore-throat" id="symptom_sore-throat">
-                                <label class="form-check-label" for="symptom_sore-throat">Sore Throat</label><br>
-                                <input class="form-check-input" type="checkbox" name="symptom_others" id="symptom_others" onclick="setOthers()">
-                                <label class="form-check-label" for="symptom_others">Others (Please specify) <input type="text" id="user_other-symptoms" disabled></label>
+                                <input class="form-check-input" type="checkbox" name="shortness_of_breath" id="shortness_of_breath">
+                                <label class="form-check-label" for="shortness_of_breath">shortness_of_breath</label><br>
+                                <input class="form-check-input" type="checkbox" name="fever" id="fever">
+                                <label class="form-check-label" for="fever">fever</label><br>
+                                <input class="form-check-input" type="checkbox" name="dry_cough" id="dry_cough">
+                                <label class="form-check-label" for="dry_cough">dry_cough</label><br>
+                                <input class="form-check-input" type="checkbox" name="fatigue" id="fatigue">
+                                <label class="form-check-label" for="fatigue">fatigue</label><br>
+                                <input class="form-check-input" type="checkbox" name="sore_throat" id="sore_throat">
+                                <label class="form-check-label" for="sore_throat">sore_throat</label><br>
+                                <input class="form-check-input" type="checkbox" name="nasal_congestion" id="nasal_congestion">
+                                <label class="form-check-label" for="nasal_congestion">nasal_congestion</label><br>
+                                <input class="form-check-input" type="checkbox" name="runny_nose" id="runny_nose">
+                                <label class="form-check-label" for="runny_nose">runny_nose</label><br>
+                                <input class="form-check-input" type="checkbox" name="diarrhea" id="diarrhea">
+                                <label class="form-check-label" for="diarrhea">diarrhea</label><br>
+                                <input class="form-check-input" type="checkbox" name="others" id="others" onclick="setOthers()">
+                                <label class="form-check-label" for="others">Others (Please specify) <input type="text" id="other_symptoms" disabled></label>
                             </div>
                         </div>
                     </form>
