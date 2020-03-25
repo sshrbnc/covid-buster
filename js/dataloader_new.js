@@ -63,6 +63,7 @@ function populateReportsTable(){
         "<th>ID</th>"+
         "<th>Name</th>" +
         "<th>Dev</th>" +
+        "<th>Date Filed</th>" +
         "<th>Date Start</th>" +
         "<th>Date End</th>" +
         "<th>Shortness of Breath</th>" +
@@ -85,6 +86,7 @@ function populateReportsTable(){
             "<td>" + report.id + "</td>" +
             "<td>" + report.name + "</td>" +
             "<td>" + report.dev + "</td>" +
+            "<td>" + report.date_filed + "</td>" +
             "<td>" + report.date_start + "</td>" +
             "<td>" + report.date_end + "</td>" +
             "<td>" + report.shortness_of_breath + "</td>" +

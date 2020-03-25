@@ -15,14 +15,12 @@ async function init(){
     countPerDevTeams();
     countPerDateStart();
 
-    drawDonut();
-    drawTimeline();
-
     reportsData = reports;
 
     if(document.getElementById("reportsPlaceholder")){
         populateReportsTable();
     } else {
-        console.log("Not found");
+        drawDonut();
+        drawTimeline();
     }
 }

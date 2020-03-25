@@ -2,9 +2,12 @@ async function submitReport(){
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var date_start_val = new Date(document.getElementById("date_start").value);
     var date_end_val = new Date(document.getElementById("date_end").value);
+    var date_now_val = new Date();
 
     var date_start = months[date_start_val.getMonth()] + " " + date_start_val.getDate();
     var date_end = months[date_end_val.getMonth()] + " " + date_end_val.getDate();
+    var date_filed = months[date_now_val.getMonth()] + " " + date_now_val.getDate();
+
     var name = "Luna Lovegood";
     var dev = "Dev H";
 
@@ -77,6 +80,7 @@ async function submitReport(){
                             newId,
                             name,
                             dev,
+                            date_filed,
                             date_start,
                             date_end,
                             shortness_of_breath,
