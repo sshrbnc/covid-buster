@@ -11,98 +11,115 @@ async function submitReport(){
     if(date_start==""  || date_end == ""){
         alert("Please fill in all required fields.");
     } else {
+        var valid_submission = false;
         //GET VALUES
         var id = 0;
         var shortness_of_breath=false, fever=false,	dry_cough=false,	fatigue=false,	sore_throat=false,	nasal_congestion=false,	runny_nose=false,	diarrhea=false,	others="N/A";
 
         if(document.getElementById("shortness_of_breath").checked == true){
             shortness_of_breath = true;
+            valid_submission = true;
         }
         if(document.getElementById("fever").checked == true){
             fever = true;
+            valid_submission = true;
         }
         if(document.getElementById("dry_cough").checked == true){
             dry_cough = true;
+            valid_submission = true;
         }
         if(document.getElementById("fatigue").checked == true){
             fatigue = true;
+            valid_submission = true;
         }
         if(document.getElementById("sore_throat").checked == true){
             sore_throat = true;
+            valid_submission = true;
         }
         if(document.getElementById("nasal_congestion").checked == true){
             nasal_congestion = true;
+            valid_submission = true;
         }
         if(document.getElementById("runny_nose").checked == true){
             runny_nose = true;
+            valid_submission = true;
         }
         if(document.getElementById("diarrhea").checked == true){
             diarrhea = true;
+            valid_submission = true;
         }
         if(document.getElementById("others").checked == true){
+            valid_submission = true;
             others = document.getElementById("other_symptoms").value;
         }
-        
-        //ESTABLISH CONNECTION
-        // await authenticate().then(loadClient);
-        // await execute();
 
-        //GET LAST ID
-        var dataBatch = gapi.client.sheets.spreadsheets.values.batchGet({
-            "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
-            "dateTimeRenderOption": "FORMATTED_STRING",
-            "majorDimension": "ROWS",
-            "ranges": [
-              "'reports'"
-            ],
-            "valueRenderOption": "UNFORMATTED_VALUE"
-        }).then(function(response) {
-            //WRITE TO SPREADSHEET
-            data = response.result.valueRanges[0].values;
-            newId = parseInt(data[data.length - 1][0]) + 1;
-            size = data.length + 1;
-            var thisRange = "'reports'!A" + size + ":N" + size;
+        if(!valid_submission){
+            document.getElementById("symptom_error").innerHTML = "Specify current condition in 'Others' if no symptoms of COVID-19."
+            alert("Please fill in all required fields.");
+        }else{
+            
+            //ESTABLISH CONNECTION
+            // await authenticate().then(loadClient);
+            // await execute();
 
-            return gapi.client.sheets.spreadsheets.values.update({
+            //GET LAST ID
+            var dataBatch = gapi.client.sheets.spreadsheets.values.batchGet({
                 "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
-                "range": thisRange,
-                "includeValuesInResponse": false,
-                "responseDateTimeRenderOption": "SERIAL_NUMBER",
-                "responseValueRenderOption": "UNFORMATTED_VALUE",
-                "valueInputOption": "RAW",
-                "resource": {
-                    "majorDimension": "ROWS",
-                    "values": [
-                        [
-                            newId,
-                            name,
-                            dev,
-                            date_start,
-                            date_end,
-                            shortness_of_breath,
-                            fever,
-                            dry_cough,
-                            fatigue,
-                            sore_throat,
-                            nasal_congestion,
-                            runny_nose,
-                            diarrhea,
-                            others
-                        ]
-                    ],
-                    "range": thisRange
-                }
-            }).then(async function(response) {
-                await init();
-                alert("Report submitted successfully!");
+                "dateTimeRenderOption": "FORMATTED_STRING",
+                "majorDimension": "ROWS",
+                "ranges": [
+                  "'reports'"
+                ],
+                "valueRenderOption": "UNFORMATTED_VALUE"
+            }).then(function(response) {
+                //WRITE TO SPREADSHEET
+                data = response.result.valueRanges[0].values;
+                newId = parseInt(data[data.length - 1][0]) + 1;
+                size = data.length + 1;
+                var thisRange = "'reports'!A" + size + ":N" + size;
+
+                return gapi.client.sheets.spreadsheets.values.update({
+                    "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
+                    "range": thisRange,
+                    "includeValuesInResponse": false,
+                    "responseDateTimeRenderOption": "SERIAL_NUMBER",
+                    "responseValueRenderOption": "UNFORMATTED_VALUE",
+                    "valueInputOption": "RAW",
+                    "resource": {
+                        "majorDimension": "ROWS",
+                        "values": [
+                            [
+                                newId,
+                                name,
+                                dev,
+                                date_start,
+                                date_end,
+                                shortness_of_breath,
+                                fever,
+                                dry_cough,
+                                fatigue,
+                                sore_throat,
+                                nasal_congestion,
+                                runny_nose,
+                                diarrhea,
+                                others
+                            ]
+                        ],
+                        "range": thisRange
+                    }
+                }).then(async function(response) {
+                    await init();
+                    alert("Report submitted successfully!");
+                },
+                function(err) { console.error("Execute error", err); });
             },
             function(err) { console.error("Execute error", err); });
-        },
-        function(err) { console.error("Execute error", err); });
 
-        clearRedfield();
+            clearRedfield();
+        }
     }
 }
+
 
 function clearRedfield(){
     document.getElementById("date_start").value = "";

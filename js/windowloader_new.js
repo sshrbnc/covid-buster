@@ -8,11 +8,19 @@ window.addEventListener("load", async () => {
 async function init(){
     reportsData = "";
     await execute();
+
+    populateDevTeams();
+    populateDateStart();
+
+    countPerDevTeams();
+    countPerDateStart();
+
     reportsData = reports;
 
     if(document.getElementById("reportsPlaceholder")){
         populateReportsTable();
     } else {
-        console.log("Not found");
+        drawDonut();
+        drawTimeline();
     }
 }
