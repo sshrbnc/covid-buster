@@ -51,7 +51,7 @@
           <div class="cases_detail">
             <p style="font-size: 40px; padding: 0; margin-bottom: 0;">RECOVERED</p>
             <h3 id="recovered_total_m" style="color: #6D72C3; font-size: 60px; padding: 0;"></h3>
-          </div>           
+          </div>  
         </div>
 
         <div id="Map" class="tabcontent">
@@ -83,82 +83,17 @@
           <button class="tablink" onclick="openPage('Graph', this, '#1D1128')">Graph</button>
           <button class="tablink" onclick="openPage('Trend', this, '#1D1128')">Trend</button>
         </div> 
-        
     </div>
+
     <!-- Report Modal -->
-    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable" role="document">
-          <div class="modal-content">
-              <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalScrollableTitle">File a Report</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-              </div>
-              <div class="modal-body">
-                  <form>
-                      <div class="form-group">
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="radio" name="admitted" id="admitted_true" onclick="handleClick(true)">
-                              <label class="form-check-label" for="admitted_true">Admitted to a Hospital</label><br>
-                          </div>
-                          <div class="form-check form-check-inline" style="float: right; right: 0;">
-                              <input class="form-check-input" type="radio" name="admitted" id="admitted_false" onclick="handleClick(false)">
-                              <label class="form-check-label" for="admitted_false">Not Admitted to a Hospital</label><br>
-                          </div>
-                      </div>
-                      <div class="form-group">
-                        <label for="exampleFormControlInput1">Age*</label>
-                        <input type="number" class="form-control" id="user_age" min="0">
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleFormControlInput1">Sex*</label>
-                          <select class="form-control" id="user_sex">
-                              <option selected disabled>Please select one...</option>
-                              <option>Female</option>
-                              <option>Male</option>
-                          </select>
-                      </div>
-                      <div class="form-group" id="address_home" hidden>
-                          <label for="exampleFormControlInput1">Current Address*</label>
-                          <input type="text" class="form-control" id="user_home-address">
-                      </div>
-                      <div class="form-group" id="address_hospital" hidden>
-                          <label for="exampleFormControlInput1">Hospital Address*</label>
-                          <input type="text" class="form-control" id="user_hospital-address">
-                      </div>
-                      <div class="form-group">
-                          <label for="exampleFormControlInput1">Symptoms</label><br>
-                          <div class="form-check">
-                              <input class="form-check-input" type="checkbox" name="symptom_cough" id="symptom_cough">
-                              <label class="form-check-label" for="symptom_cough">Cough</label><br>
-                              <input class="form-check-input" type="checkbox" name="symptom_fever" id="symptom_fever">
-                              <label class="form-check-label" for="symptom_fever">Fever</label><br>
-                              <input class="form-check-input" type="checkbox" name="symptom_pneumonia" id="symptom_pneumonia">
-                              <label class="form-check-label" for="symptom_pneumonia">Pneumonia</label><br>
-                              <input class="form-check-input" type="checkbox" name="symptom_sore-throat" id="symptom_sore-throat">
-                              <label class="form-check-label" for="symptom_sore-throat">Sore Throat</label><br>
-                              <input class="form-check-input" type="checkbox" name="symptom_others" id="symptom_others" onclick="setOthers()">
-                              <label class="form-check-label" for="symptom_others">Others (Please specify) <input type="text" id="user_other-symptoms" disabled></label>
-                          </div>
-                      </div>
-                  </form>
-              </div>
-              <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
-              <button type="button" class="btn btn-primary" onclick="submitReport()">Submit</button>
-              </div>
-          </div>
-      </div>
-  </div><!-- Report Modal -->
     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">File a Report</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">File a Report</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form>
@@ -173,8 +108,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                          <label for="exampleFormControlInput1">Age*</label>
-                          <input type="number" class="form-control" id="user_age" min="0">
+                            <label for="exampleFormControlInput1">Age*</label>
+                            <input type="number" class="form-control" id="user_age" min="0">
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Sex*</label>
@@ -210,8 +145,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
-                <button type="button" class="btn btn-primary" onclick="submitReport()">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="submitReport()">Submit</button>
                 </div>
             </div>
         </div>
@@ -223,6 +158,9 @@
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-firestore.js"> </script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-storage.js"></script>
+
+    <!-- ECharts JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.7.0/echarts-en.min.js"></script>
 
     <!-- Apex Chart JS -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -245,8 +183,8 @@
  
      <script src="js/firestore.js"></script>
     <script src="js/mobile.js"></script>
-    <script src="js/windowloader.js"></script>
     <script src="js/dataloader.js"></script>
+    <script src="js/windowloader.js"></script>
     <script src="js/index.js"></script>
     <script src="js/map-mobile.js"></script>
     <script src="js/graph.js"></script>

@@ -8,6 +8,8 @@ window.addEventListener("load", async () => {
         populateReportsTable();
     } else {
         // IN THE DASHBOARD
+        await authenticate().then(loadClient);
+        await execute();
         await getPatientData();
         populateLocations();
         populateHospital();
@@ -29,8 +31,9 @@ window.addEventListener("load", async () => {
         await displayEachTotal();
         
         //generateColors();
-        drawDoughnut();
-        drawTimeline();
+        drawDonut();
+        //drawDoughnut();
+        //drawTimeline();
         drawBargraph();
         //drawPie();
         //drawVisualization2d();
