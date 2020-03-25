@@ -5,10 +5,9 @@ nav{
     background-color: #514F59;
 }
 
-.data-container{
+/* .data-container{
     width: 100vw;
     height: 90.3vh;
-    /* border: solid 2px blue; */
     padding: 5px;
 }
 
@@ -21,20 +20,6 @@ nav{
 #confirmed_card, #deceased_card, #recovered_card{
     overflow: auto;
 }
-
-#trends, #maps, #other_graphs{
-    /* border: solid 2px gray; */
-    /* margin: 1px; */
-}
-
-/* .accordion .card-header:after {
-    font-family: 'FontAwesome';  
-    content: "\f0d7";
-    float: right; 
-}
-.accordion .card-header.collapsed:after {
-    content: "\f0d8"; 
-} */
 
 .card-header{
     background-color: transparent;
@@ -50,8 +35,17 @@ nav{
 
 #confirmed_card ul li span, #deceased_card ul li span, #recovered_card ul li span{
     float: right;
+} */
+
+#sl_today, #total_sl{
+    font-size: 40px;
+    text-align: center;
+    color: #1D1128;
 }
 
+.row1{
+    margin: 0;
+}
 /* ------ Scrollbar ------ */
 /* width */
 ::-webkit-scrollbar {
