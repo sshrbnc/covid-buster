@@ -5,6 +5,14 @@ nav{
     background-color: #514F59;
 }
 
+.nav-item>a:hover{
+    /* color: tomato; */
+    background-color: #1D1128;
+}
+
+.card{
+    border-radius: 2px;
+}
 /* .data-container{
     width: 100vw;
     height: 90.3vh;

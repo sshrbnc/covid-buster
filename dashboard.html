@@ -56,15 +56,15 @@
                                 <div class="card-header collapsed" style="padding: 5px;">
                                     <a class="card-title" style="color: black;"> <strong>ON SICK LEAVE TODAY</strong> </a>                                    
                                 </div> 
-                                <span id="sl_today">12</span> 
+                                <span id="sl_today" style="font-size: 90px;">12</span> 
                             </div>  
                         </div>
                         <div class="col-sm" style="height: 180px; padding: 0;">                        
                             <div class="card mb-0" style="height: 100%;">
                                 <div class="card-header collapsed" style="padding: 5px;">
-                                    <a class="card-title" style="color: black;"> <strong>TOTAL SICK LEAVE</strong> </a>                                    
+                                    <a class="card-title" style="color: black;"> <strong>TOTAL SICK LEAVE</strong> <span style="font-size: 10px;">(since Mar 16)</span></a>                                    
                                 </div> 
-                                <span id="sl_today">13</span> 
+                                <span id="total_sl" style="font-size: 90px;">13</span> 
                             </div>  
                         </div>                        
                     </div>
@@ -72,19 +72,29 @@
                         <div class="col-sm" style="height: 423px; padding: 0;">                        
                             <div class="card mb-0" style="height: 100%;">
                                 <div class="card-header collapsed" style="padding: 5px;">
-                                    <a class="card-title" style="color: black;"> <strong>LIST</strong> </a>                                                                           
+                                    <a class="card-title" style="color: black;"> <strong>EMPLOYEES ON SICK LEAVE</strong> </a>                                                                           
+                                    <a href="reports.html" title="View list" style="float: right; color: #1D1128;"><i class="fa fa-eye"></i></a>
                                 </div> 
-                                <div class="card-body">
-                                    <div>
-                                        <form action="#">
-                                            <input type="date" id="birthday" name="birthday" style="float: right;">
-                                            <!-- <input type="submit"> -->
-                                        </form> 
+                                <div  style="padding-top: 3px; padding-right: 3px;">
+                                    <form action="#">
+                                        <input type="date" id="birthday" name="birthday" style="float: right;">
+                                    </form> 
+                                </div>
+                                <div class="card-body">  
+                                    <!-- </br> -->
+                                    <!-- <span id="employee_name" style="float: left;">coviduvidapdap</span><span id="employee_dev" style="float: right; margin-right: 30px;">A</span>                                   -->
+                                    <div id="employee_list">
+                                        <table style="width:100%">
+                                            <tr style="text-align: center;">
+                                              <th>NAME</th>
+                                              <th>DEV</th> 
+                                            </tr>
+                                            <tr>
+                                              <td>Annie Kate Solinap</td>
+                                              <td>B</td>
+                                            </tr>                                            
+                                          </table>
                                     </div>
-                                    </br>
-                                    </br>
-                                    <span id="employee_name" style="float: left;">coviduvidapdap</span><span id="employee_dev" style="float: right; margin-right: 30px;">A</span>
-                                                                     
                                 </div>
                             </div>  
                         </div>
@@ -124,11 +134,11 @@
     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalScrollableTitle">File a Report</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <div class="modal-header" style="padding: 2px;">
+                    <h5 class="modal-title" id="exampleModalScrollableTitle">File a Report</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <form>
