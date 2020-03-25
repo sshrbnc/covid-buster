@@ -2,16 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
-    <title>AWS EMPLOYEES COVID-19 UPDATES</title>
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>COVID-19 UPDATES</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
     <!-- DataTable -->
     <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -26,41 +24,34 @@
     <link rel="stylesheet" href="css/reports.css">
 </head>
 <body>
+    <span id="reportsPageLabel" hidden></span>
     <nav class="navbar navbar-expand-lg navbar-light py-0 py-md-0">
-        <a class="navbar-brand" href="#" style="color: #FAFFEA;">AWS SICK LEAVE TRACKER</a>
+        <a class="navbar-brand" href="index.html" style="color: #FAFFEA;">COVID-19 CASES IN THE PHILIPPINES</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav" style="margin-left: 80%;">
-            <!-- <li class="nav-item">
+            <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalScrollable" style="color: #FAFFEA;"><i class="fa fa-bullhorn"></i>&nbsp;File Report</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="mobile.html" data-toggle="" data-target="#" style="color: #FAFFEA;"><i class="fa fa-mobile" ></i>&nbsp;Mobile</a>
-            </li> -->
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalScrollable" style="color: #FAFFEA;"><i class="fa fa-bullhorn"></i>&nbsp;File leave</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="mobile.html" data-toggle="" data-target="#" style="color: #FAFFEA;"><i class="fa fa-sign-out" ></i>&nbsp;Logout</a>
             </li>
           </ul>
         </div>
     </nav>
-    <div class="container-fluid" style="color: black; padding-right: 0;">
-        <!-- <div class="data-container" style="color: #fff;"> -->
-            <div class="row data-container">
-                <div class="col">
-                    <h2 style="text-align: center; color: white;">Internal Reported Cases</h2>
-                    <div class="row" style="height: 100%; color: #fff; padding: 3px;">
-                        <div id="reportsPlaceholder" class="col-sm-12">
-                            <!-- Reports table goes here -->
-                        </div>
-                    </div>            
-                </div>
+    <div class="container-fluid">
+        <div class="row data-container">
+            <div class="col">
+                <h2 style="text-align: center; color: white;">Internal Reported Cases</h2>
+                <div class="row" style="height: 100%; color: #fff; padding: 3px;">
+                    <div id="reportsPlaceholder" class="col-sm-12">
+                        <!-- Reports table goes here -->
+                    </div>
+                </div>            
             </div>
-        <!-- </div> -->
+        </div>
     </div>
 
     <!-- Report Modal -->
@@ -87,21 +78,21 @@
                             <label for="exampleFormControlInput1">Symptoms</label><br>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="shortness_of_breath" id="shortness_of_breath">
-                                <label class="form-check-label" for="shortness_of_breath">Shortness of Breath</label><br>
+                                <label class="form-check-label" for="shortness_of_breath">shortness_of_breath</label><br>
                                 <input class="form-check-input" type="checkbox" name="fever" id="fever">
-                                <label class="form-check-label" for="fever">Fever</label><br>
+                                <label class="form-check-label" for="fever">fever</label><br>
                                 <input class="form-check-input" type="checkbox" name="dry_cough" id="dry_cough">
-                                <label class="form-check-label" for="dry_cough">Dry Cough</label><br>
+                                <label class="form-check-label" for="dry_cough">dry_cough</label><br>
                                 <input class="form-check-input" type="checkbox" name="fatigue" id="fatigue">
-                                <label class="form-check-label" for="fatigue">Fatigue</label><br>
+                                <label class="form-check-label" for="fatigue">fatigue</label><br>
                                 <input class="form-check-input" type="checkbox" name="sore_throat" id="sore_throat">
-                                <label class="form-check-label" for="sore_throat">Sore Throat</label><br>
+                                <label class="form-check-label" for="sore_throat">sore_throat</label><br>
                                 <input class="form-check-input" type="checkbox" name="nasal_congestion" id="nasal_congestion">
-                                <label class="form-check-label" for="nasal_congestion">Nasal Congestion</label><br>
+                                <label class="form-check-label" for="nasal_congestion">nasal_congestion</label><br>
                                 <input class="form-check-input" type="checkbox" name="runny_nose" id="runny_nose">
-                                <label class="form-check-label" for="runny_nose">Runny Nose</label><br>
+                                <label class="form-check-label" for="runny_nose">runny_nose</label><br>
                                 <input class="form-check-input" type="checkbox" name="diarrhea" id="diarrhea">
-                                <label class="form-check-label" for="diarrhea">Diarrhea</label><br>
+                                <label class="form-check-label" for="diarrhea">diarrhea</label><br>
                                 <input class="form-check-input" type="checkbox" name="others" id="others" onclick="setOthers()">
                                 <label class="form-check-label" for="others">Others (Please specify) <input type="text" id="other_symptoms" disabled></label>
                             </div>
@@ -125,8 +116,6 @@
 
     <!-- Custom JS -->
     <script src="js/sheets.js"></script>
-    <script src="js/windowloader_new.js"></script>
-    <script src="js/dataloader_new.js"></script>
     <script src="js/reports.js"></script>
 </body>
 </html>
