@@ -1,380 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <!-- Session -->
- <!--  <script>
-    if (!sessionStorage.getItem("username"))
-      location.href = "index.html";
-  </script>
- -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title>Sick Leave Filer</title>
+  <title>COVID19 BUSTER</title>
   <!-- MDB icon -->
-  <link rel="icon" href="./img/flower.png" type="image/x-icon">
+  <link rel="icon" href="face-mask.png" type="image/x-icon">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Google Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!-- Bootstrap core CSS -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/css/mdb.min.css" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link rel="stylesheet" href="./css/reports.css">
-
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
-  
-
-  <!-- jQuery UI -->
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-
-  <style>
-    .ui-draggable .ui-dialog-titlebar{
-        background-color: #ff9999;
-        color: #f3f3f3;
-    }
-
-    .ui-dialog .ui-dialog-content p{
-        color: #3D3028;
-        font-size: 14px;
-    }
-  </style>
+  <link rel="stylesheet" href="login.css">
 </head>
 
 <body>
-  <div class="">
+  <div class="bg">
+  </div>
+
   <!-- content start -->
-  <!-- navbar -->
-  <nav class="navbar sticky-top navbar-expand-lg grey lighten-5">
-    <img src="./img/flower.png" id="logo" alt="">
-    <a class="navbar-brand font-weight-bold t-nav" href="home.html">AWS Sick Leave Filing System</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
-      aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"><i class="fas fa-bars fa-1x"></i></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
-      <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item">
-          <a class="nav-link t-nav" href="#" data-toggle="modal" data-target="#sickLeaveForm"><i class="fa fa-edit"></i> File Leave  </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link t-nav" href="https://ncovtracker.doh.gov.ph/" ><i class="fas fa-map-marked"></i> COVID-19 Tracker PH </a>
-        </li>
-        <li class="nav-item avatar dropdown">
-          <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false">
-            <img id="profpic" src="user.png" class="rounded-circle z-depth-0" alt="avatar image">
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
-            aria-labelledby="navbarDropdownMenuLink-55">
-            <div class="logo-wrapper sn-ad-avatar-wrapper">
-              <div class="row">
-                <div class="col d-flex justify-content-center">
-                  <a href="#"><img id="profpicx" src="user.png" class="rounded-circle">
-                  </a>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col text-center">
-                  <span id="userName">User</span>さん
-                </div>
-              </div>
-            </div>
-            <a class="dropdown-item t-nav" href="editprofile.html"><i class="fas fa-edit"></i>Change password</a>
-            <a class="dropdown-item t-nav" href="login.html" onclick="logOut()"><i
-                class="fas fa-sign-out-alt"></i>Logout</a>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
-  <!-- navbar end -->
-  <!--main content-->
-  <div class="row d-flex flex-row-reverse">
-  <div class="col-md-8"  style="background-color: blue">
-      <div class="container" id="reportsPlaceholder">
-        <table id="table_id" class="display">
-          <thead>
-              <tr>
-                  <th>Column 1</th>
-                  <th>Column 2</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>Row 1 Data 1</td>
-                  <td>Row 1 Data 2</td>
-              </tr>
-              <tr>
-                  <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-              </tr>
-          </tbody>
-      </table>
-    </div>
-  </div>
-  <div class="col-md-4" style="background-color: pink">
-    <br>
-    <h5><center>FAQ for COVID-19</center></h5>
-      <div class="accordion" id="accordionExample">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h2 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Q: What are the symptoms and possible complications of a coronavirus infection?
-              </button>
-            </h2>
-          </div>
+  <div class="row justify-content-center">
+            <!-- Default form login -->
+            <form class=" p-2" >
+            <center>
+              <img src="https://66.media.tumblr.com/920f88631e2f3a4c184489818b631917/tumblr_oxquou1RAH1utaqtgo4_500.png" alt="">
+                <p class="h4 mb-4 white-text">Welcome!</p>
+            </center>
+                
 
-          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-              A: Common signs of coronavirus infection include flu-like and respiratory symptoms, fever, cough, shortness of breath, and breathing difficulties. In severe cases, it can cause pneumonia, acute respiratory syndrome, kidney failure, and even death.
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h2 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Q: What can the public do to prevent the spread of COVID-19?
-              </button>
-            </h2>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-            <div class="card-body">
-              A: DOH advises the public to:
-              <br>
-              <span style="padding-left:3em; font-size:12px">
-              a. Practice frequent and proper handwashing - wash hands often with soap and water for at least 20 seconds. Use an alcohol-based hand sanitizer if soap and water are not available.
-            </span>
-              <br>
-              <span style="padding-left:3em; font-size:12px">
-              b. Practice proper cough etiquette.
-              </span>
-              <br>
-              <span style="padding-left:3em; font-size:12px">
-              i. Cover mouth and nose using handkerchief/tissue (sleeves or crook of the elbow may also be used to cover the mouth when coughing or sneezing).
-              </span>
-              <br>
-              <span style="padding-left:5em; font-size:12px">
-              ii. Move away from people when coughing.)
-              </span>
-              <br>
-              <span style="padding-left:5em; font-size:12px">
-              iii. Do not spit.
-              </span>
-              <br>
-              <span style="padding-left:5em; font-size:12px">
-              iv. Throw away used tissues properly.
-              </span>
-              <br>
-              <span style="padding-left:5em; font-size:12px">
-              v. Always wash your hands after sneezing or coughing.
-              </span>
-              <br>
-              <span style="padding-left:5em; font-size:12px">
-              vi. Use alcohol/sanitizer.
-              </span>
-              <br>
-              <span style="padding-left:3em; font-size:12px">
-              c. Maintain distance at least one meter away from individual/s manifesting with flu-like symptoms.
-              </span>
-              <br>
-              <span style="padding-left:3em; font-size:12px">
-              d. Avoid unprotected contact with farm or wild animals (alive or dead), animal markets, and products that come from animals (such as uncooked meat).
-              </span>
-              <br>
-              <span style="padding-left:3em; font-size:12px">
-              e. Ensure that food is well-cooked.
-              </span>
-              <br>
-              <span style="padding-left:3em; font-size:12px">
-              f. Maintain a healthy lifestyle.</span>
-            </div>
-          </div>
-        </div>
-          <div class="card">
-          <div class="card-header" id="headingFour">
-            <h2 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseTwo">
-                Q: Who should be immediately investigated and tested for the COVID-19 infection?
-              </button>
-            </h2>
-          </div>
-          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-            <div class="card-body">
-            A: The following should be immediately investigated and tested for 2019-nCoV ARD:
-              <br>
-              <span style="padding-left:5em; font-size:12px">
-              1) A person with severe acute respiratory infection (SARI), fever and cough, and with at least one of the following:
-            </span>
-              <br>
-              <span style="padding-left:5em; font-size:12px">
-                a) A history of travel to or lived in Wuhan in the 10-14 days prior to symptom onset; and
-              </span>
-              <br>
-              <span style="padding-left:5em; font-size:12px">b) A health worker who has been working in an environment where patients with severe acute respiratory infections are being cared for, without regard to place of residence or history of travel.)
-              </span>
-              <br>
-              <span style="padding-left:5em; font-size:12px">
-              2) A person with acute respiratory infection (ARI) and fulfilling at least one of the following criteria within 14 days prior to onset of illness:
-              </span>
-              <br>
-              <span style="padding-left:5em; font-size:12px">
-              a) Close contact with a confirmed or probable case;
-            </span>
-            <br>
-            <span style="padding-left:5em; font-size:12px">
-              b) visit/work in a live animal market in Wuhan; and
-            </span>
-            <br>
-            <span style="padding-left:5em; font-size:12px">
-              c) Work/attend a health facility where patients with HAI-associated 2019-nCoV are reported.
-            </span>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingFive">
-            <h2 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
-               Q:  What should you do if you are experiencing mild flu-like symptoms, but have not traveled to China recently or have not been in close contact with anyone who traveled to China?
-              </button>
-            </h2>
-          </div>
-          <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample">
-            <div class="card-body">
-              A: In this case, there is no need to be tested for 2019-nCoV ARD. Please consult at your nearest health facility as deemed necessary.
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-</div>
+                <!-- Email -->
+                <div class="md-form">
+                  <input type="text" id="login-username" onkeyup="checkEmail(event)" class="form-item form-control">
+                  <label id="login-username-label" for="username" class="form-item font-weight-light">email</label>
+                </div>
+
+                <!-- Password -->
+                <div class="md-form">
+                  <input type="password" id="password" onfocus="checkEmail('*')" class="form-item form-control">
+                  <label id="login-password-label" for="password" class="form-item font-weight-light">password</label>
+                </div>
+                <a onclick="forgotPassword()" href="#" style="color:white;font-size:10px">Forgot password?</a>
+
+                <center>
+                  <!-- Sign in button -->
+                <button id="login_btn" class="btn btn-block my-4" type="submit" onclick="logIn(event)">submit</button>
+                </center>
+
+            </form>
+           <!--  forgot password form--> 
+            <form class=" p-2"> 
+            <center>
+              <img src="https://66.media.tumblr.com/a6a0aec3ff2a163197363c5240258f87/tumblr_oxquou1RAH1utaqtgo2_500.png" alt="">
+                <p class="h4 mb-4 white-text">Retrieve Password</p>
+            </center>
+                
+
+                <!-- Email-->
+                <div class="md-form">
+                  <input type="text" id="forgot-username" onkeyup="checkEmail(event)" class="form-item form-control">
+                  <label id="forgot-username-label" for="username" class="form-item font-weight-light">enter email</label>
+                </div>
+
+                <a onclick="forgotPassword()" href="#" style="color:white;font-size:10px">Back</a>
+
+                <center>
+                  <!-- Sign in button -->
+                <button id="forgot_btn" class="btn btn-block my-4" type="submit" onclick="sendEmail(event)">submit</button>
+                </center>
+
+            </form>
+            <!--forgot password form end-->
+    </div>
 
 
-  <!-- main -->
-  <!-- Report Modal -->
-    <div class="modal fade" id="sickLeaveForm" tabindex="-1" role="dialog" aria-labelledby="sickLeaveFormTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="sickLeaveFormScrollableTitle">File Sick Leave</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="date_start">Date Start<span style="color:red">*</span><span id="date_error" style="color:red;font-size:12px"></span></label>
-                            <input type="date" onchange="checkDate()" class="form-control" id="date_start">
-                        </div>
-                        <div class="form-group">
-                            <label for="date_end">Date End<span style="color:red">*</span></label>
-                            <input type="date" onchange="checkDate()" class="form-control" id="date_end">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Symptoms<span id="symptom_error" style="font-size:12px;color:red"></span></label><br>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="shortness_of_breath" id="shortness_of_breath">
-                                <label class="form-check-label" for="shortness_of_breath">Shortness of Breath</label><br>
-                                <input class="form-check-input" type="checkbox" name="fever" id="fever">
-                                <label class="form-check-label" for="fever">Fever</label><br>
-                                <input class="form-check-input" type="checkbox" name="dry_cough" id="dry_cough">
-                                <label class="form-check-label" for="dry_cough">Dry Cough</label><br>
-                                <input class="form-check-input" type="checkbox" name="fatigue" id="fatigue">
-                                <label class="form-check-label" for="fatigue">Fatigue</label><br>
-                                <input class="form-check-input" type="checkbox" name="sore_throat" id="sore_throat">
-                                <label class="form-check-label" for="sore_throat">Sore Throat</label><br>
-                                <input class="form-check-input" type="checkbox" name="nasal_congestion" id="nasal_congestion">
-                                <label class="form-check-label" for="nasal_congestion">Nasal Congestion</label><br>
-                                <input class="form-check-input" type="checkbox" name="runny_nose" id="runny_nose">
-                                <label class="form-check-label" for="runny_nose">Runny Nose</label><br>
-                                <input class="form-check-input" type="checkbox" name="diarrhea" id="diarrhea">
-                                <label class="form-check-label" for="diarrhea">Diarrhea</label><br>
-                                <input class="form-check-input" type="checkbox" name="others" id="others" onclick="setOthers()">
-                                <label class="form-check-label" for="others">Others (Please specify) </label><br>
-                                <input type="text" id="other_symptoms" disabled>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
-                <button type="button" class="btn btn-primary" onclick="submitReport()">Submit</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
   <!-- content end -->
-
+  
   <!-- JQuery -->
-  <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
-  <!-- Firebase core Javascript-->
+
+  <!-- Bcrypt -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bcrypt@3.0.7/bcrypt.min.js"></script> -->
+  
+  <!-- Firebase core JS -->
   <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-storage.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"> </script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-messaging.js"> </script>
-  <!-- <script src="js/firestore.js"> </script> -->
-
-  <!-- Custom JS -->
-  <script type="text/javascript" src="js/home.js"></script><!-- 
-  <script type="text/javascript" src="js/reports.js"></script>
-  <script type="text/javascript" src="js/file.js"></script> -->
-
-  <!-- jQuery UI JS -->
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <!-- Datatables -->
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Google API -->
-    <script src="https://apis.google.com/js/api.js"></script>
-
-    <!-- Custom JS -->
-    <script src="js/sheets.js"></script>
-    <script src="js/windowloader_new.js"></script>
-    <script src="js/dataloader_new.js"></script>
-    <script src="js/reports.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('[data-toggle="tooltip"]').tooltip();
-            $('#table_id').DataTable();
-            console.log('here')
-        });
-
-        function showDialog() {
-            $(".home_dialog").dialog();
-        }   
-        function checkDate(){
-            var date_start_val = new Date(document.getElementById("date_start").value);
-            var date_end_val = new Date(document.getElementById("date_end").value);
-            if(date_start_val > date_end_val){
-                document.getElementById("date_error").innerHTML=" Oops! End date can't be earlier than start date.";
-            }else{
-                document.getElementById("date_error").innerHTML="";
-            }
-        }
-    </script>
-
-   
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+  <script src="js/firestore.js"></script>
+  <script>
+    $(document).ready(function() {
+      checkStateOut();
+    });
+    function checkEmail(e){
+      
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      var inputText = inputText = $("#login-username").val();//// document.getElementById("username").value;
+      var element = "login-username";
+      if(e != '*'){
+        element = e.target.id;      
+        inputText =  e.target.value;
+      }
+      if(inputText.match(mailformat)){
+        // do nothing
+        $("#"+element + "-label").html("email")
+      }
+      else{
+        $("#"+element + "-label").html("email <span style='color:red'>invalid email</span>");
+       
+      }
+    }
+ 
+</script>
 </body>
-
 </html>
