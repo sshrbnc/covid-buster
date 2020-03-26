@@ -25,3 +25,67 @@ firebase.analytics();
 console.log("Cloud Firestores Loaded");
 
 let db = firebase.firestore();
+
+
+async function logIn(e) {
+  e.preventDefault();
+    var email = document.getElementById("login-username").value;
+    var password = document.getElementById("password").value;
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+     alert(error.message + " " + error.code)
+      if((error.code == "auth/user-not-found" )||( error.code == "auth/wrong-password")){
+        $("#login-password-label").html("email <span style='color:red'>email and password don't match.</span>");
+      }
+    });
+}
+async function checkStateOut(){
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.
+      location.href = "reports.html";
+      
+    } else {
+      // User is signed out.
+      // ...
+      //console.log("out")
+      //location.href = "login.html";
+    }
+  });  
+}
+async function checkStateIn(){
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      // User is signed in.      
+    } else {
+      // User is signed out.
+      location.href = "login.html";
+    }
+  });  
+}
+async function sendEmail(e){
+       e.preventDefault();
+    var auth = firebase.auth();
+    var emailAddress = "apsolinap@up.edu.ph";
+
+    auth.sendPasswordResetEmail(emailAddress).then(function() {
+      // Email sent.
+      document.getElementById("forgot-username").innerHTML = "enter email <span style='color:green'>Check your email to reset the password.</span>";
+    }).catch(function(err) {
+      // An error happened. User doesn't exist in DB.
+      document.getElementById("forgot-username").innerHTML = "enter email <span style='color:red'>Oh no! You're not in our records.</span>";
+        
+    });
+}
+function logOut() {
+    firebase.auth().signOut().then(function() {
+      // Sign-out successful.
+      location.href = "login.html";
+    }).catch(function(error) {
+      // An error happened.
+      alert("ERR")
+    });
+}
