@@ -73,6 +73,8 @@ function populateReportsTable(){
 
     let body = "<tbody>";
 
+    console.log(reportsData);
+    
     reportsData.forEach(function (report){
         body +=
             "<tr>" +
@@ -84,28 +86,28 @@ function populateReportsTable(){
         if(report.shortness_of_breath ){
             conditions += "shortness of breath; ";
         }
-        if(report.fever == "true"){
+        if(report.fever){
             conditions += "fever; ";
         }
-        if(report.dry_cough  == "true"){
+        if(report.dry_cough){
             conditions += "dry cough; ";
         }
-        if(report.fatigue  == "true"){
+        if(report.fatigue){
             conditions += "fatigue; ";
         }
-        if(report.sore_throat == "true"){
+        if(report.sore_throat){
             conditions += "sore throat; ";
         }
-        if(report.nasal_congestion == "true"){
+        if(report.nasal_congestion){
             conditions += "nasal congestion; ";
         }
-        if(report.runny_nose == "true" ){
+        if(report.runny_nose){
             conditions += "runny nose; ";
         }
-        if(report.diarrhea == "true"){
+        if(report.diarrhea){
             conditions += "diarrhea; ";
         }
-        if(conditions == ""){
+        if(conditions != ""){
             body += "<td>" + conditions + "</td>";
         }else{
             body += "<td>None</td>";
