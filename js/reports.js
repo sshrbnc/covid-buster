@@ -7,8 +7,8 @@ async function submitReport(){
     var date_filed = months[date_filed_val.getMonth()] + " " + date_filed_val.getDate();
     var date_start = months[date_start_val.getMonth()] + " " + date_start_val.getDate();
     var date_end = months[date_end_val.getMonth()] + " " + date_end_val.getDate();
-    var name = "Seo-bi";
-    var dev = "Dev Z";
+    var name = "Annabeth Chase";
+    var dev = "Dev A";
 
     if(date_start==""  || date_end == ""){
         alert("Please fill in all required fields.");
