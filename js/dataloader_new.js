@@ -4,6 +4,7 @@ var date_filed = [];
 // Populate arrays
 
 function populateDevTeams(){
+    dev_teams = [];
     for(report of reports){
         if(!dev_teams.some(dev_team => dev_team.dev === report.dev)){
             dev_teams.push({dev: report.dev, count: 0});
@@ -15,7 +16,7 @@ function populateDevTeams(){
 function populateDateFiled(){
     let base = +new Date('March 1, 2020');
     let one_day = 24 * 3600 * 1000;
-
+    date_filed = [];
     for(report of reports){
         if(!date_filed.some(date_filed => date_filed.date === report.date_filed)){
             date_filed.push({date: report.date_filed, count: 0});
