@@ -78,34 +78,34 @@ function populateReportsTable(){
             "<tr>" +
             "<td>" + report.date_filed + "</td>" +
             "<td>" + report.date_start + "</td>" +
-            "<td>" + report.date_end + "</td>" +;
+            "<td>" + report.date_end + "</td>";
         var conditions = "";
-        if(report.shortness_of_breath == "TRUE"){
+        if(report.shortness_of_breath ){
             conditions += "shortness of breath; ";
         }
-        if(report.fever == "TRUE"){
+        if(report.fever){
             conditions += "fever; ";
         }
-        if(report.dry_cough == "TRUE"){
+        if(report.dry_cough ){
             conditions += "dry cough; ";
         }
-        if(report.fatigue == "TRUE"){
+        if(report.fatigue ){
             conditions += "fatigue; ";
         }
-        if(report.sore_throat == "TRUE"){
+        if(report.sore_throat ){
             conditions += "sore throat; ";
         }
-        if(report.nasal_congestion == "TRUE"){
+        if(report.nasal_congestion ){
             conditions += "nasal congestion; ";
         }
-        if(report.runny_nose == "TRUE"){
+        if(report.runny_nose ){
             conditions += "runny nose; ";
         }
-        if(report.diarrhea == "TRUE"){
+        if(report.diarrhea ){
             conditions += "diarrhea; ";
         }
         if(conditions == ""){
-            body += "<td>" + conditions + "</td>"
+            body += "<td>" + conditions + "</td>";
         }else{
             body += "<td>None</td>";
         }
@@ -125,6 +125,7 @@ function populateReportsTable(){
         "order": [[ 0, "desc" ]]
     });
 }
+
 
 // Counting functions
 
