@@ -1,0 +1,64 @@
+html:before {
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    display: block;
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url('https://www.mihi.com/wp-content/uploads/2017/05/the7-4-slider-bg-2.jpg');
+    overflow: hidden;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+}
+
+.row {
+    margin-top: 50px;
+    margin-bottom: 120px;
+}
+
+form img {
+    width: 100px;
+    height: 100px;
+    
+}
+
+a:hover{
+    text-decoration: underline;
+}
+form {
+    width: 300px;
+    margin-top: 100px;
+}
+
+.btn{
+    border-radius: 40px;
+}
+form button {
+    width: 150px !important;
+}
+
+.form-item #username, .form-item #password, .md-form #login-username-label, .md-form #login-password-label, .md-form #forgot-username-label {
+    font-family: 'Roboto Condensed' !important;
+    color: white;
+}
+
+.form-control {
+    color: #ffffe4;
+}
+
+.form-control:focus {
+    color: #ffffe4 ;
+}
+
+.md-form {
+    margin-bottom: 30px;
+}
+
+#login_btn, #forgot_btn{
+    background-color: #aa66af;
+}
