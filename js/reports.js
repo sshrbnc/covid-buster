@@ -1,12 +1,14 @@
 async function submitReport(){
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var date_filed_val = new Date();
     var date_start_val = new Date(document.getElementById("date_start").value);
     var date_end_val = new Date(document.getElementById("date_end").value);
 
+    var date_filed = months[date_filed_val.getMonth()] + " " + date_filed_val.getDate();
     var date_start = months[date_start_val.getMonth()] + " " + date_start_val.getDate();
     var date_end = months[date_end_val.getMonth()] + " " + date_end_val.getDate();
-    var name = "Luna Lovegood";
-    var dev = "Dev H";
+    var name = "Seo-bi";
+    var dev = "Dev Z";
 
     if(date_start==""  || date_end == ""){
         alert("Please fill in all required fields.");
@@ -57,11 +59,6 @@ async function submitReport(){
             document.getElementById("symptom_error").innerHTML = "Specify current condition in 'Others' if no symptoms of COVID-19."
             alert("Please fill in all required fields.");
         }else{
-            
-            //ESTABLISH CONNECTION
-            // await authenticate().then(loadClient);
-            // await execute();
-
             //GET LAST ID
             var dataBatch = gapi.client.sheets.spreadsheets.values.batchGet({
                 "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
@@ -76,7 +73,7 @@ async function submitReport(){
                 data = response.result.valueRanges[0].values;
                 newId = parseInt(data[data.length - 1][0]) + 1;
                 size = data.length + 1;
-                var thisRange = "'reports'!A" + size + ":N" + size;
+                var thisRange = "'reports'!A" + size + ":O" + size;
 
                 return gapi.client.sheets.spreadsheets.values.update({
                     "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
@@ -92,6 +89,7 @@ async function submitReport(){
                                 newId,
                                 name,
                                 dev,
+                                date_filed,
                                 date_start,
                                 date_end,
                                 shortness_of_breath,
@@ -130,7 +128,7 @@ function clearRedfield(){
         checkboxes[i].checked = false;
     }
 
-    $('#exampleModalScrollable').modal('hide');
+    $('#sickLeaveForm').modal('hide');
 }
 
 function setOthers(){

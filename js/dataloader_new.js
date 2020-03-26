@@ -105,7 +105,8 @@ function populateReportsTable(){
     $('#reportsPlaceholder').html(head + body + "</tbody></table>");
 
     $('#reportsTable').DataTable({
-        responsive: true
+        responsive: true,
+        "order": [[ 0, "desc" ]]
     });
 }
 
