@@ -79,29 +79,30 @@ function populateReportsTable(){
             "<td>" + report.date_filed + "</td>" +
             "<td>" + report.date_start + "</td>" +
             "<td>" + report.date_end + "</td>";
+        
         var conditions = "";
         if(report.shortness_of_breath ){
             conditions += "shortness of breath; ";
         }
-        if(report.fever){
+        if(report.fever == "true"){
             conditions += "fever; ";
         }
-        if(report.dry_cough ){
+        if(report.dry_cough  == "true"){
             conditions += "dry cough; ";
         }
-        if(report.fatigue ){
+        if(report.fatigue  == "true"){
             conditions += "fatigue; ";
         }
-        if(report.sore_throat ){
+        if(report.sore_throat == "true"){
             conditions += "sore throat; ";
         }
-        if(report.nasal_congestion ){
+        if(report.nasal_congestion == "true"){
             conditions += "nasal congestion; ";
         }
-        if(report.runny_nose ){
+        if(report.runny_nose == "true" ){
             conditions += "runny nose; ";
         }
-        if(report.diarrhea ){
+        if(report.diarrhea == "true"){
             conditions += "diarrhea; ";
         }
         if(conditions == ""){
@@ -121,7 +122,7 @@ function populateReportsTable(){
     $('#reportsPlaceholder').html(head + body + "</tbody></table>");
 
     $('#reportsTable').DataTable({
-        responsive: true,
+        responsive: "true",
         "order": [[ 0, "desc" ]]
     });
 }
