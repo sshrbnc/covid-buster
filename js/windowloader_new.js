@@ -14,12 +14,16 @@ async function init(){
         populateReportsTable();
     } else {
         populateDevTeams();
+        populateSymptoms();
+        populateSymptomsPerDevTeam();
         populateDateFiled();
 
         countPerDevTeams();
         countPerDateFiled();
+        countSymptomsPerDevTeam();
 
         drawDonut();
-        drawTimeline();
+        //drawTimeline();
+        drawBarGraph();
     }
 }

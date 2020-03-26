@@ -1,5 +1,8 @@
 var dev_teams = [];
 var date_filed = [];
+var symptoms_per_dev_team = [];
+var symptoms = [];
+var series_data = [];
 
 // Populate arrays
 
@@ -8,6 +11,27 @@ function populateDevTeams(){
         if(!dev_teams.some(dev_team => dev_team.dev === report.dev)){
             dev_teams.push({dev: report.dev, count: 0});
         }
+    }
+
+}
+
+function populateSymptoms(){
+    symptoms = Object.keys(reports[0]);
+    symptoms.splice(0, 6);
+
+    for(let i = 0; i < symptoms.length; i++){
+        symptoms[i] = symptoms[i].replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
+        symptoms[i] = symptoms[i].replace(/_/g, ' ');
+    }
+
+}
+
+function populateSymptomsPerDevTeam(){
+    for(dev_t of dev_teams){
+        symptoms_per_dev_team.push({
+            dev: dev_t.dev,
+            data: []
+        });
     }
 
 }
@@ -48,9 +72,6 @@ function populateDateFiled(){
         if (new Date(a.date).getTime() > new Date(b.date).getTime()) return 1;
         return 0;
     });
-
-   
-    //console.log(date_filed);
     
 }
 
@@ -132,4 +153,37 @@ function countPerDateFiled(){
         }
     }
     
+}
+
+function countSymptomsPerDevTeam(){ 
+    for(sd of symptoms_per_dev_team){
+        let sb = 0, fe = 0, dc = 0, fa = 0, st = 0, nc = 0, rn = 0, d = 0, o = 0;
+        for(report of reports){
+            if (sd['dev'] === report.dev){
+                if(report.shortness_of_breath) sb += 1;
+                if(report.fever) fe += 1;
+                if(report.dry_cough) dc += 1;
+                if(report.fatigue) fa += 1;
+                if(report.sore_throat) st += 1;
+                if(report.nasal_congestion) nc += 1;
+                if(report.runny_nose) rn += 1;
+                if(report.diarrhea) d += 1;
+                if(report.others != 'N/A') o += 1;
+            }
+        }
+        sd['data'].push(sb, fe, dc, fa, st, nc, rn, d, o);
+        
+
+        series_data.push({
+            name: sd['dev'],
+            type: 'bar',
+            stack: 'symptoms',
+            label: {
+                show: false,
+                position: 'insideTop'
+            },
+            data: sd['data']
+        });
+    }
+
 }
