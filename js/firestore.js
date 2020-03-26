@@ -67,16 +67,16 @@ async function checkStateIn(){
   });  
 }
 async function sendEmail(e){
-       e.preventDefault();
+    e.preventDefault();
     var auth = firebase.auth();
-    var emailAddress = "apsolinap@up.edu.ph";
+    var emailAddress = $("#forgot-username").val()
 
     auth.sendPasswordResetEmail(emailAddress).then(function() {
       // Email sent.
-      document.getElementById("forgot-username").innerHTML = "enter email <span style='color:green'>Check your email to reset the password.</span>";
+      document.getElementById("forgot-username-label").innerHTML = "email <span style='color:green'>Check your email.</span>";
     }).catch(function(err) {
       // An error happened. User doesn't exist in DB.
-      document.getElementById("forgot-username").innerHTML = "enter email <span style='color:red'>Oh no! You're not in our records.</span>";
+      document.getElementById("forgot-username-label").innerHTML = "email <span style='color:red'>Oh no! You're not in our records.</span>";
         
     });
 }
