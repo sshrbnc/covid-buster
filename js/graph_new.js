@@ -104,8 +104,8 @@ function drawDonut(){
 function drawTimeline(){
     let my_chart = echarts.init(document.getElementById('timeline'));
 
-    let display_data = date_start.map(a => a.count);
-    let display_label = date_start.map(a => a.date);
+    let display_data = date_filed.map(a => a.count);
+    let display_label = date_filed.map(a => a.date);
 
     let series_color = generateRandomColor(); //generateColor(12, 34, 35);
 
@@ -122,21 +122,31 @@ function drawTimeline(){
             subtext: 'per Day'
         },
         toolbox: {
+            show: true,
+            right: 'auto',
+            top: 'auto',
+            bottom: 'auto',
+            orient: 'horizontal',
             feature: {
-                dataZoom: {
-                    yAxisIndex: 'none'
-                },
-                restore: {},
-                saveAsImage: {}
+                saveAsImage: {
+                    show: true,
+                    type: 'png',
+                    title: 'Save as PNG',
+                    emphasis: {
+                      iconStyle: {
+                          textPosition: 'left'
+                      }
+                    }
+                }
             }
-        },
+          },
         xAxis: {
             type: 'category',
             boundaryGap: false,
             data: display_label
         },
         yAxis: {
-            name: 'Number of patients',
+            name: 'Leave Count',
             nameLocation: 'middle',
             nameGap: 50,
             type: 'value',
@@ -164,7 +174,7 @@ function drawTimeline(){
         ],
         series: [
             {
-                name: 'bitch',
+                name: 'SLs filed',
                 type: 'line',
                 smooth: true,
                 symbol: 'none',

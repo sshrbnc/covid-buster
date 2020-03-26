@@ -1,5 +1,5 @@
 var dev_teams = [];
-var date_start = [];
+var date_filed = [];
 
 // Populate arrays
 
@@ -12,19 +12,17 @@ function populateDevTeams(){
 
 }
 
-function populateDateStart(){
+function populateDateFiled(){
     let base = +new Date('March 1, 2020');
     let one_day = 24 * 3600 * 1000;
 
-    
-
     for(report of reports){
-        if(!date_start.some(date_start => date_start.date === report.date_start)){
-            date_start.push({date: report.date_start, count: 0});
+        if(!date_filed.some(date_filed => date_filed.date === report.date_filed)){
+            date_filed.push({date: report.date_filed, count: 0});
         }
     }
 
-    date_start.sort(function(a, b){
+    date_filed.sort(function(a, b){
         if (new Date(a.date).getTime() < new Date(b.date).getTime()) return -1;
         if (new Date(a.date).getTime() > new Date(b.date).getTime()) return 1;
         return 0;
@@ -32,10 +30,10 @@ function populateDateStart(){
 
     let now = new Date(base);
     let temp = [];
-    while (now.getTime() <= new Date(date_start[date_start.length - 1]['date'] + ', 2020').getTime()){
+    while (now.getTime() <= new Date(date_filed[date_filed.length - 1]['date'] + ', 2020').getTime()){
         let d = now.toLocaleString('default', { month: 'long', day: 'numeric'});
         
-        if(!date_start.some(date_start => date_start.date === d)){
+        if(!date_filed.some(date_filed => date_filed.date === d)){
             
             temp.push({date: d, count: 0});
         }
@@ -43,13 +41,16 @@ function populateDateStart(){
         now = new Date(base += one_day);
     }
 
-    date_start = date_start.concat(temp);
+    date_filed = date_filed.concat(temp);
 
-    date_start.sort(function(a, b){
+    date_filed.sort(function(a, b){
         if (new Date(a.date).getTime() < new Date(b.date).getTime()) return -1;
         if (new Date(a.date).getTime() > new Date(b.date).getTime()) return 1;
         return 0;
     });
+
+   
+    //console.log(date_filed);
     
 }
 
@@ -121,10 +122,10 @@ function countPerDevTeams(){
     
 }
 
-function countPerDateStart(){
+function countPerDateFiled(){
     for(report of reports){
-        for(d of date_start){
-            if(d['date'] === report.date_start){
+        for(d of date_filed){
+            if(d['date'] === report.date_filed){
                 d['count'] += 1;
             }
         }

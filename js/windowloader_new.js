@@ -6,20 +6,19 @@ window.addEventListener("load", async () => {
 });
 
 async function init(){
-    reportsData = "";
     await execute();
-
-    populateDevTeams();
-    populateDateStart();
-
-    countPerDevTeams();
-    countPerDateStart();
 
     reportsData = reports;
 
     if(document.getElementById("reportsPlaceholder")){
         populateReportsTable();
     } else {
+        populateDevTeams();
+        populateDateFiled();
+
+        countPerDevTeams();
+        countPerDateFiled();
+
         drawDonut();
         drawTimeline();
     }
