@@ -27,7 +27,7 @@
     <nav class="navbar navbar-expand-lg navbar-light py-0 py-md-0" style="padding-right: 0;">
         <a class="navbar-brand" href="#" style="color: #FAFFEA;">AWS SICK LEAVE TRACKER</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="navbar-toggler-icon" style="color: #FAFFEA;"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav" style="margin-left: 80%;">
@@ -38,7 +38,7 @@
                 <a class="nav-link" href="mobile.html" data-toggle="" data-target="#" style="color: #FAFFEA;"><i class="fa fa-mobile" ></i>&nbsp;Mobile</a>
             </li> -->
             <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalScrollable" style="color: #FAFFEA;"><i class="fa fa-bullhorn"></i>&nbsp;File leave</a>
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#sickLeaveForm" style="color: #FAFFEA;"><i class="fa fa-edit"></i> File Leave  </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="mobile.html" data-toggle="" data-target="#" style="color: #FAFFEA;"><i class="fa fa-sign-out" ></i>&nbsp;Logout</a>
@@ -133,27 +133,27 @@
     </div>
 
     <!-- Report Modal -->
-    <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+    <div class="modal fade" id="sickLeaveForm" tabindex="-1" role="dialog" aria-labelledby="sickLeaveFormTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
-                <div class="modal-header" style="padding: 2px;">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">File a Report</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                <div class="modal-header">
+                <h5 class="modal-title" id="sickLeaveFormScrollableTitle">File Sick Leave</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 </div>
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Date Start*</label>
-                            <input type="date" class="form-control" id="date_start">
+                            <label for="date_start">Date Start<span style="color:red">*</span><span id="date_error" style="color:red;font-size:12px"></span></label>
+                            <input type="date" onchange="checkDate()" class="form-control" id="date_start">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Date End*</label>
-                            <input type="date" class="form-control" id="date_end">
+                            <label for="date_end">Date End<span style="color:red">*</span></label>
+                            <input type="date" onchange="checkDate()" class="form-control" id="date_end">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Symptoms</label><br>
+                            <label for="exampleFormControlInput1">Symptoms<span id="symptom_error" style="font-size:12px;color:red"></span></label><br>
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" name="shortness_of_breath" id="shortness_of_breath">
                                 <label class="form-check-label" for="shortness_of_breath">Shortness of Breath</label><br>
@@ -172,7 +172,8 @@
                                 <input class="form-check-input" type="checkbox" name="diarrhea" id="diarrhea">
                                 <label class="form-check-label" for="diarrhea">Diarrhea</label><br>
                                 <input class="form-check-input" type="checkbox" name="others" id="others" onclick="setOthers()">
-                                <label class="form-check-label" for="others">Others (Please specify) <input type="text" id="other_symptoms" disabled></label>
+                                <label class="form-check-label" for="others">Others (Please specify) </label><br>
+                                <input type="text" id="other_symptoms" disabled>
                             </div>
                         </div>
                     </form>
@@ -210,6 +211,18 @@
     <script src="js/dataloader_new.js"></script>
     <script src="js/windowloader_new.js"></script>
     <script src="js/graph_new.js"></script>
+
+    <script>  
+        function checkDate(){
+            var date_start_val = new Date(document.getElementById("date_start").value);
+            var date_end_val = new Date(document.getElementById("date_end").value);
+            if(date_start_val > date_end_val){
+                document.getElementById("date_error").innerHTML=" Oops! End date can't be earlier than start date.";
+            }else{
+                document.getElementById("date_error").innerHTML="";
+            }
+        }
+    </script>
 
 </body>
 </html>
