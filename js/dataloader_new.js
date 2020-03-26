@@ -83,7 +83,7 @@ function populateReportsTable(){
             "<td>" + report.date_end + "</td>";
         
         var conditions = "";
-        if(report.shortness_of_breath ){
+        if(report.shortness_of_breath == "true" ){
             conditions += "shortness of breath; ";
         }
         if(report.fever){
