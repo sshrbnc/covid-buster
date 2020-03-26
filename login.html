@@ -27,7 +27,7 @@
   <!-- content start -->
   <div class="row justify-content-center">
             <!-- Default form login -->
-            <form class=" p-2" >
+            <form class=" p-2" id="login-form">
             <center>
               <img src="https://66.media.tumblr.com/920f88631e2f3a4c184489818b631917/tumblr_oxquou1RAH1utaqtgo4_500.png" alt="">
                 <p class="h4 mb-4 white-text">Welcome!</p>
@@ -54,7 +54,7 @@
 
             </form>
            <!--  forgot password form--> 
-            <form class=" p-2"> 
+            <form class=" p-2"id="forgot-form" style="display:none"> 
             <center>
               <img src="https://66.media.tumblr.com/a6a0aec3ff2a163197363c5240258f87/tumblr_oxquou1RAH1utaqtgo2_500.png" alt="">
                 <p class="h4 mb-4 white-text">Retrieve Password</p>
@@ -66,8 +66,9 @@
                   <input type="text" id="forgot-username" onkeyup="checkEmail(event)" class="form-item form-control">
                   <label id="forgot-username-label" for="username" class="form-item font-weight-light">enter email</label>
                 </div>
+                <label id="email-sent"></label>
 
-                <a onclick="forgotPassword()" href="#" style="color:white;font-size:10px">Back</a>
+                <a onclick="back()" href="#" style="color:white;font-size:10px">Back</a>
 
                 <center>
                   <!-- Sign in button -->
@@ -102,6 +103,17 @@
     $(document).ready(function() {
       checkStateOut();
     });
+    function forgotPassword(){
+      $("#login-form").css("display","none");
+      $("#forgot-form").css("display","");
+
+    }
+    function back(){
+      $("#forgot-form").css("display","none");
+      $("#login-form").css("display","");
+      $("#forgot-username").val("");
+      $("#forgot-username-label").html("email");
+    }
     function checkEmail(e){
       
       var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
