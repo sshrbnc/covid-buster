@@ -87,7 +87,7 @@ function populateReportsTable(){
     $('#reportsPlaceholder').html("");
 
     let head = 
-        "<table id='reportsTable' class='table table-striped' style='width:100%; background-color: lightgrey; color: #1D1128;'>" +
+        "<table id='reportsTable' class='table display nowrap table-striped' style='width:100%;'>" +
         "<thead>" +
         "<tr>" +
         "<th>Date Filed</th>" +
@@ -99,11 +99,13 @@ function populateReportsTable(){
         "</thead>";
 
     let body = "<tbody>";
+
+    console.log(reportsData);
     
     reportsData.forEach(function (report){
         body +=
             "<tr>" +
-            "<td>" + report.date_filed + "</td>" +
+            "<td tabindex='0' class='sorting_1'>" + report.date_filed + "</td>" +
             "<td>" + report.date_start + "</td>" +
             "<td>" + report.date_end + "</td>";
         
@@ -145,11 +147,15 @@ function populateReportsTable(){
     });
 
     $('#reportsPlaceholder').html(head + body + "</tbody></table>");
-
     $('#reportsTable').DataTable({
-        responsive: "true",
+        responsive: true,
+        "lengthChange": false,
         "order": [[ 0, "desc" ]]
     });
+    $.extend( $.fn.dataTable.defaults, {
+        responsive: true
+    } );
+
 }
 
 // Counting functions
@@ -235,12 +241,18 @@ function getOnLeave() {
     var base_date = Date.parse(months[base_date_val.getMonth()] + " " + base_date_val.getDate());
 
     let head = 
-        "<table style='width:100%'>" +
-            "<tr style='text-align: center;'>" +
-                "<th>NAME</th>" +
-                "<th>DEV</th>" +
-            "</tr>";
-    let body = "";
+        "<table id='employee_table' class='table display nowrap table-striped' style='width:100%;'>" +
+        "<thead><tr>"+
+            "<th style='width:270px!important'>Name</th>" +
+            "<th style='width:50px!important'>Dev</th>" +
+            "<th>Date Filed</th>" +
+            "<th>Date Start</th>" +
+            "<th>Date End</th>" +
+            "<th>Symptoms"+
+            "<th>Others</th>" +
+        "</tr></thead>";
+    
+    let body = "<tbody style='max-height:300px;overflow-y:scroll'>";
 
     for(report of reports){
         var from = Date.parse(report.date_start);
@@ -251,9 +263,68 @@ function getOnLeave() {
                 "<tr>" +
                     "<td>" + report.name + "</td>" +
                     "<td>" + report.dev + "</td>" +
-                "</tr>";
+                    "<td>" + report.date_filed + "</td>" +
+                    "<td>" + report.date_start + "</td>" +
+                    "<td>" + report.date_end + "</td>";
+        
+            var conditions = "";
+            if(report.shortness_of_breath){
+                conditions += "shortness of breath; ";
+            }
+            if(report.fever){
+                conditions += "fever; ";
+            }
+            if(report.dry_cough){
+                conditions += "dry cough; ";
+            }
+            if(report.fatigue){
+                conditions += "fatigue; ";
+            }
+            if(report.sore_throat){
+                conditions += "sore throat; ";
+            }
+            if(report.nasal_congestion){
+                conditions += "nasal congestion; ";
+            }
+            if(report.runny_nose){
+                conditions += "runny nose; ";
+            }
+            if(report.diarrhea){
+                conditions += "diarrhea; ";
+            }
+            if(conditions != ""){
+                body += "<td>" + conditions + "</td>";
+            }else{
+                body += "<td>None</td>";
+            }
+            if(report.others != "N/A"){
+                body += "<td>" + report.others + "</td></tr>";
+            }else{
+                body += "<td>None</td></tr>";
+            }
         }
     }
 
     $('#employee_list').html(head + body + "</table>");
+    $.extend( $.fn.dataTable.defaults, {
+        responsive: true
+    } );
+    $('#employee_table').DataTable({
+       
+        "bFilter": false,
+        "bInfo" : false,
+        "lengthChange": false,
+        scrollY:        "250px",
+        paging:         false,
+        columnDefs: [
+            { 'width': '300px', 'targets': 0 },
+            { 'width': '150px', 'targets': 1 },
+            { 'width': '230px', 'targets': 2 },
+            { 'width': '130px', 'targets': 3 },
+            { 'width': '130px', 'targets': 4 },
+            { 'width': '130px', 'targets': 5 },
+            { 'width': '130px', 'targets': 6 }   
+        ],
+        fixedColumns: true
+    });
 }
