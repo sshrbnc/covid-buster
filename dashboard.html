@@ -127,41 +127,46 @@
     <div class="modal fade" id="sickLeaveForm" tabindex="-1" role="dialog" aria-labelledby="sickLeaveFormTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="sickLeaveFormScrollableTitle">File Sick Leave</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                </div>
+                <div class="modal-header" style="padding: 7px; background-color: #1D1128; color: #fff;">
+                    <h5 class="modal-title" id="sickLeaveFormScrollableTitle">File Sick Leave</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: #fff;">&times;</span>
+                    </button>
+                    </div>
                 <div class="modal-body">
                     <form>
-                        <div class="form-group">
-                            <label for="date_start">Date Start<span style="color:red">*</span><span id="date_error" style="color:red;font-size:12px"></span></label>
-                            <input type="date" onchange="checkDate()" class="form-control" id="date_start">
+                        <div style="column-count: 2;">
+                            <div class="form-group">
+                                <label for="date_start">Date Start<span style="color:red">*</span><span id="date_error" style="color:red;font-size:12px"></span></label>
+                                <input type="date" onchange="checkDate()" class="form-control" id="date_start">
+                            </div>
+                            <div class="form-group">
+                                <label for="date_end">Date End<span style="color:red">*</span></label>
+                                <input type="date" onchange="checkDate()" class="form-control" id="date_end">
+                            </div>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="date_end">Date End<span style="color:red">*</span></label>
-                            <input type="date" onchange="checkDate()" class="form-control" id="date_end">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleFormControlInput1">Symptoms<span id="symptom_error" style="font-size:12px;color:red"></span></label><br>
+                            <label for="exampleFormControlInput1"><strong><center>Symptoms</center></strong><span id="symptom_error" style="font-size:12px;color:red"></span></label><br>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="shortness_of_breath" id="shortness_of_breath">
-                                <label class="form-check-label" for="shortness_of_breath">Shortness of Breath</label><br>
-                                <input class="form-check-input" type="checkbox" name="fever" id="fever">
-                                <label class="form-check-label" for="fever">Fever</label><br>
-                                <input class="form-check-input" type="checkbox" name="dry_cough" id="dry_cough">
-                                <label class="form-check-label" for="dry_cough">Dry Cough</label><br>
-                                <input class="form-check-input" type="checkbox" name="fatigue" id="fatigue">
-                                <label class="form-check-label" for="fatigue">Fatigue</label><br>
-                                <input class="form-check-input" type="checkbox" name="sore_throat" id="sore_throat">
-                                <label class="form-check-label" for="sore_throat">Sore Throat</label><br>
-                                <input class="form-check-input" type="checkbox" name="nasal_congestion" id="nasal_congestion">
-                                <label class="form-check-label" for="nasal_congestion">Nasal Congestion</label><br>
-                                <input class="form-check-input" type="checkbox" name="runny_nose" id="runny_nose">
-                                <label class="form-check-label" for="runny_nose">Runny Nose</label><br>
-                                <input class="form-check-input" type="checkbox" name="diarrhea" id="diarrhea">
-                                <label class="form-check-label" for="diarrhea">Diarrhea</label><br>
+                                <div style="column-count: 2;">
+                                    <input class="form-check-input" type="checkbox" name="shortness_of_breath" id="shortness_of_breath">
+                                    <label class="form-check-label" for="shortness_of_breath">Shortness of Breath</label><br>
+                                    <input class="form-check-input" type="checkbox" name="fever" id="fever">
+                                    <label class="form-check-label" for="fever">Fever</label><br>
+                                    <input class="form-check-input" type="checkbox" name="dry_cough" id="dry_cough">
+                                    <label class="form-check-label" for="dry_cough">Dry Cough</label><br>
+                                    <input class="form-check-input" type="checkbox" name="fatigue" id="fatigue">
+                                    <label class="form-check-label" for="fatigue">Fatigue</label><br>
+                                    <input class="form-check-input" type="checkbox" name="sore_throat" id="sore_throat">
+                                    <label class="form-check-label" for="sore_throat">Sore Throat</label><br>
+                                    <input class="form-check-input" type="checkbox" name="nasal_congestion" id="nasal_congestion">
+                                    <label class="form-check-label" for="nasal_congestion">Nasal Congestion</label><br>
+                                    <input class="form-check-input" type="checkbox" name="runny_nose" id="runny_nose">
+                                    <label class="form-check-label" for="runny_nose">Runny Nose</label><br>
+                                    <input class="form-check-input" type="checkbox" name="diarrhea" id="diarrhea">
+                                    <label class="form-check-label" for="diarrhea">Diarrhea</label><br>
+                                </div>
                                 <input class="form-check-input" type="checkbox" name="others" id="others" onclick="setOthers()">
                                 <label class="form-check-label" for="others">Others (Please specify) </label><br>
                                 <input type="text" id="other_symptoms" disabled>
@@ -171,7 +176,7 @@
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
-                <button type="button" class="btn btn-primary" onclick="submitReport()">Submit</button>
+                <button type="button" class="btn btn-primary" onclick="submitReport()" style="border: none; background-color: #1D1128;">Submit</button>
                 </div>
             </div>
         </div>
