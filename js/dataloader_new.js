@@ -45,7 +45,9 @@ function populateSymptomsPerDevTeam(){
 function populateDateFiled(){
     let base = +new Date('March 1, 2020');
     let one_day = 24 * 3600 * 1000;
-    date_filed = [];
+    
+    date_filed.length = 0;
+
     for(report of reports){
         if(!date_filed.some(date_filed => date_filed.date === report.date_filed)){
             date_filed.push({date: report.date_filed, count: 0});
