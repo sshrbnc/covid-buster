@@ -13,6 +13,8 @@ async function init(){
     if(document.getElementById("reportsPlaceholder")){
         populateReportsTable();
     } else {
+        document.querySelector("#birthday").valueAsDate = new Date();
+        getOnLeave();
         populateDevTeams();
         populateSymptoms();
         populateSymptomsPerDevTeam();
@@ -21,6 +23,7 @@ async function init(){
         countPerDevTeams();
         countPerDateFiled();
         countSymptomsPerDevTeam();
+        countOnLeave();
 
         drawDonut();
         // drawTimeline();

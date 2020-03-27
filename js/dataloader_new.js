@@ -3,11 +3,14 @@ var date_filed = [];
 var symptoms_per_dev_team = [];
 var symptoms = [];
 var series_data = [];
-
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var on_leave_today = 0;
+var all_leaves = 0;
 // Populate arrays
 
 function populateDevTeams(){
-    dev_teams = [];
+    dev_teams.length = 0;
+
     for(report of reports){
         if(!dev_teams.some(dev_team => dev_team.dev === report.dev)){
             dev_teams.push({dev: report.dev, count: 0});
@@ -28,6 +31,8 @@ function populateSymptoms(){
 }
 
 function populateSymptomsPerDevTeam(){
+    symptoms_per_dev_team.length = 0;
+
     for(dev_t of dev_teams){
         symptoms_per_dev_team.push({
             dev: dev_t.dev,
@@ -40,7 +45,9 @@ function populateSymptomsPerDevTeam(){
 function populateDateFiled(){
     let base = +new Date('March 1, 2020');
     let one_day = 24 * 3600 * 1000;
-    date_filed = [];
+    
+    date_filed.length = 0;
+
     for(report of reports){
         if(!date_filed.some(date_filed => date_filed.date === report.date_filed)){
             date_filed.push({date: report.date_filed, count: 0});
@@ -76,7 +83,6 @@ function populateDateFiled(){
     
 }
 
-
 function populateReportsTable(){
     $('#reportsPlaceholder').html("");
 
@@ -93,8 +99,6 @@ function populateReportsTable(){
         "</thead>";
 
     let body = "<tbody>";
-
-    console.log(reportsData);
     
     reportsData.forEach(function (report){
         body +=
@@ -104,7 +108,7 @@ function populateReportsTable(){
             "<td>" + report.date_end + "</td>";
         
         var conditions = "";
-        if(report.shortness_of_breath == "true" ){
+        if(report.shortness_of_breath){
             conditions += "shortness of breath; ";
         }
         if(report.fever){
@@ -138,8 +142,6 @@ function populateReportsTable(){
         }else{
             body += "<td>None</td></tr>";
         }
-
-           
     });
 
     $('#reportsPlaceholder').html(head + body + "</tbody></table>");
@@ -175,6 +177,8 @@ function countPerDateFiled(){
 }
 
 function countSymptomsPerDevTeam(){ 
+    series_data.length = 0;
+
     for(sd of symptoms_per_dev_team){
         let sb = 0, fe = 0, dc = 0, fa = 0, st = 0, nc = 0, rn = 0, d = 0, o = 0;
         for(report of reports){
@@ -204,5 +208,52 @@ function countSymptomsPerDevTeam(){
             data: sd['data']
         });
     }
+}
 
+function countOnLeave(){
+    on_leave_today = 0;
+    all_leaves = 0;
+    var today_val = new Date();
+    var 今日 = Date.parse(months[today_val.getMonth()] + " " + today_val.getDate());
+    for(report of reports){
+        var from = Date.parse(report.date_start);
+        var to = Date.parse(report.date_end);
+        if(今日 >= from && 今日 <= to){
+            on_leave_today++;
+        }
+        all_leaves++;
+    }
+    $('#sl_today').html(on_leave_today);
+    $('#total_sl').html(all_leaves);
+}
+
+function getOnLeave() {
+    $('#employee_list').html("");
+
+    var base_date_val = new Date(document.getElementById("birthday").value);
+
+    var base_date = Date.parse(months[base_date_val.getMonth()] + " " + base_date_val.getDate());
+
+    let head = 
+        "<table style='width:100%'>" +
+            "<tr style='text-align: center;'>" +
+                "<th>NAME</th>" +
+                "<th>DEV</th>" +
+            "</tr>";
+    let body = "";
+
+    for(report of reports){
+        var from = Date.parse(report.date_start);
+        var to = Date.parse(report.date_end);
+        if(base_date >= from && base_date <= to){
+
+            body += 
+                "<tr>" +
+                    "<td>" + report.name + "</td>" +
+                    "<td>" + report.dev + "</td>" +
+                "</tr>";
+        }
+    }
+
+    $('#employee_list').html(head + body + "</table>");
 }

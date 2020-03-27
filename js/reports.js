@@ -114,10 +114,10 @@ async function submitReport(){
             function(err) { console.error("Execute error", err); });
 
             clearRedfield();
+            await resetData();
         }
     }
 }
-
 
 function clearRedfield(){
     document.getElementById("date_start").value = "";
@@ -138,4 +138,8 @@ function setOthers(){
     } else {
         others.setAttribute("disabled", "disabled");
     }
+}
+
+async function resetData(){
+    reports.length = 0;
 }
