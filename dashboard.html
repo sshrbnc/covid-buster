@@ -56,7 +56,7 @@
                                 <div class="card-header collapsed" style="padding: 5px;">
                                     <a class="card-title" style="color: black;"> <strong>ON SICK LEAVE TODAY</strong> </a>                                    
                                 </div> 
-                                <span id="sl_today" style="font-size: 90px;">12</span> 
+                                <span id="sl_today" style="font-size: 90px;"></span> 
                             </div>  
                         </div>
                         <div class="col-sm" style="height: 180px; padding: 0;">                        
@@ -64,7 +64,7 @@
                                 <div class="card-header collapsed" style="padding: 5px;">
                                     <a class="card-title" style="color: black;"> <strong>TOTAL SICK LEAVE</strong> <span style="font-size: 10px;">(since Mar 16)</span></a>                                    
                                 </div> 
-                                <span id="total_sl" style="font-size: 90px;">13</span> 
+                                <span id="total_sl" style="font-size: 90px;"></span> 
                             </div>  
                         </div>                        
                     </div>
@@ -77,23 +77,14 @@
                                 </div> 
                                 <div  style="padding-top: 3px; padding-right: 3px;">
                                     <form action="#">
-                                        <input type="date" id="birthday" name="birthday" style="float: right;">
+                                        <input type="date" id="birthday" name="birthday" style="float: right;" onchange="getOnLeave()">
                                     </form> 
                                 </div>
                                 <div class="card-body">  
                                     <!-- </br> -->
                                     <!-- <span id="employee_name" style="float: left;">coviduvidapdap</span><span id="employee_dev" style="float: right; margin-right: 30px;">A</span>                                   -->
                                     <div id="employee_list">
-                                        <table style="width:100%">
-                                            <tr style="text-align: center;">
-                                              <th>NAME</th>
-                                              <th>DEV</th> 
-                                            </tr>
-                                            <tr>
-                                              <td>Annie Kate Solinap</td>
-                                              <td>B</td>
-                                            </tr>                                            
-                                          </table>
+                                        
                                     </div>
                                 </div>
                             </div>  
