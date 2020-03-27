@@ -31,12 +31,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav" style="margin-left: 80%;">
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModalScrollable" style="color: #FAFFEA;"><i class="fa fa-bullhorn"></i>&nbsp;File Report</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="mobile.html" data-toggle="" data-target="#" style="color: #FAFFEA;"><i class="fa fa-mobile" ></i>&nbsp;Mobile</a>
-            </li> -->
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#sickLeaveForm" style="color: #FAFFEA;"><i class="fa fa-edit"></i> File Leave  </a>
             </li>
@@ -75,14 +69,13 @@
                                     <a class="card-title" style="color: black;"> <strong>EMPLOYEES ON SICK LEAVE</strong> </a>                                                                           
                                     <!-- <a href="reports.html" title="View list" style="float: right; color: #1D1128;"><i class="fa fa-eye"></i></a> -->
                                 </div> 
-                                <div  style="padding-top: 3px; padding-right: 3px; margin-bottom: 5px;">
+                                <div  style="padding-top: 3px; padding-right: 3px; margin-bottom: 10px;">
                                     <form action="#">
-                                        <input type="date" style="float: right;" onchange="getOnLeave()">
+                                        <input type="date" id="leave_date" style="float: right;" onchange="getOnLeave()">
                                     </form> 
                                 </div>
                                 <div class="card-body" style="overflow: auto;">  
                                     <!-- </br> -->
-                                    <!-- <span id="employee_name" style="float: left;">coviduvidapdap</span><span id="employee_dev" style="float: right; margin-right: 30px;">A</span>                                   -->
                                     <div id="employee_list">
                                         
                                     </div>
@@ -100,7 +93,7 @@
                                 </div> 
                                 <div class="card-body" style="padding: 3px;">
                                     <!-- TREND GRAPH HERE -->
-                                    <!-- <div id="timeline" style="height: 100%;"></div> -->
+                                    <div id="timeline" style="height: 100%;"></div>
                                 </div>
                             </div>  
                         </div>
@@ -115,7 +108,7 @@
                                     <div class="row" style="height: 100%;">
                                         <div class="col-sm">
                                             <!-- other graph -->
-                                            <div id="timeline" style="height: 100%;"></div>
+                                            <div id="bargraph" style="height: 100%;"></div>
                                         </div>
                                         <div class="col-sm">
                                             <!-- pie graph -->

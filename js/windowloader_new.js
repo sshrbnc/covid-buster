@@ -13,7 +13,7 @@ async function init(){
     if(document.getElementById("reportsPlaceholder")){
         populateReportsTable();
     } else {
-        document.querySelector("#birthday").valueAsDate = new Date();
+        document.querySelector("#leave_date").valueAsDate = new Date();
         getOnLeave();
         populateDevTeams();
         populateSymptoms();
@@ -26,9 +26,7 @@ async function init(){
         countOnLeave();
 
         drawDonut();
-        // drawTimeline();
+        drawTimeline();
         drawBarGraph();
-
-        // populateEmployeeListTable();
     }
 }

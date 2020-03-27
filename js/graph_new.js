@@ -191,7 +191,7 @@ function drawTimeline(){
 }
 
 function drawBarGraph(){
-    let my_chart = echarts.init(document.getElementById('timeline'));
+    let my_chart = echarts.init(document.getElementById('bargraph'));
     
     let display_label = dev_teams.map(a => a.dev);
     

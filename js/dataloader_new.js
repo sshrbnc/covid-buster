@@ -230,13 +230,13 @@ function countOnLeave(){
 function getOnLeave() {
     $('#employee_list').html("");
 
-    var base_date_val = new Date(document.getElementById("birthday").value);
+    var base_date_val = new Date(document.getElementById("leave_date").value);
 
     var base_date = Date.parse(months[base_date_val.getMonth()] + " " + base_date_val.getDate());
 
     let head = 
-        "<table style='width:100%'>" +
-            "<tr style='text-align: center;'>" +
+        "<table id='employeeListTable' style='width:100%'>" +
+            "<tr>" +
                 "<th>NAME</th>" +
                 "<th>DEV</th>" +
             "</tr>";
@@ -248,7 +248,7 @@ function getOnLeave() {
         if(base_date >= from && base_date <= to){
 
             body += 
-                "<tr>" +
+                "<tr style='overflow: auto;'>" +
                     "<td>" + report.name + "</td>" +
                     "<td>" + report.dev + "</td>" +
                 "</tr>";
