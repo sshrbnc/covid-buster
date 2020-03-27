@@ -9,7 +9,8 @@ var all_leaves = 0;
 // Populate arrays
 
 function populateDevTeams(){
-    dev_teams = [];
+    dev_teams.length = 0;
+
     for(report of reports){
         if(!dev_teams.some(dev_team => dev_team.dev === report.dev)){
             dev_teams.push({dev: report.dev, count: 0});
@@ -30,7 +31,8 @@ function populateSymptoms(){
 }
 
 function populateSymptomsPerDevTeam(){
-    symptoms_per_dev_team = [];
+    symptoms_per_dev_team.length = 0;
+
     for(dev_t of dev_teams){
         symptoms_per_dev_team.push({
             dev: dev_t.dev,
@@ -95,8 +97,6 @@ function populateReportsTable(){
         "</thead>";
 
     let body = "<tbody>";
-
-    console.log(reportsData);
     
     reportsData.forEach(function (report){
         body +=
@@ -176,6 +176,8 @@ function countPerDateFiled(){
 }
 
 function countSymptomsPerDevTeam(){ 
+    series_data.length = 0;
+
     for(sd of symptoms_per_dev_team){
         let sb = 0, fe = 0, dc = 0, fa = 0, st = 0, nc = 0, rn = 0, d = 0, o = 0;
         for(report of reports){

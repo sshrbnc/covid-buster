@@ -192,9 +192,9 @@ function drawTimeline(){
 
 function drawBarGraph(){
     let my_chart = echarts.init(document.getElementById('timeline'));
-
+    
     let display_label = dev_teams.map(a => a.dev);
-
+    
     let option = {
         width: '80%',
         title: {
