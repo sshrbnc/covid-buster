@@ -196,13 +196,14 @@ function drawBarGraph(){
     let display_label = dev_teams.map(a => a.dev);
 
     let option = {
+        width: '80%',
         title: {
             left: 'center',
             text: 'Symptoms',
             subtext: 'per Development Team'
         },
         tooltip: {
-            position: ['50%', '10%'],
+            position: ['85%', '3%'],
             trigger: 'axis',
             axisPointer: {           
                 type: 'shadow'        
