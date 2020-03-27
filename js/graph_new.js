@@ -38,7 +38,7 @@ function drawDonut(){
             subtext: 'per Development Team',
             left: 'center',
             textStyle: {
-                color: title_color
+                color: '#1D1128'
             },
         },
         legend: {
@@ -50,7 +50,7 @@ function drawDonut(){
             top: '15%',
             data: display_label,
             textStyle: {
-                color: legend_color
+                color: '#1D1128'
             }
         },
         series: [
@@ -119,7 +119,10 @@ function drawTimeline(){
         title: {
             left: 'center',
             text: 'Sick Leave',
-            subtext: 'per Day'
+            subtext: 'per Day',
+            textStyle: {
+                color: '#1D1128'
+            }
         },
         toolbox: {
             show: true,
@@ -200,7 +203,10 @@ function drawBarGraph(){
         title: {
             left: 'center',
             text: 'Symptoms',
-            subtext: 'per Development Team'
+            subtext: 'per Development Team',
+            textStyle: {
+                color: '#1D1128'
+            }
         },
         tooltip: {
             position: ['85%', '3%'],
@@ -217,6 +223,9 @@ function drawBarGraph(){
             right: '0%',
             top: '15%',
             data: display_label,
+            textStyle: {
+                color: '#1D1128'
+            }
         },
         grid: {
             left: '0%',
