@@ -189,3 +189,50 @@ function drawTimeline(){
 
     my_chart.setOption(option);
 }
+
+function drawBarGraph(){
+    let my_chart = echarts.init(document.getElementById('timeline'));
+
+    let display_label = dev_teams.map(a => a.dev);
+
+    let option = {
+        title: {
+            left: 'center',
+            text: 'Symptoms',
+            subtext: 'per Development Team'
+        },
+        tooltip: {
+            position: ['50%', '10%'],
+            trigger: 'axis',
+            axisPointer: {           
+                type: 'shadow'        
+            }
+        },
+        legend: {
+            show: true,
+            align: 'left',
+            type: 'scroll',
+            orient: 'vertical',
+            right: '1%',
+            top: '15%',
+            data: display_label,
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value'
+        },
+        yAxis: {
+            type: 'category',
+            data: symptoms
+            
+        },
+        series: series_data
+    }
+
+    my_chart.setOption(option);
+}

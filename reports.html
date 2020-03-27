@@ -86,7 +86,7 @@
               </div>
             </div>
             <a class="dropdown-item t-nav" href="editprofile.html"><i class="fas fa-edit"></i>Change password</a>
-            <a class="dropdown-item t-nav" href="login.html" onclick="logOut()"><i
+            <a class="dropdown-item t-nav" onclick="logOut()"><i
                 class="fas fa-sign-out-alt"></i>Logout</a>
           </div>
         </li>
@@ -329,15 +329,15 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.13.0/js/mdb.min.js"></script>
   <!-- Firebase core Javascript-->
   <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-storage.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"> </script>
-  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-messaging.js"> </script>
-  <!-- <script src="js/firestore.js"> </script> -->
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+  <script src="js/firestore.js"> </script>
 
   <!-- Custom JS -->
-  <script type="text/javascript" src="js/home.js"></script><!-- 
+  
+  <script type="text/javascript" src="js/home.js"></script>
   <script type="text/javascript" src="js/reports.js"></script>
-  <script type="text/javascript" src="js/file.js"></script> -->
+  <script type="text/javascript" src="js/file.js"></script> 
 
   <!-- jQuery UI JS -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -348,16 +348,16 @@
     <!-- Google API -->
     <script src="https://apis.google.com/js/api.js"></script>
 
-    <!-- Custom JS -->
+    <!-- Custom JS --><!-- 
     <script src="js/sheets.js"></script>
     <script src="js/windowloader_new.js"></script>
     <script src="js/dataloader_new.js"></script>
-    <script src="js/reports.js"></script>
+    <script src="js/reports.js"></script> -->
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
             $('#table_id').DataTable();
-            console.log('here')
+            checkStateIn();
         });
 
         function showDialog() {
