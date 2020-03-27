@@ -235,12 +235,18 @@ function getOnLeave() {
     var base_date = Date.parse(months[base_date_val.getMonth()] + " " + base_date_val.getDate());
 
     let head = 
-        "<table id='employeeListTable' style='width:100%'>" +
-            "<tr>" +
-                "<th>NAME</th>" +
-                "<th>DEV</th>" +
-            "</tr>";
-    let body = "";
+        "<table id='employee_table' class='table display nowrap table-striped' style='width:100%;'>" +
+        "<thead><tr>"+
+            "<th style='width:270px!important'>Name</th>" +
+            "<th style='width:50px!important'>Dev</th>" +
+            "<th>Date Filed</th>" +
+            "<th>Date Start</th>" +
+            "<th>Date End</th>" +
+            "<th>Symptoms"+
+            "<th>Others</th>" +
+        "</tr></thead>";
+    
+    let body = "<tbody style='max-height:300px;overflow-y:scroll'>";
 
     for(report of reports){
         var from = Date.parse(report.date_start);

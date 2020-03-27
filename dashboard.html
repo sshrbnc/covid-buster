@@ -11,6 +11,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.0/css/fixedColumns.dataTables.min.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
 
@@ -66,9 +69,9 @@
                         <div class="col-sm" style="height: 423px; padding: 0;">                        
                             <div class="card mb-0" style="height: 100%;">
                                 <div class="card-header collapsed" style="padding: 5px;">
-                                    <a class="card-title" style="color: black;"> <strong>EMPLOYEES ON SICK LEAVE</strong> </a>                                                                           
-                                    <!-- <a href="reports.html" title="View list" style="float: right; color: #1D1128;"><i class="fa fa-eye"></i></a> -->
+                                    <a class="card-title" style="color: black;"> <strong>EMPLOYEES ON SICK LEAVE</strong> </a>
                                 </div> 
+<<<<<<< HEAD
                                 <div  style="padding-top: 3px; padding-right: 3px; margin-bottom: 10px;">
                                     <form action="#">
                                         <input type="date" id="leave_date" style="float: right;" onchange="getOnLeave()">
@@ -77,6 +80,15 @@
                                 <div class="card-body" style="overflow: auto;">  
                                     <!-- </br> -->
                                     <div id="employee_list">
+=======
+                                <div class="card-body">
+                                    <div  style="padding-top: 3px; padding-right: 3px;">
+                                    <form action="#">
+                                        <input type="date" id="birthday" name="birthday" style="float: center;" onchange="getOnLeave()">
+                                    </form> 
+                                </div>
+                                    <div id="employee_list" style="width:100%">
+>>>>>>> c2c46c8953ddc7ed0706d7605038fbf36454119f
                                         
                                     </div>
                                 </div>
@@ -192,7 +204,12 @@
 
     <!-- ECharts JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.7.0/echarts-en.min.js"></script>
-
+    
+    <!-- Datatables -->
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.3.0/js/dataTables.fixedColumns.min.js"></script>
     <!-- Google API -->
     <script src="https://apis.google.com/js/api.js"></script>
     
