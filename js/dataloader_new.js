@@ -3,7 +3,9 @@ var date_filed = [];
 var symptoms_per_dev_team = [];
 var symptoms = [];
 var series_data = [];
-
+var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var on_leave_today = 0;
+var all_leaves = 0;
 // Populate arrays
 
 function populateDevTeams(){
@@ -28,6 +30,7 @@ function populateSymptoms(){
 }
 
 function populateSymptomsPerDevTeam(){
+    symptoms_per_dev_team = [];
     for(dev_t of dev_teams){
         symptoms_per_dev_team.push({
             dev: dev_t.dev,
@@ -76,7 +79,6 @@ function populateDateFiled(){
     
 }
 
-
 function populateReportsTable(){
     $('#reportsPlaceholder').html("");
 
@@ -104,7 +106,7 @@ function populateReportsTable(){
             "<td>" + report.date_end + "</td>";
         
         var conditions = "";
-        if(report.shortness_of_breath == "true" ){
+        if(report.shortness_of_breath){
             conditions += "shortness of breath; ";
         }
         if(report.fever){
@@ -138,8 +140,6 @@ function populateReportsTable(){
         }else{
             body += "<td>None</td></tr>";
         }
-
-           
     });
 
     $('#reportsPlaceholder').html(head + body + "</tbody></table>");
@@ -205,5 +205,52 @@ function countSymptomsPerDevTeam(){
             data: sd['data']
         });
     }
+}
 
+function countOnLeave(){
+    on_leave_today = 0;
+    all_leaves = 0;
+    var today_val = new Date();
+    var 今日 = Date.parse(months[today_val.getMonth()] + " " + today_val.getDate());
+    for(report of reports){
+        var from = Date.parse(report.date_start);
+        var to = Date.parse(report.date_end);
+        if(今日 >= from && 今日 <= to){
+            on_leave_today++;
+        }
+        all_leaves++;
+    }
+    $('#sl_today').html(on_leave_today);
+    $('#total_sl').html(all_leaves);
+}
+
+function getOnLeave() {
+    $('#employee_list').html("");
+
+    var base_date_val = new Date(document.getElementById("birthday").value);
+
+    var base_date = Date.parse(months[base_date_val.getMonth()] + " " + base_date_val.getDate());
+
+    let head = 
+        "<table style='width:100%'>" +
+            "<tr style='text-align: center;'>" +
+                "<th>NAME</th>" +
+                "<th>DEV</th>" +
+            "</tr>";
+    let body = "";
+
+    for(report of reports){
+        var from = Date.parse(report.date_start);
+        var to = Date.parse(report.date_end);
+        if(base_date >= from && base_date <= to){
+
+            body += 
+                "<tr>" +
+                    "<td>" + report.name + "</td>" +
+                    "<td>" + report.dev + "</td>" +
+                "</tr>";
+        }
+    }
+
+    $('#employee_list').html(head + body + "</table>");
 }

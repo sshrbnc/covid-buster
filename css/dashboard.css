@@ -54,6 +54,13 @@ nav{
 .row1{
     margin: 0;
 }
+
+
+input>.form-check-input{
+    border: solid 2px yellow;
+    background-color: tomato;
+}
+
 /* ------ Scrollbar ------ */
 /* width */
 ::-webkit-scrollbar {
