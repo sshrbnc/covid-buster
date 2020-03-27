@@ -14,6 +14,8 @@
   <title>Sick Leave Filer</title>
   <!-- MDB icon -->
   <link rel="icon" href="./img/flower.png" type="image/x-icon">
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
   <!-- Google Fonts -->
@@ -68,14 +70,14 @@
         <li class="nav-item avatar dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
-            <img id="profpic" src="user.png" class="rounded-circle z-depth-0" alt="avatar image">
+            <img id="profpic" src="img/user.png" class="rounded-circle z-depth-0" alt="avatar image">
           </a>
           <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
             aria-labelledby="navbarDropdownMenuLink-55">
             <div class="logo-wrapper sn-ad-avatar-wrapper">
               <div class="row">
                 <div class="col d-flex justify-content-center">
-                  <a href="#"><img id="profpicx" src="user.png" class="rounded-circle">
+                  <a href="#"><img id="profpicx" src="img/user.png" class="rounded-circle">
                   </a>
                 </div>
               </div>
@@ -96,29 +98,13 @@
   <!-- navbar end -->
   <!--main content-->
   <div class="row d-flex flex-row-reverse">
-  <div class="col-md-8"  style="background-color: blue">
+  <div class="col-md-8" >
       <div class="container" id="reportsPlaceholder">
-        <table id="table_id" class="display">
-          <thead>
-              <tr>
-                  <th>Column 1</th>
-                  <th>Column 2</th>
-              </tr>
-          </thead>
-          <tbody>
-              <tr>
-                  <td>Row 1 Data 1</td>
-                  <td>Row 1 Data 2</td>
-              </tr>
-              <tr>
-                  <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-              </tr>
-          </tbody>
+        <table id="table_id" class="display responsive nowrap">
       </table>
     </div>
   </div>
-  <div class="col-md-4" style="background-color: pink">
+  <div class="col-md-4">
     <br>
     <h5><center>FAQ for COVID-19</center></h5>
       <div class="accordion" id="accordionExample">
@@ -317,7 +303,7 @@
 
   <!-- JQuery -->
   <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript"
@@ -344,21 +330,24 @@
     <!-- Datatables -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 
     <!-- Google API -->
     <script src="https://apis.google.com/js/api.js"></script>
 
-    <!-- Custom JS --><!-- 
+    <!-- Custom JS --> 
     <script src="js/sheets.js"></script>
     <script src="js/windowloader_new.js"></script>
     <script src="js/dataloader_new.js"></script>
-    <script src="js/reports.js"></script> -->
+    <script src="js/reports.js"></script>
     <script>
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
             $('#table_id').DataTable();
             checkStateIn();
         });
+
+
 
         function showDialog() {
             $(".home_dialog").dialog();
