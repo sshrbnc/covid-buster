@@ -150,7 +150,6 @@ function populateReportsTable(){
     });
 }
 
-
 // Counting functions
 
 function countPerDevTeams(){

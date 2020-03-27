@@ -213,15 +213,16 @@ function drawBarGraph(){
             align: 'left',
             type: 'scroll',
             orient: 'vertical',
-            right: '1%',
+            right: '0%',
             top: '15%',
             data: display_label,
         },
         grid: {
-            left: '3%',
+            left: '0%',
             right: '4%',
             bottom: '3%',
-            containLabel: true
+            containLabel: true,
+            width: '80%',
         },
         xAxis: {
             type: 'value'

@@ -73,18 +73,18 @@
                             <div class="card mb-0" style="height: 100%;">
                                 <div class="card-header collapsed" style="padding: 5px;">
                                     <a class="card-title" style="color: black;"> <strong>EMPLOYEES ON SICK LEAVE</strong> </a>                                                                           
-                                    <a href="reports.html" title="View list" style="float: right; color: #1D1128;"><i class="fa fa-eye"></i></a>
+                                    <!-- <a href="reports.html" title="View list" style="float: right; color: #1D1128;"><i class="fa fa-eye"></i></a> -->
                                 </div> 
-                                <div  style="padding-top: 3px; padding-right: 3px;">
+                                <div  style="padding-top: 3px; padding-right: 3px; margin-bottom: 5px;">
                                     <form action="#">
-                                        <input type="date" id="birthday" name="birthday" style="float: right;">
+                                        <input type="date" id="list_date" name="list_date" style="float: right; border: solid 1px #1D1128;">
                                     </form> 
                                 </div>
-                                <div class="card-body">  
+                                <div class="card-body" style="overflow: auto;">  
                                     <!-- </br> -->
                                     <!-- <span id="employee_name" style="float: left;">coviduvidapdap</span><span id="employee_dev" style="float: right; margin-right: 30px;">A</span>                                   -->
                                     <div id="employee_list">
-                                        <table style="width:100%">
+                                        <!-- <table style="width:100%">
                                             <tr>
                                               <th>NAME</th>
                                               <th>DEV</th> 
@@ -93,7 +93,7 @@
                                               <td>Annie Kate Solinap</td>
                                               <td>B</td>
                                             </tr>                                            
-                                          </table>
+                                        </table> -->
                                     </div>
                                 </div>
                             </div>  
@@ -107,22 +107,30 @@
                                 <div class="card-header collapsed" style="padding: 5px;">
                                     <a class="card-title" style="color: black;"><strong>TRENDS</strong> </a>                                    
                                 </div> 
-                                <div class="card-body">
+                                <div class="card-body" style="padding: 3px;">
                                     <!-- TREND GRAPH HERE -->
-                                    <div id="timeline" style="height: 100%;"></div>
+                                    <!-- <div id="timeline" style="height: 100%;"></div> -->
                                 </div>
                             </div>  
                         </div>
                     <!-- </div> -->
                     <!-- <div class="row"> -->
-                        <div class="col-sm" style="height: 307px; padding: 0;">                        
-                            <div class="card mb-0" style="height: 100%;">
+                        <div class="col-sm" style="height: 307px; padding: 0;"> 
+                            <div class="card mb-0" style="height: 100%; border: soli 2px pink;">
                                 <div class="card-header collapsed" style="padding: 5px;">
-                                    <a class="card-title" style="color: black;"> <strong>PIE GRAPH</strong> </a>                                    
+                                    <a class="card-title" style="color: black;"> <strong>GRAPHS</strong> </a>                                    
                                 </div> 
-                                <div class="card-body">
-                                    <!-- PIE GRAPH HERE -->
-                                    <div id="doughnut" style="height: 100%;"></div>
+                                <div class="card-body"> 
+                                    <div class="row" style="height: 100%;">
+                                        <div class="col-sm">
+                                            <!-- other graph -->
+                                            <div id="timeline" style="height: 100%;"></div>
+                                        </div>
+                                        <div class="col-sm">
+                                            <!-- pie graph -->
+                                            <div id="doughnut" style="height: 100%;"></div>
+                                        </div>     
+                                    </div>                               
                                 </div>
                             </div>  
                         </div>

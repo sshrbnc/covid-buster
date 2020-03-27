@@ -12,6 +12,7 @@ body, html {
   font-family: Arial;
 }
 
+
 /* Style tab links */
 .tablink {
   background-color: #555;
@@ -20,9 +21,11 @@ body, html {
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
-  font-size: 17px;
-  width: 25%;
+  padding: 15px 5px;
+  font-size: 14px;
+  width: 20%;
+  text-align: center;
+  max-height: 50px;
 }
 
 .tablink:hover {
@@ -37,14 +40,15 @@ body, html {
   height: 100%;
 }
 
-#Cases {background-color: #1D1128;}
-#Map {background-color: #1D1128;}
+#Total {background-color: #1D1128;}
+#List {background-color: #1D1128;}
 #Graph {background-color: #1D1128;}
 #Trend {background-color: #1D1128;}
+#Timeline {background-color: #1D1128;}
 
 .cases_detail{
   border: solid 1px gray; 
   text-align: center; 
-  height: 130px; 
+  height: 150px; 
   /* padding-bottom: 10px; */
 }

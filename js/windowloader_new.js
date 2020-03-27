@@ -23,7 +23,9 @@ async function init(){
         countSymptomsPerDevTeam();
 
         drawDonut();
-        //drawTimeline();
+        // drawTimeline();
         drawBarGraph();
+
+        // populateEmployeeListTable();
     }
 }
