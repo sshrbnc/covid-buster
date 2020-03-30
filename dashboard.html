@@ -11,9 +11,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 
-  <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.0/css/fixedColumns.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.0/css/fixedColumns.dataTables.min.css">
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
 
@@ -47,7 +48,7 @@
         <!-- <div class="data-container" style="color: #fff;"> -->
             <div class="row row1">
                 <div class="col-4" style="padding: 5px;">
-                    <div class="row" style="padding-bottom: 5px;">
+                    <div class="row" style="padding-bottom: 5px; height: 30%;">
                         <div class="col-sm" style="height: 180px; padding: 0 5px 0 0;">                        
                             <div class="card mb-0" style="height: 100%;"> 
                                 <div class="card-header collapsed" style="padding: 5px;">
@@ -65,7 +66,7 @@
                             </div>  
                         </div>                        
                     </div>
-                    <div class="row">
+                    <div class="row" style="height: 70%;">
                         <div class="col-sm" style="height: 423px; padding: 0;">                        
                             <div class="card mb-0" style="height: 100%;">
                                 <div class="card-header collapsed" style="padding: 5px;">
@@ -199,6 +200,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.3.0/js/dataTables.fixedColumns.min.js"></script>
+    
     <!-- Google API -->
     <script src="https://apis.google.com/js/api.js"></script>
     
@@ -212,6 +214,14 @@
     <script src="js/dataloader_new.js"></script>
     <script src="js/windowloader_new.js"></script>
     <script src="js/graph_new.js"></script>
+
+    <script>  
+        $(window).resize(function() {
+        if (document.documentElement.clientWidth <= 1024) {    
+            location.href = "mobile.html";
+        }
+        }).resize();
+    </script>
 
 </body>
 </html>

@@ -30,7 +30,7 @@ function drawDonut(){
     
     let title_color = '#1D1128';//generateRandomColor(); //generateColor(123, 34, 35);
     let legend_color = '#1D1128';//generateRandomColor(); //generateColor(13, 34, 35);
-    let series_color = '#1D1128';//generateRandomColor(); //generateColor(12, 34, 35);
+    let series_color = '#187076';//generateRandomColor(); //generateColor(12, 34, 35);
 
     let option = {
         title: {
@@ -107,8 +107,8 @@ function drawTimeline(){
     let display_data = date_filed.map(a => a.count);
     let display_label = date_filed.map(a => a.date);
 
+    let series_color = '#DBCC02';
     let title_color = '#1D1128';//generateRandomColor(); //generateColor(123, 34, 35);
-    let series_color = '#1D1128';//generateRandomColor(); //generateColor(12, 34, 35);
 
     let option = {
         tooltip: {
@@ -196,7 +196,7 @@ function drawTimeline(){
 
 function drawBarGraph(){
     let my_chart = echarts.init(document.getElementById('bargraph'));
-    
+    console.log($('#bargraph').height());
     let display_label = dev_teams.map(a => a.dev);
     
     let title_color = '#1D1128';//generateRandomColor(); //generateColor(123, 34, 35);
@@ -232,7 +232,7 @@ function drawBarGraph(){
             }
         },
         tooltip: {
-            position: ['85%', '3%'],
+            position: ['85%', '-5%'],
             trigger: 'axis',
             axisPointer: {           
                 type: 'shadow'        
