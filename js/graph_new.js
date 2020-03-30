@@ -107,9 +107,8 @@ function drawTimeline(){
     let display_data = date_filed.map(a => a.count);
     let display_label = date_filed.map(a => a.date);
 
-    let series_color = '#DBCC02'
+    let series_color = '#DBCC02';
     let title_color = '#1D1128';//generateRandomColor(); //generateColor(123, 34, 35);
-    let series_color = '#1D1128';//generateRandomColor(); //generateColor(12, 34, 35);
 
     let option = {
         tooltip: {
