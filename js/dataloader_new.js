@@ -309,7 +309,7 @@ function getOnLeave() {
         "bFilter": false,
         "bInfo" : false,
         "lengthChange": false,
-        scrollY:        "250px",
+        scrollY:        "235px",
         paging:         false,
         columnDefs: [
             { 'width': '300px', 'targets': 0 },
