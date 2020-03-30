@@ -196,7 +196,7 @@ function drawTimeline(){
 
 function drawBarGraph(){
     let my_chart = echarts.init(document.getElementById('bargraph'));
-    
+    console.log($('#bargraph').height());
     let display_label = dev_teams.map(a => a.dev);
     
     let title_color = '#1D1128';//generateRandomColor(); //generateColor(123, 34, 35);
