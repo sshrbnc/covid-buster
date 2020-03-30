@@ -320,6 +320,6 @@ function getOnLeave() {
             { 'width': '130px', 'targets': 5 },
             { 'width': '130px', 'targets': 6 }   
         ],
-        fixedColumns: true
+        //fixedColumns: true
     });
 }

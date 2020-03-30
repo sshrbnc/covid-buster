@@ -58,7 +58,11 @@ async function submitReport(){
         if(!valid_submission){
             document.getElementById("symptom_error").innerHTML = "Specify current condition in 'Others' if no symptoms of COVID-19."
             alert("Please fill in all required fields.");
-        }else{
+        }
+        if(!checkDate()){
+            alert("Please enter valid date.");
+        }
+        if(valid_submission && checkDate()){
             //GET LAST ID
             var dataBatch = gapi.client.sheets.spreadsheets.values.batchGet({
                 "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
@@ -116,6 +120,18 @@ async function submitReport(){
             clearRedfield();
             await resetData();
         }
+    }
+}
+
+function checkDate(){
+    var date_start_val = new Date(document.getElementById("date_start").value);
+    var date_end_val = new Date(document.getElementById("date_end").value);
+    if(date_start_val > date_end_val){
+        document.getElementById("date_error").innerHTML=" Oops! End date can't be earlier than start date.";
+        return false;
+    }else{
+        document.getElementById("date_error").innerHTML="";
+        return true;
     }
 }
 

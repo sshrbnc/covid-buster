@@ -108,7 +108,7 @@ function drawTimeline(){
     let display_label = date_filed.map(a => a.date);
 
     let title_color = '#1D1128';//generateRandomColor(); //generateColor(123, 34, 35);
-    let series_color = generateRandomColor(); //generateColor(12, 34, 35);
+    let series_color = '#1D1128';//generateRandomColor(); //generateColor(12, 34, 35);
 
     let option = {
         tooltip: {
@@ -210,6 +210,25 @@ function drawBarGraph(){
             subtext: 'per Development Team',
             textStyle: {
                 color: title_color
+            }
+        },
+        toolbox: {
+            show: true,
+            right: 'auto',
+            top: 'auto',
+            bottom: 'auto',
+            orient: 'horizontal',
+            feature: {
+                saveAsImage: {
+                    show: true,
+                    type: 'png',
+                    title: 'Save as PNG',
+                    emphasis: {
+                        iconStyle: {
+                            textPosition: 'left'
+                        }
+                    }
+                }
             }
         },
         tooltip: {
