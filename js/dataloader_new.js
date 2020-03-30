@@ -224,7 +224,9 @@ function countOnLeave(){
         all_leaves++;
     }
     $('#sl_today').html(on_leave_today);
+    $('#sl_today_m').html(on_leave_today);
     $('#total_sl').html(all_leaves);
+    $('#total_sl_m').html(all_leaves);
 }
 
 function getOnLeave() {

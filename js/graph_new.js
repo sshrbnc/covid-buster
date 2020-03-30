@@ -28,9 +28,9 @@ function drawDonut(){
     });
     let display_label = dev_teams.map(a => a.dev);
     
-    let title_color = generateRandomColor(); //generateColor(123, 34, 35);
-    let legend_color = generateRandomColor(); //generateColor(13, 34, 35);
-    let series_color = generateRandomColor(); //generateColor(12, 34, 35);
+    // let title_color = generateRandomColor(); 
+    // let legend_color = generateRandomColor();
+    let series_color = generateColor(24, 112, 118);
 
     let option = {
         title: {
@@ -107,7 +107,7 @@ function drawTimeline(){
     let display_data = date_filed.map(a => a.count);
     let display_label = date_filed.map(a => a.date);
 
-    let series_color = generateRandomColor(); //generateColor(12, 34, 35);
+    let series_color = generateColor(219, 204, 2)
 
     let option = {
         tooltip: {
@@ -209,7 +209,7 @@ function drawBarGraph(){
             }
         },
         tooltip: {
-            position: ['85%', '3%'],
+            position: ['85%', '-5%'],
             trigger: 'axis',
             axisPointer: {           
                 type: 'shadow'        
