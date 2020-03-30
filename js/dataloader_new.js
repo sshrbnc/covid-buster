@@ -229,6 +229,7 @@ function countOnLeave(){
     $('#total_sl_m').html(all_leaves);
 }
 
+
 function getOnLeave() {
     $('#employee_list').html("");
 
@@ -239,11 +240,16 @@ function getOnLeave() {
     let head = 
         "<table id='employee_table' class='table display nowrap table-striped' style='width:100%;'>" +
         "<thead><tr>"+
-            "<th>Name</th>" +
-            "<th>Dev</th>" +
+            "<th style='width:270px!important'>Name</th>" +
+            "<th style='width:50px!important'>Dev</th>" +
+            "<th>Date Filed</th>" +
+            "<th>Date Start</th>" +
+            "<th>Date End</th>" +
+            "<th>Symptoms"+
+            "<th>Others</th>" +
         "</tr></thead>";
     
-    let body = "<tbody>";
+    let body = "<tbody style='max-height:300px;overflow-y:scroll'>";
 
     for(report of reports){
         var from = Date.parse(report.date_start);
@@ -251,12 +257,71 @@ function getOnLeave() {
         if(base_date >= from && base_date <= to){
 
             body += 
-                "<tr style='overflow: auto;'>" +
+                "<tr>" +
                     "<td>" + report.name + "</td>" +
                     "<td>" + report.dev + "</td>" +
-                "</tr>";
+                    "<td>" + report.date_filed + "</td>" +
+                    "<td>" + report.date_start + "</td>" +
+                    "<td>" + report.date_end + "</td>";
+        
+            var conditions = "";
+            if(report.shortness_of_breath){
+                conditions += "shortness of breath; ";
+            }
+            if(report.fever){
+                conditions += "fever; ";
+            }
+            if(report.dry_cough){
+                conditions += "dry cough; ";
+            }
+            if(report.fatigue){
+                conditions += "fatigue; ";
+            }
+            if(report.sore_throat){
+                conditions += "sore throat; ";
+            }
+            if(report.nasal_congestion){
+                conditions += "nasal congestion; ";
+            }
+            if(report.runny_nose){
+                conditions += "runny nose; ";
+            }
+            if(report.diarrhea){
+                conditions += "diarrhea; ";
+            }
+            if(conditions != ""){
+                body += "<td>" + conditions + "</td>";
+            }else{
+                body += "<td>None</td>";
+            }
+            if(report.others != "N/A"){
+                body += "<td>" + report.others + "</td></tr>";
+            }else{
+                body += "<td>None</td></tr>";
+            }
         }
     }
 
     $('#employee_list').html(head + body + "</table>");
+    $.extend( $.fn.dataTable.defaults, {
+        responsive: true
+    } );
+    $('#employee_table').DataTable({
+       
+        "bFilter": false,
+        "bInfo" : false,
+        "lengthChange": false,
+        scrollY:        "235px",
+        paging:         false,
+        columnDefs: [
+            { 'width': '300px', 'targets': 0 },
+            { 'width': '150px', 'targets': 1 },
+            { 'width': '230px', 'targets': 2 },
+            { 'width': '130px', 'targets': 3 },
+            { 'width': '130px', 'targets': 4 },
+            { 'width': '130px', 'targets': 5 },
+            { 'width': '130px', 'targets': 6 }   
+        ],
+        //fixedColumns: true
+    });
 }

@@ -38,7 +38,7 @@
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#sickLeaveForm" style="color: #FAFFEA;"><i class="fa fa-edit"></i> File Leave  </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="mobile.html" data-toggle="" data-target="#" style="color: #FAFFEA;"><i class="fa fa-sign-out" ></i>&nbsp;Logout</a>
+                <a class="nav-link" href="login.html" data-toggle="" data-target="#" style="color: #FAFFEA;"><i class="fa fa-sign-out" ></i>&nbsp;Logout</a>
             </li>
           </ul>
         </div>
@@ -71,13 +71,13 @@
                                 <div class="card-header collapsed" style="padding: 5px;">
                                     <a class="card-title" style="color: black;"> <strong>EMPLOYEES ON SICK LEAVE</strong> </a>
                                 </div> 
-                                <div  style="padding-top: 3px; padding-right: 3px; margin-bottom: 10px;">
+                                <div class="card-body">
+                                    <div  style="padding-top: 3px; padding-right: 3px;">
                                     <form action="#">
-                                        <input type="date" id="leave_date" style="float: right;" onchange="getOnLeave()">
+                                        <input type="date" id="leave_date" name="leave_date" style="float: center;" onchange="getOnLeave()">
                                     </form> 
                                 </div>
-                                <div class="card-body" style="overflow: auto;"> 
-                                    <div id="employee_list">
+                                    <div id="employee_list" style="width:100%">
                                         
                                     </div>
                                 </div>
@@ -214,16 +214,6 @@
     <script src="js/graph_new.js"></script>
 
     <script>  
-        function checkDate(){
-            var date_start_val = new Date(document.getElementById("date_start").value);
-            var date_end_val = new Date(document.getElementById("date_end").value);
-            if(date_start_val > date_end_val){
-                document.getElementById("date_error").innerHTML=" Oops! End date can't be earlier than start date.";
-            }else{
-                document.getElementById("date_error").innerHTML="";
-            }
-        }
-
         $(window).resize(function() {
         if (document.documentElement.clientWidth <= 1024) {    
             location.href = "mobile.html";

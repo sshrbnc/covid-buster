@@ -28,9 +28,9 @@ function drawDonut(){
     });
     let display_label = dev_teams.map(a => a.dev);
     
-    // let title_color = generateRandomColor(); 
-    // let legend_color = generateRandomColor();
-    let series_color = generateColor(24, 112, 118);
+    let title_color = '#1D1128';//generateRandomColor(); //generateColor(123, 34, 35);
+    let legend_color = '#1D1128';//generateRandomColor(); //generateColor(13, 34, 35);
+    let series_color = '#187076';//generateRandomColor(); //generateColor(12, 34, 35);
 
     let option = {
         title: {
@@ -38,7 +38,7 @@ function drawDonut(){
             subtext: 'per Development Team',
             left: 'center',
             textStyle: {
-                color: '#1D1128'
+                color: title_color
             },
         },
         legend: {
@@ -50,7 +50,7 @@ function drawDonut(){
             top: '15%',
             data: display_label,
             textStyle: {
-                color: '#1D1128'
+                color: legend_color
             }
         },
         series: [
@@ -107,7 +107,9 @@ function drawTimeline(){
     let display_data = date_filed.map(a => a.count);
     let display_label = date_filed.map(a => a.date);
 
-    let series_color = generateColor(219, 204, 2)
+    let series_color = '#DBCC02'
+    let title_color = '#1D1128';//generateRandomColor(); //generateColor(123, 34, 35);
+    let series_color = '#1D1128';//generateRandomColor(); //generateColor(12, 34, 35);
 
     let option = {
         tooltip: {
@@ -121,7 +123,7 @@ function drawTimeline(){
             text: 'Sick Leave',
             subtext: 'per Day',
             textStyle: {
-                color: '#1D1128'
+                color: title_color
             }
         },
         toolbox: {
@@ -198,6 +200,9 @@ function drawBarGraph(){
     
     let display_label = dev_teams.map(a => a.dev);
     
+    let title_color = '#1D1128';//generateRandomColor(); //generateColor(123, 34, 35);
+    let legend_color = '#1D1128';//generateRandomColor(); //generateColor(13, 34, 35);
+
     let option = {
         width: '80%',
         title: {
@@ -205,7 +210,26 @@ function drawBarGraph(){
             text: 'Symptoms',
             subtext: 'per Development Team',
             textStyle: {
-                color: '#1D1128'
+                color: title_color
+            }
+        },
+        toolbox: {
+            show: true,
+            right: 'auto',
+            top: 'auto',
+            bottom: 'auto',
+            orient: 'horizontal',
+            feature: {
+                saveAsImage: {
+                    show: true,
+                    type: 'png',
+                    title: 'Save as PNG',
+                    emphasis: {
+                        iconStyle: {
+                            textPosition: 'left'
+                        }
+                    }
+                }
             }
         },
         tooltip: {
@@ -224,7 +248,7 @@ function drawBarGraph(){
             top: '15%',
             data: display_label,
             textStyle: {
-                color: '#1D1128'
+                color: legend_color
             }
         },
         grid: {
