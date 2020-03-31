@@ -41,17 +41,31 @@ async function logIn(e) {
         $("#login-password-label").html("email <span style='color:red'>email and password don't match.</span>");
       }
     });
+
 }
 async function checkStateOut(){
   firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
       // User is signed in.
-      location.href = "reports.html";
+      console.log(user)
+      var docRef = firebase.firestore().collection("users").doc(user.uid);
+
+      docRef.get().then(function(doc) {
+          if (doc.exists) {
+              sessionStorage.setItem("displayName",doc.data().name);
+              sessionStorage.setItem("dev", doc.data().dev);
+              sessionStorage.setItem("userType", doc.data().user_type);
+          }
+          location.href = "reports.html";
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
       
     } else {
       // User is signed out.
       // ...
       //console.log("out")
+      sessionStorage.clear()
       //location.href = "login.html";
     }
   });  
@@ -80,12 +94,62 @@ async function sendEmail(e){
         
     });
 }
+
 function logOut() {
     firebase.auth().signOut().then(function() {
       // Sign-out successful.
+      sessionStorage.clear();
       location.href = "login.html";
     }).catch(function(error) {
       // An error happened.
       alert("ERR")
     });
+}
+
+function getDisplayName(){
+ document.getElementById("userName").innerHTML = sessionStorage.getItem("displayName");
+}
+
+async function pushUser(id){
+  var name = document.getElementById("new-user-name").value;
+  var newDev = document.getElementById("new-user-dev").value;
+  var user_type = "employee"
+  db.collection("users").doc(id).set({
+    name: name,
+    uid: id,
+    dev: newDev,
+    user_type: "employee"
+  })
+  .then(function() {
+      console.log("Document successfully written!");
+  })
+  .catch(function(error) {
+      console.error("Error writing document: ", error);
+  });
+}
+
+async function addUser(){
+  var email = document.getElementById("new-user-email").value;
+  var password = "Awsys#123"
+  var name = document.getElementById("new-user-name").value;
+  var newDev = document.getElementById("new-user-dev").value;
+  document.getElementById("new-user-email-error").innerHTML = ""
+  alert(password)
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+.then(
+  (user)=>{
+ // here you can use either the returned user object or       firebase.auth().currentUser. I will use the returned user object
+  console.log(user.user.uid)
+   pushUser(user.user.uid)
+      // Add a new document in collection "cities"
+
+    
+})
+.catch(function(error) {
+  // Handle Errors here.
+  var errorCode = error.code;
+  var errorMessage = error.message;
+  // ...
+});
+
 }
