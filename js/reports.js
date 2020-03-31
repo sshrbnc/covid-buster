@@ -8,8 +8,8 @@ async function submitReport() {
     var date_start = months[date_start_val.getMonth()] + " " + date_start_val.getDate();
     var date_end = months[date_end_val.getMonth()] + " " + date_end_val.getDate();
 
-    var name = "Annabeth Chase";
-    var dev = "Dev A";
+    var name = sessionStorage.getItem("displayName");
+    var dev = sessionStorage.getItem("dev");
 
     if (date_start == "" || date_end == "") {
         alert("Please fill in all required fields.");
@@ -206,8 +206,8 @@ function editThis(reportID) {
     var date_start = months[date_start_val.getMonth()] + " " + date_start_val.getDate();
     var date_end = months[date_end_val.getMonth()] + " " + date_end_val.getDate();
 
-    var name = "Annabeth Chase";
-    var dev = "Dev A";
+    var name = sessionStorage.getItem("displayName");
+    var dev = sessionStorage.getItem("dev");
 
     if (date_start == "" || date_end == "") {
         alert("Please fill in all required fields.");
@@ -280,7 +280,7 @@ function editThis(reportID) {
                 var allowDuplicate = true;
 
                 for (var i = 0; i < data.length; i++) {
-                    if (name == data[i][1]) {
+                    if (name == data[i][1] && dev == data[i][2]) {
                         if (Date.parse(date_start) >= Date.parse(data[i][4]) && Date.parse(date_end) <= Date.parse(data[i][5]) ||
                             Date.parse(date_start) <= Date.parse(data[i][4]) && Date.parse(date_end) >= Date.parse(data[i][4]) && Date.parse(date_end) <= Date.parse(data[i][5]) ||
                             Date.parse(date_start) >= Date.parse(data[i][4]) && Date.parse(date_start) <= Date.parse(data[i][5]) && Date.parse(date_end) >= Date.parse(data[i][5]) ||

@@ -24,7 +24,7 @@ async function init(){
         countPerDateFiled();
         countSymptomsPerDevTeam();
         countOnLeave();
-
+        
         drawDonut();
         drawTimeline();
         drawBarGraph();

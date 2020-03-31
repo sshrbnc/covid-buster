@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+        if (!sessionStorage.getItem("displayName")){
+          location.href = "login.html";
+        }
+        if(sessionStorage.getItem("userType") == "employee"){
+            location.href = "reports.html"
+        }
+    </script>
     <meta charset="UTF-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,12 +42,18 @@
           <span class="navbar-toggler-icon" style="color: #FAFFEA;"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav" style="margin-left: 80%;">
+          <ul class="navbar-nav" style="margin-left: 60%;">
+            <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="modal" data-target="#addUserForm" style="color: #FAFFEA;"><i class="fa fa-user-plus"></i> Add User  </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reports.html" data-toggle="" data-target="" style="color: #FAFFEA;"><i class="fa fa-file"></i> My Reports  </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link" href="#" data-toggle="modal" data-target="#sickLeaveForm" style="color: #FAFFEA;"><i class="fa fa-edit"></i> File Leave  </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="login.html" data-toggle="" data-target="#" style="color: #FAFFEA;"><i class="fa fa-sign-out" ></i>&nbsp;Logout</a>
+                <a class="nav-link" href="login.html" data-toggle="" onclick="logOut()" data-target="#" style="color: #FAFFEA;"><i class="fa fa-sign-out" ></i>&nbsp;Logout</a>
             </li>
           </ul>
         </div>
@@ -71,12 +85,13 @@
                             <div class="card mb-0" style="height: 100%;">
                                 <div class="card-header collapsed" style="padding: 5px;">
                                     <a class="card-title" style="color: black;"> <strong>EMPLOYEES ON SICK LEAVE</strong> </a>
+                                    <input type="date" id="leave_date" name="leave_date" style="float: right; width: 35%;" onchange="getOnLeave()">           
                                 </div> 
                                 <div class="card-body">
                                     <div  style="padding-top: 3px; padding-right: 3px;">
-                                    <form action="#">
-                                        <input type="date" id="leave_date" name="leave_date" style="float: center;" onchange="getOnLeave()">
-                                    </form> 
+                                    <!-- <form action="#"> -->
+                                        <!-- <input type="date" id="leave_date" name="leave_date" style="float: center;" onchange="getOnLeave()"> -->
+                                    <!-- </form>  -->
                                 </div>
                                     <div id="employee_list" style="width:100%">
                                         
@@ -102,7 +117,7 @@
                     <!-- </div> -->
                     <!-- <div class="row"> -->
                         <div class="col-sm" style="height: 307px; padding: 0;"> 
-                            <div class="card mb-0" style="height: 100%; border: soli 2px pink;">
+                            <div class="card mb-0" style="height: 100%;">
                                 <div class="card-header collapsed" style="padding: 5px;">
                                     <a class="card-title" style="color: black;"> <strong>GRAPHS</strong> </a>                                    
                                 </div> 
@@ -184,7 +199,43 @@
             </div>
         </div>
     </div>
-
+<!-- Add User Modal -->
+    <div class="modal fade" id="addUserForm" tabindex="-1" role="dialog" aria-labelledby="addUserFormTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserFormScrollableTitle">Add User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" style="color: #fff;">&times;</span>
+                    </button>
+                    </div>
+                <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="new-user-email">Email address<span style="color:red;font-size:10px" id="new-user-email-error"></span></label>
+                        <input type="email" class="form-control" id="new-user-email" placeholder="name@awsys-i.com">
+                      </div>
+                      <div class="form-group">
+                        <label for="new-user-name">Name</label>
+                        <input type="text" class="form-control" id="new-user-name" placeholder="James J. Johnathan">
+                      </div>
+                      <div class="form-group">
+                        <label for="new-user-dev">Dev</label>
+                        <input type="text" class="form-control" id="new-user-dev" placeholder="Dev B">
+                      </div>
+                      <div class="form-group">
+                        <label for="new-user-pass">Default Password</label>
+                        <input class="form-control" id="new-user-password" type="text" placeholder="Awsys#123" readonly>
+                      </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addUser()" style="border: none; background-color: #1D1128;">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Firebase core Javascript-->
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.11.0/firebase-analytics.js"></script>

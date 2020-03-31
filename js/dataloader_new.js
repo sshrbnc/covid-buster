@@ -83,10 +83,10 @@ function populateDateFiled() {
 
 }
 
-function populateReportsTable() {
+function populateReportsTable(){
     $('#reportsPlaceholder').html("");
 
-    let head =
+    let head = 
         "<table id='reportsTable' class='table table-striped' style='width:100%; background-color: lightgrey; color: #1D1128;'>" +
         "<thead>" +
         "<tr>" +
@@ -94,67 +94,67 @@ function populateReportsTable() {
         "<th>Date Filed</th>" +
         "<th>Date Start</th>" +
         "<th>Date End</th>" +
-        "<th>Symptoms" +
+        "<th>Symptoms"+
         "<th>Others</th>" +
         "<th>Action</th>" +
         "</tr>" +
         "</thead>";
 
     let body = "<tbody>";
-
-    reportsData.forEach(function (report) {
-        if (report.name == "Annabeth Chase" && report.dev == "Dev A") {
+    
+    reportsData.forEach(function (report){
+    if(report.name == sessionStorage.getItem("displayName")){
             body +=
-                "<tr>" +
-                "<td>" + report.id + "</td>" +
-                "<td>" + report.date_filed + "</td>" +
-                "<td>" + report.date_start + "</td>" +
-                "<td>" + report.date_end + "</td>";
-
-            var conditions = "";
-            if (report.shortness_of_breath) {
-                conditions += "shortness of breath; ";
+                    "<tr>" +
+                    "<td>" + report.id + "</td>" +
+                    "<td>" + report.date_filed + "</td>" +
+                    "<td>" + report.date_start + "</td>" +
+                    "<td>" + report.date_end + "</td>";
+                
+                var conditions = "";
+                if(report.shortness_of_breath){
+                    conditions += "shortness of breath; ";
+                }
+                if(report.fever){
+                    conditions += "fever; ";
+                }
+                if(report.dry_cough){
+                    conditions += "dry cough; ";
+                }
+                if(report.fatigue){
+                    conditions += "fatigue; ";
+                }
+                if(report.sore_throat){
+                    conditions += "sore throat; ";
+                }
+                if(report.nasal_congestion){
+                    conditions += "nasal congestion; ";
+                }
+                if(report.runny_nose){
+                    conditions += "runny nose; ";
+                }
+                if(report.diarrhea){
+                    conditions += "diarrhea; ";
+                }
+                if(conditions != ""){
+                    body += "<td>" + conditions + "</td>";
+                }else{
+                    body += "<td>None</td>";
+                }
+                if (report.others != "N/A") {
+                    body += "<td>" + report.others + "</td>";
+                } else {
+                    body += "<td>None</td>";
+                }
+                body += "<td><button onclick='fetchDetails(" + report.id + ")'><i class='fa fa-edit'></i></button></td></tr>";
             }
-            if (report.fever) {
-                conditions += "fever; ";
-            }
-            if (report.dry_cough) {
-                conditions += "dry cough; ";
-            }
-            if (report.fatigue) {
-                conditions += "fatigue; ";
-            }
-            if (report.sore_throat) {
-                conditions += "sore throat; ";
-            }
-            if (report.nasal_congestion) {
-                conditions += "nasal congestion; ";
-            }
-            if (report.runny_nose) {
-                conditions += "runny nose; ";
-            }
-            if (report.diarrhea) {
-                conditions += "diarrhea; ";
-            }
-            if (conditions != "") {
-                body += "<td>" + conditions + "</td>";
-            } else {
-                body += "<td>None</td>";
-            }
-            if (report.others != "N/A") {
-                body += "<td>" + report.others + "</td>";
-            } else {
-                body += "<td>None</td>";
-            }
-            body += "<td><button onclick='fetchDetails(" + report.id + ")'><i class='fa fa-edit'></i></button></td></tr>";
-        }
     });
 
     $('#reportsPlaceholder').html(head + body + "</tbody></table>");
 
     $('#reportsTable').DataTable({
         responsive: "true",
-        "order": [[0, "desc"]]
+        "order": [[ 0, "desc" ]]
     });
 }
 
@@ -294,7 +294,7 @@ function getOnLeave() {
     let head =
         "<table id='employee_table' class='table display nowrap table-striped' style='width:100%;'>" +
         "<thead><tr>" +
-        "<th style='width:270px!important'>Name</th>" +
+        "<th style='width:250px!important'>Name</th>" +
         "<th style='width:50px!important'>Dev</th>" +
         "<th>Date Filed</th>" +
         "<th>Date Start</th>" +

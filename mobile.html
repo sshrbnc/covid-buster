@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script>
+      if (!sessionStorage.getItem("displayName")){
+        location.href = "login.html";
+      }
+      if(sessionStorage.getItem("userType") == "employee"){
+          location.href = "reports.html"
+      }
+  </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>COVID-19 UPDATE</title>
@@ -66,12 +74,10 @@
                   <a class="card-title" style="color: black;"> <strong>EMPLOYEES ON SICK LEAVE</strong> </a>
               </div> 
               <div  style="padding-top: 3px; padding-right: 3px; margin-bottom: 10px;">
-                  <form action="#">
-                      <input type="date" id="leave_date" style="float: right;" onchange="getOnLeave()">
-                  </form> 
+                  <input type="date" id="leave_date" style="float: right;" onchange="getOnLeave()"> 
               </div>
-              <div class="card-body" style="overflow: auto;"> 
-                  <div id="employee_list">
+              <div class="card-body" style="overflow: auto; padding-top: 2px;"> 
+                  <div id="employee_list" style="width: 100%">
                       
                   </div>
               </div>
@@ -80,27 +86,27 @@
         </div>
 
         <div id="Graph" class="tabcontent">
-          <div class="graphs" style="margin-top: 3px;">
+          <div class="graphs" style="margin-top: 3px; background-color: rgb(250, 250, 250);">
             <div id="bargraph" style="height: 100%;"></div>
           </div>
-          <div class="graphs" style="margin-top: 3px">
+          <div class="graphs" style="margin-top: 3px; background-color: rgb(250, 250, 250);">
             <div id="doughnut" style="height: 100%;"></div>
 
           </div> 
         </div>
 
         <div id="Timeline" class="tabcontent">
-          <div style="border: solid 1px gray; height: 85.9%;">
+          <div style="border: solid 1px gray; height: 85.9%; background-color: rgb(250, 250, 250);">
             <div id="timeline" style="height: 100%;"></div>
           </div>
         </div>
 
         <div>
-          <button class="tablink" onclick="openPage('Total', this, '#1D1128')" >TOTAL</button>
+          <button class="tablink" onclick="openPage('Total', this, '#1D1128')" id="defaultOpen">TOTAL</button>
           <button class="tablink" onclick="openPage('List', this, '#1D1128')" >LIST</button>
-          <button class="tablink" onclick="openPage('Graph', this, '#1D1128')" id="defaultOpen">GRAPHS</button>
+          <button class="tablink" onclick="openPage('Graph', this, '#1D1128'); resizeGraph();" >GRAPHS</button>
           <!-- <button class="tablink" onclick="openPage('Trend', this, '#1D1128')">TREND</button> -->
-          <button class="tablink" onclick="openPage('Timeline', this, '#1D1128')" style="padding-top: 3px;">TIME</br>LINE</button>
+          <button class="tablink" onclick="openPage('Timeline', this, '#1D1128'); resizeGraph();" style="padding-top: 3px;">TIME</br>LINE</button>
         </div> 
     </div>
 
@@ -190,7 +196,7 @@
     <script src="js/mobile.js"></script>
     <script src="js/reports.js"></script> <!-- Imported for report submission function -->
     <script src="js/dataloader_new.js"></script>
-    <script src="js/windowloader_mobile.js"></script>
+    <script src="js/windowloader_new.js"></script>
     <script src="js/graph_new.js"></script>
 
 </body>

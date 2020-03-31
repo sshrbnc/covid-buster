@@ -3,11 +3,11 @@
 
 <head>
   <!-- Session -->
-  <!--  <script>
-    if (!sessionStorage.getItem("username"))
-      location.href = "index.html";
+  <script>
+    if (!sessionStorage.getItem("displayName"))
+      location.href = "login.html";
   </script>
- -->
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -62,6 +62,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
         <ul class="navbar-nav ml-auto nav-flex-icons">
+          <li class="nav-item" id="dashboard"></li>
           <li class="nav-item">
             <a class="nav-link t-nav" href="#" data-toggle="modal" data-target="#sickLeaveForm"><i
                 class="fa fa-edit"></i> File Leave </a>
@@ -73,20 +74,20 @@
           <li class="nav-item avatar dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-55" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-              <img id="profpic" src="img/user.png" class="rounded-circle z-depth-0" alt="avatar image">
+              <img id="profpic" src="user.png" class="rounded-circle z-depth-0" alt="avatar image">
             </a>
             <div class="dropdown-menu dropdown-menu-lg-right dropdown-secondary"
               aria-labelledby="navbarDropdownMenuLink-55">
               <div class="logo-wrapper sn-ad-avatar-wrapper">
                 <div class="row">
                   <div class="col d-flex justify-content-center">
-                    <a href="#"><img id="profpicx" src="img/user.png" class="rounded-circle">
+                    <a href="#"><img id="profpicx" src="user.png" class="rounded-circle">
                     </a>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col text-center">
-                    <span id="userName">User</span>さん
+                    <span id="userName">User</span>
                   </div>
                 </div>
               </div>
@@ -281,11 +282,11 @@
                 <div class="form-group">
                   <label for="date_start">Date Start<span style="color:red">*</span><span id="date_error"
                       style="color:red;font-size:12px"></span></label>
-                  <input type="date" onchange="checkDate(1)" class="form-control" id="date_start">
+                  <input type="date" onchange="checkDate()" class="form-control" id="date_start">
                 </div>
                 <div class="form-group">
                   <label for="date_end">Date End<span style="color:red">*</span></label>
-                  <input type="date" onchange="checkDate(1)" class="form-control" id="date_end">
+                  <input type="date" onchange="checkDate()" class="form-control" id="date_end">
                 </div>
               </div>
 
@@ -312,7 +313,7 @@
                     <input class="form-check-input" type="checkbox" name="diarrhea" id="diarrhea">
                     <label class="form-check-label" for="diarrhea">Diarrhea</label><br>
                   </div>
-                  <input class="form-check-input" type="checkbox" name="others" id="others" onclick="setOthers(1)">
+                  <input class="form-check-input" type="checkbox" name="others" id="others" onclick="setOthers()">
                   <label class="form-check-label" for="others">Others (Please specify) </label><br>
                   <input type="text" id="other_symptoms" disabled>
                 </div>
@@ -360,7 +361,8 @@
                   </strong><span id="edit_symptom_error" style="font-size:12px;color:red"></span></label><br>
                 <div class="form-check">
                   <div style="column-count: 2;">
-                    <input class="form-check-input" type="checkbox" name="shortness_of_breath" id="edit_shortness_of_breath">
+                    <input class="form-check-input" type="checkbox" name="shortness_of_breath"
+                      id="edit_shortness_of_breath">
                     <label class="form-check-label" for="edit_shortness_of_breath">Shortness of Breath</label><br>
                     <input class="form-check-input" type="checkbox" name="fever" id="edit_fever">
                     <label class="form-check-label" for="edit_fever">Fever</label><br>
@@ -370,7 +372,8 @@
                     <label class="form-check-label" for="edit_fatigue">Fatigue</label><br>
                     <input class="form-check-input" type="checkbox" name="sore_throat" id="edit_sore_throat">
                     <label class="form-check-label" for="edit_sore_throat">Sore Throat</label><br>
-                    <input class="form-check-input" type="checkbox" name="edit_nasal_congestion" id="edit_nasal_congestion">
+                    <input class="form-check-input" type="checkbox" name="edit_nasal_congestion"
+                      id="edit_nasal_congestion">
                     <label class="form-check-label" for="edit_nasal_congestion">Nasal Congestion</label><br>
                     <input class="form-check-input" type="checkbox" name="runny_nose" id="edit_runny_nose">
                     <label class="form-check-label" for="edit_runny_nose">Runny Nose</label><br>
@@ -412,9 +415,7 @@
 
   <!-- Custom JS -->
 
-  <script type="text/javascript" src="js/home.js"></script>
   <script type="text/javascript" src="js/reports.js"></script>
-  <script type="text/javascript" src="js/file.js"></script>
 
   <!-- jQuery UI JS -->
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -437,22 +438,19 @@
       $('[data-toggle="tooltip"]').tooltip();
       $('#table_id').DataTable();
       checkStateIn();
+
     });
 
-
+    window.onload = function () {
+      if (sessionStorage.getItem("userType") != "employee") {
+        document.getElementById("dashboard").innerHTML = '<a class="nav-link t-nav" href="dashboard.html" ><i class="fa fa-pie-chart" aria-hidden="true"></i> Dashboard  </a>'
+      }
+      getDisplayName();
+    };
 
     function showDialog() {
       $(".home_dialog").dialog();
-    }
-        // function checkDate(){
-        //     var date_start_val = new Date(document.getElementById("date_start").value);
-        //     var date_end_val = new Date(document.getElementById("date_end").value);
-        //     if(date_start_val > date_end_val){
-        //         document.getElementById("date_error").innerHTML=" Oops! End date can't be earlier than start date.";
-        //     }else{
-        //         document.getElementById("date_error").innerHTML="";
-        //     }
-        // }
+    }   
   </script>
 
 
