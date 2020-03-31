@@ -1,5 +1,4 @@
 async function submitReport() {
-    var user = firebase.auth().currentUser;
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var date_filed_val = new Date();
     var date_start_val = new Date(document.getElementById("date_start").value);
@@ -11,8 +10,6 @@ async function submitReport() {
 
     var name = "Hazel Levesque";
     var dev = "Dev P";
-    // var name = user.name;
-    // var dev = user.dev;
 
     if (date_start == "" || date_end == "") {
         alert("Please fill in all required fields.");
@@ -91,12 +88,8 @@ async function submitReport() {
                             Date.parse(date_start) >= Date.parse(data[i][4]) && Date.parse(date_start) <= Date.parse(data[i][5]) && Date.parse(date_end) >= Date.parse(data[i][5]) ||
                             Date.parse(date_start) <= Date.parse(data[i][4]) && Date.parse(date_end) >= Date.parse(data[i][5])
                         ) {
-                            var duplicate = confirm("You are trying to file a leave on a similar date. Continue?");
-                            if (duplicate) {
-                                allowDuplicate = true;
-                            } else {
-                                allowDuplicate = false;
-                            }
+                            alert("A date you have selected is already filed for a leave.");
+                            allowDuplicate = false;
                             break;
                         }
                     }
@@ -140,7 +133,7 @@ async function submitReport() {
                     },
                         function (err) { console.error("Execute error", err); });
                 } else {
-                    console.log("Don't send leave.");
+                    console.log("Leave not sent due to date duplication.");
                 }
 
             },
