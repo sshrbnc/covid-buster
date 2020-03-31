@@ -242,7 +242,7 @@ function getOnLeave() {
     let head =
         "<table id='employee_table' class='table display nowrap table-striped' style='width:100%;'>" +
         "<thead><tr>" +
-        "<th style='width:270px!important'>Name</th>" +
+        "<th style='width:250px!important'>Name</th>" +
         "<th style='width:50px!important'>Dev</th>" +
         "<th>Date Filed</th>" +
         "<th>Date Start</th>" +
