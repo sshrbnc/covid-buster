@@ -8,32 +8,32 @@ var on_leave_today = 0;
 var all_leaves = 0;
 // Populate arrays
 
-function populateDevTeams(){
+function populateDevTeams() {
     dev_teams.length = 0;
 
-    for(report of reports){
-        if(!dev_teams.some(dev_team => dev_team.dev === report.dev)){
-            dev_teams.push({dev: report.dev, count: 0});
+    for (report of reports) {
+        if (!dev_teams.some(dev_team => dev_team.dev === report.dev)) {
+            dev_teams.push({ dev: report.dev, count: 0 });
         }
     }
 
 }
 
-function populateSymptoms(){
+function populateSymptoms() {
     symptoms = Object.keys(reports[0]);
     symptoms.splice(0, 6);
 
-    for(let i = 0; i < symptoms.length; i++){
+    for (let i = 0; i < symptoms.length; i++) {
         symptoms[i] = symptoms[i].replace(/(^\w{1})|(\s{1}\w{1})/g, match => match.toUpperCase());
         symptoms[i] = symptoms[i].replace(/_/g, ' ');
     }
 
 }
 
-function populateSymptomsPerDevTeam(){
+function populateSymptomsPerDevTeam() {
     symptoms_per_dev_team.length = 0;
 
-    for(dev_t of dev_teams){
+    for (dev_t of dev_teams) {
         symptoms_per_dev_team.push({
             dev: dev_t.dev,
             data: []
@@ -42,19 +42,19 @@ function populateSymptomsPerDevTeam(){
 
 }
 
-function populateDateFiled(){
+function populateDateFiled() {
     let base = +new Date('March 1, 2020');
     let one_day = 24 * 3600 * 1000;
-    
+
     date_filed.length = 0;
 
-    for(report of reports){
-        if(!date_filed.some(date_filed => date_filed.date === report.date_filed)){
-            date_filed.push({date: report.date_filed, count: 0});
+    for (report of reports) {
+        if (!date_filed.some(date_filed => date_filed.date === report.date_filed)) {
+            date_filed.push({ date: report.date_filed, count: 0 });
         }
     }
 
-    date_filed.sort(function(a, b){
+    date_filed.sort(function (a, b) {
         if (new Date(a.date).getTime() < new Date(b.date).getTime()) return -1;
         if (new Date(a.date).getTime() > new Date(b.date).getTime()) return 1;
         return 0;
@@ -62,85 +62,89 @@ function populateDateFiled(){
 
     let now = new Date(base);
     let temp = [];
-    while (now.getTime() <= new Date(date_filed[date_filed.length - 1]['date'] + ', 2020').getTime()){
-        let d = now.toLocaleString('default', { month: 'long', day: 'numeric'});
-        
-        if(!date_filed.some(date_filed => date_filed.date === d)){
-            
-            temp.push({date: d, count: 0});
+    while (now.getTime() <= new Date(date_filed[date_filed.length - 1]['date'] + ', 2020').getTime()) {
+        let d = now.toLocaleString('default', { month: 'long', day: 'numeric' });
+
+        if (!date_filed.some(date_filed => date_filed.date === d)) {
+
+            temp.push({ date: d, count: 0 });
         }
-        
+
         now = new Date(base += one_day);
     }
 
     date_filed = date_filed.concat(temp);
 
-    date_filed.sort(function(a, b){
+    date_filed.sort(function (a, b) {
         if (new Date(a.date).getTime() < new Date(b.date).getTime()) return -1;
         if (new Date(a.date).getTime() > new Date(b.date).getTime()) return 1;
         return 0;
     });
-    
+
 }
 
-function populateReportsTable(){
+function populateReportsTable() {
     $('#reportsPlaceholder').html("");
 
-    let head = 
+    let head =
         "<table id='reportsTable' class='table table-striped' style='width:100%; background-color: lightgrey; color: #1D1128;'>" +
         "<thead>" +
         "<tr>" +
+        "<th>#</th>" +
         "<th>Date Filed</th>" +
         "<th>Date Start</th>" +
         "<th>Date End</th>" +
-        "<th>Symptoms"+
+        "<th>Symptoms" +
         "<th>Others</th>" +
         "</tr>" +
         "</thead>";
 
     let body = "<tbody>";
-    
-    reportsData.forEach(function (report){
-        body +=
-            "<tr>" +
-            "<td>" + report.date_filed + "</td>" +
-            "<td>" + report.date_start + "</td>" +
-            "<td>" + report.date_end + "</td>";
-        
-        var conditions = "";
-        if(report.shortness_of_breath){
-            conditions += "shortness of breath; ";
-        }
-        if(report.fever){
-            conditions += "fever; ";
-        }
-        if(report.dry_cough){
-            conditions += "dry cough; ";
-        }
-        if(report.fatigue){
-            conditions += "fatigue; ";
-        }
-        if(report.sore_throat){
-            conditions += "sore throat; ";
-        }
-        if(report.nasal_congestion){
-            conditions += "nasal congestion; ";
-        }
-        if(report.runny_nose){
-            conditions += "runny nose; ";
-        }
-        if(report.diarrhea){
-            conditions += "diarrhea; ";
-        }
-        if(conditions != ""){
-            body += "<td>" + conditions + "</td>";
-        }else{
-            body += "<td>None</td>";
-        }
-        if(report.others != "N/A"){
-            body += "<td>" + report.others + "</td></tr>";
-        }else{
-            body += "<td>None</td></tr>";
+
+    reportsData.forEach(function (report) {
+        if (report.name == "Annabeth Chase" && report.dev == "Dev A") {
+            body +=
+                "<tr>" +
+                "<td>" + report.id + "</td>" +
+                "<td>" + report.date_filed + "</td>" +
+                "<td>" + report.date_start + "</td>" +
+                "<td>" + report.date_end + "</td>";
+
+            var conditions = "";
+            if (report.shortness_of_breath) {
+                conditions += "shortness of breath; ";
+            }
+            if (report.fever) {
+                conditions += "fever; ";
+            }
+            if (report.dry_cough) {
+                conditions += "dry cough; ";
+            }
+            if (report.fatigue) {
+                conditions += "fatigue; ";
+            }
+            if (report.sore_throat) {
+                conditions += "sore throat; ";
+            }
+            if (report.nasal_congestion) {
+                conditions += "nasal congestion; ";
+            }
+            if (report.runny_nose) {
+                conditions += "runny nose; ";
+            }
+            if (report.diarrhea) {
+                conditions += "diarrhea; ";
+            }
+            if (conditions != "") {
+                body += "<td>" + conditions + "</td>";
+            } else {
+                body += "<td>None</td>";
+            }
+            if (report.others != "N/A") {
+                body += "<td>" + report.others + "</td></tr>";
+            } else {
+                body += "<td>None</td></tr>";
+            }
         }
     });
 
@@ -148,54 +152,54 @@ function populateReportsTable(){
 
     $('#reportsTable').DataTable({
         responsive: "true",
-        "order": [[ 0, "desc" ]]
+        "order": [[0, "desc"]]
     });
 }
 
 // Counting functions
 
-function countPerDevTeams(){
-    for(report of reports){
-        for(dev_team of dev_teams){
-            if(dev_team['dev'] === report.dev){
+function countPerDevTeams() {
+    for (report of reports) {
+        for (dev_team of dev_teams) {
+            if (dev_team['dev'] === report.dev) {
                 dev_team['count'] += 1;
             }
         }
     }
-    
+
 }
 
-function countPerDateFiled(){
-    for(report of reports){
-        for(d of date_filed){
-            if(d['date'] === report.date_filed){
+function countPerDateFiled() {
+    for (report of reports) {
+        for (d of date_filed) {
+            if (d['date'] === report.date_filed) {
                 d['count'] += 1;
             }
         }
     }
-    
+
 }
 
-function countSymptomsPerDevTeam(){ 
+function countSymptomsPerDevTeam() {
     series_data.length = 0;
 
-    for(sd of symptoms_per_dev_team){
+    for (sd of symptoms_per_dev_team) {
         let sb = 0, fe = 0, dc = 0, fa = 0, st = 0, nc = 0, rn = 0, d = 0, o = 0;
-        for(report of reports){
-            if (sd['dev'] === report.dev){
-                if(report.shortness_of_breath) sb += 1;
-                if(report.fever) fe += 1;
-                if(report.dry_cough) dc += 1;
-                if(report.fatigue) fa += 1;
-                if(report.sore_throat) st += 1;
-                if(report.nasal_congestion) nc += 1;
-                if(report.runny_nose) rn += 1;
-                if(report.diarrhea) d += 1;
-                if(report.others != 'N/A') o += 1;
+        for (report of reports) {
+            if (sd['dev'] === report.dev) {
+                if (report.shortness_of_breath) sb += 1;
+                if (report.fever) fe += 1;
+                if (report.dry_cough) dc += 1;
+                if (report.fatigue) fa += 1;
+                if (report.sore_throat) st += 1;
+                if (report.nasal_congestion) nc += 1;
+                if (report.runny_nose) rn += 1;
+                if (report.diarrhea) d += 1;
+                if (report.others != 'N/A') o += 1;
             }
         }
         sd['data'].push(sb, fe, dc, fa, st, nc, rn, d, o);
-        
+
 
         series_data.push({
             name: sd['dev'],
@@ -210,15 +214,15 @@ function countSymptomsPerDevTeam(){
     }
 }
 
-function countOnLeave(){
+function countOnLeave() {
     on_leave_today = 0;
     all_leaves = 0;
     var today_val = new Date();
     var 今日 = Date.parse(months[today_val.getMonth()] + " " + today_val.getDate());
-    for(report of reports){
+    for (report of reports) {
         var from = Date.parse(report.date_start);
         var to = Date.parse(report.date_end);
-        if(今日 >= from && 今日 <= to){
+        if (今日 >= from && 今日 <= to) {
             on_leave_today++;
         }
         all_leaves++;
@@ -237,82 +241,82 @@ function getOnLeave() {
 
     var base_date = Date.parse(months[base_date_val.getMonth()] + " " + base_date_val.getDate());
 
-    let head = 
+    let head =
         "<table id='employee_table' class='table display nowrap table-striped' style='width:100%;'>" +
-        "<thead><tr>"+
-            "<th style='width:270px!important'>Name</th>" +
-            "<th style='width:50px!important'>Dev</th>" +
-            "<th>Date Filed</th>" +
-            "<th>Date Start</th>" +
-            "<th>Date End</th>" +
-            "<th>Symptoms"+
-            "<th>Others</th>" +
+        "<thead><tr>" +
+        "<th style='width:270px!important'>Name</th>" +
+        "<th style='width:50px!important'>Dev</th>" +
+        "<th>Date Filed</th>" +
+        "<th>Date Start</th>" +
+        "<th>Date End</th>" +
+        "<th>Symptoms" +
+        "<th>Others</th>" +
         "</tr></thead>";
-    
+
     let body = "<tbody style='max-height:300px;overflow-y:scroll'>";
 
-    for(report of reports){
+    for (report of reports) {
         var from = Date.parse(report.date_start);
         var to = Date.parse(report.date_end);
-        if(base_date >= from && base_date <= to){
+        if (base_date >= from && base_date <= to) {
 
-            body += 
+            body +=
                 "<tr>" +
-                    "<td>" + report.name + "</td>" +
-                    "<td>" + report.dev + "</td>" +
-                    "<td>" + report.date_filed + "</td>" +
-                    "<td>" + report.date_start + "</td>" +
-                    "<td>" + report.date_end + "</td>";
-        
+                "<td>" + report.name + "</td>" +
+                "<td>" + report.dev + "</td>" +
+                "<td>" + report.date_filed + "</td>" +
+                "<td>" + report.date_start + "</td>" +
+                "<td>" + report.date_end + "</td>";
+
             var conditions = "";
-            if(report.shortness_of_breath){
+            if (report.shortness_of_breath) {
                 conditions += "shortness of breath; ";
             }
-            if(report.fever){
+            if (report.fever) {
                 conditions += "fever; ";
             }
-            if(report.dry_cough){
+            if (report.dry_cough) {
                 conditions += "dry cough; ";
             }
-            if(report.fatigue){
+            if (report.fatigue) {
                 conditions += "fatigue; ";
             }
-            if(report.sore_throat){
+            if (report.sore_throat) {
                 conditions += "sore throat; ";
             }
-            if(report.nasal_congestion){
+            if (report.nasal_congestion) {
                 conditions += "nasal congestion; ";
             }
-            if(report.runny_nose){
+            if (report.runny_nose) {
                 conditions += "runny nose; ";
             }
-            if(report.diarrhea){
+            if (report.diarrhea) {
                 conditions += "diarrhea; ";
             }
-            if(conditions != ""){
+            if (conditions != "") {
                 body += "<td>" + conditions + "</td>";
-            }else{
+            } else {
                 body += "<td>None</td>";
             }
-            if(report.others != "N/A"){
+            if (report.others != "N/A") {
                 body += "<td>" + report.others + "</td></tr>";
-            }else{
+            } else {
                 body += "<td>None</td></tr>";
             }
         }
     }
 
     $('#employee_list').html(head + body + "</table>");
-    $.extend( $.fn.dataTable.defaults, {
+    $.extend($.fn.dataTable.defaults, {
         responsive: true
-    } );
+    });
     $('#employee_table').DataTable({
-       
+
         "bFilter": false,
-        "bInfo" : false,
+        "bInfo": false,
         "lengthChange": false,
-        scrollY:        "235px",
-        paging:         false,
+        scrollY: "235px",
+        paging: false,
         columnDefs: [
             { 'width': '300px', 'targets': 0 },
             { 'width': '150px', 'targets': 1 },
@@ -320,7 +324,7 @@ function getOnLeave() {
             { 'width': '130px', 'targets': 3 },
             { 'width': '130px', 'targets': 4 },
             { 'width': '130px', 'targets': 5 },
-            { 'width': '130px', 'targets': 6 }   
+            { 'width': '130px', 'targets': 6 }
         ],
         //fixedColumns: true
     });
