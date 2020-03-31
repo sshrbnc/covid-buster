@@ -91,7 +91,7 @@
                   </div>
                 </div>
               </div>
-              <a class="dropdown-item t-nav" href="editprofile.html"><i class="fas fa-edit"></i>Change password</a>
+              <a class="dropdown-item t-nav" href="#" data-toggle="modal" data-target="#changePassForm"><i class="fas fa-edit"></i>Change password</a>
               <a class="dropdown-item t-nav" onclick="logOut()"><i class="fas fa-sign-out-alt"></i>Logout</a>
             </div>
           </li>
@@ -265,6 +265,35 @@
 
 
     <!-- main -->
+    <!-- Change Pass Modal -->
+    <div class="modal fade" id="changePassForm" tabindex="-1" role="dialog" aria-labelledby="changePassFormTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="changePassFormTitle">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="oldPassword">Password<span id="oldPasswordError" style="color:red;font-size:10px"></span></label>
+                        <input type="password" class="form-control" id="oldPassword" placeholder="Password">
+                      </div>
+                      <div class="form-group">
+                        <label for="newPassword">New Password<span id="newPasswordError" style="color:red;font-size:10px"></span></label>
+                        <input type="password" class="form-control" id="newPassword" placeholder="Password">
+                      </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearChangePass()">Close</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="changePassword()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Report Modal -->
     <div class="modal fade" id="sickLeaveForm" tabindex="-1" role="dialog" aria-labelledby="sickLeaveFormTitle"
       aria-hidden="true">
