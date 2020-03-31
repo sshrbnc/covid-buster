@@ -96,6 +96,7 @@ function populateReportsTable() {
         "<th>Date End</th>" +
         "<th>Symptoms" +
         "<th>Others</th>" +
+        "<th>Action</th>" +
         "</tr>" +
         "</thead>";
 
@@ -141,10 +142,11 @@ function populateReportsTable() {
                 body += "<td>None</td>";
             }
             if (report.others != "N/A") {
-                body += "<td>" + report.others + "</td></tr>";
+                body += "<td>" + report.others + "</td>";
             } else {
-                body += "<td>None</td></tr>";
+                body += "<td>None</td>";
             }
+            body += "<td><button onclick='fetchDetails(" + report.id + ")'><i class='fa fa-edit'></i></button></td></tr>";
         }
     });
 
@@ -153,6 +155,54 @@ function populateReportsTable() {
     $('#reportsTable').DataTable({
         responsive: "true",
         "order": [[0, "desc"]]
+    });
+}
+
+function fetchDetails(reportID){
+    reportsData.forEach(function (report) {
+        if(report.id == reportID){
+            $('#editSickLeaveForm').modal('show');
+            // document.getElementById("edit_date_start").value = report.date_start;
+            // document.getElementById("edit_date_end").value = report.date_end;
+
+            if(report.shortness_of_breath){
+                document.getElementById("edit_shortness_of_breath").checked = true;
+            }
+            if(report.fever){
+                document.getElementById("edit_fever").checked = true;
+            }
+            if(report.dry_cough){
+                document.getElementById("edit_dry_cough").checked = true;
+            }
+            if(report.fatigue){
+                document.getElementById("edit_fatigue").checked = true;
+            }
+            if(report.sore_throat){
+                document.getElementById("edit_sore_throat").checked = true;
+            }
+            if(report.nasal_congestion){
+                document.getElementById("edit_nasal_congestion").checked = true;
+            }
+            if(report.runny_nose){
+                document.getElementById("edit_runny_nose").checked = true;
+            }
+            if(report.diarrhea){
+                document.getElementById("edit_diarrhea").checked = true;
+            }
+            if(report.others != "N/A"){
+                document.getElementById("edit_others").checked = true;
+                document.getElementById("edit_other_symptoms").removeAttribute("disabled");
+                document.getElementById("edit_other_symptoms").value = report.others;
+            } else {
+                document.getElementById("edit_others").checked = false;
+                document.getElementById("edit_other_symptoms").setAttribute("disabled", "disabled");
+                document.getElementById("edit_other_symptoms").value = "";
+            }
+            var footer = 
+                "<button type='button' class='btn btn-secondary' data-dismiss='modal' onclick='clearRedfield()'>Close</button>" +
+                "<button type='button' class='btn btn-primary' onclick='editThis(" + report.id + ")' style='border: none; background-color: #1D1128;'>Save Changes</button>";
+            $("#edit_modal_footer").html(footer);
+        }
     });
 }
 
