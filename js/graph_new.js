@@ -1,3 +1,7 @@
+var my_donut = null;
+var my_timeline = null;
+var my_bargraph = null;
+
 function generateRandomColor() {
 
     let r = Math.floor(Math.random() * 255);
@@ -15,7 +19,7 @@ function generateColor(r, g, b) {
 }
 
 function drawDonut(){
-    let my_chart = echarts.init(document.getElementById('doughnut'));
+    my_donut = echarts.init(document.getElementById('doughnut'));
 
     dev_teams.sort(function(a, b){
         if (a.dev < b.dev) return -1;
@@ -98,11 +102,11 @@ function drawDonut(){
         },
     }
 
-    my_chart.setOption(option);
+    my_donut.setOption(option);
 }
 
 function drawTimeline(){
-    let my_chart = echarts.init(document.getElementById('timeline'));
+    my_timeline = echarts.init(document.getElementById('timeline'));
 
     let display_data = date_filed.map(a => a.count);
     let display_label = date_filed.map(a => a.date);
@@ -191,12 +195,12 @@ function drawTimeline(){
         ]
     }
 
-    my_chart.setOption(option);
+    my_timeline.setOption(option);
 }
 
 function drawBarGraph(){
-    let my_chart = echarts.init(document.getElementById('bargraph'));
-    console.log(document.getElementById('bargraph').clientHeight);
+    my_bargraph = echarts.init(document.getElementById('bargraph'));
+    console.log(document.getElementById('bargraph').offsetHeight);
     console.log(window.getComputedStyle(document.getElementById("bargraph")).getPropertyValue("height"));
     let display_label = dev_teams.map(a => a.dev);
     
@@ -269,5 +273,5 @@ function drawBarGraph(){
         series: series_data
     }
 
-    my_chart.setOption(option);
+    my_bargraph.setOption(option);
 }
