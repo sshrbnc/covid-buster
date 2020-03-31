@@ -1,4 +1,5 @@
 async function submitReport() {
+    var user = firebase.auth().currentUser;
     var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
     var date_filed_val = new Date();
     var date_start_val = new Date(document.getElementById("date_start").value);
@@ -7,8 +8,11 @@ async function submitReport() {
     var date_filed = months[date_filed_val.getMonth()] + " " + date_filed_val.getDate();
     var date_start = months[date_start_val.getMonth()] + " " + date_start_val.getDate();
     var date_end = months[date_end_val.getMonth()] + " " + date_end_val.getDate();
-    var name = "Shaira O. Abancio";
-    var dev = "Dev A";
+
+    var name = "Hazel Levesque";
+    var dev = "Dev P";
+    // var name = user.name;
+    // var dev = user.dev;
 
     if (date_start == "" || date_end == "") {
         alert("Please fill in all required fields.");
@@ -78,7 +82,7 @@ async function submitReport() {
                 newId = parseInt(data[data.length - 1][0]) + 1;
                 size = data.length + 1;
                 var thisRange = "'reports'!A" + size + ":O" + size;
-                var allowDuplicate = false;
+                var allowDuplicate = true;
 
                 for (var i = 0; i < data.length; i++) {
                     if (name == data[i][1]) {
@@ -98,7 +102,7 @@ async function submitReport() {
                     }
                 }
 
-                if(allowDuplicate){
+                if (allowDuplicate) {
                     console.log("Leave filed on duplicate date.");
                     return gapi.client.sheets.spreadsheets.values.update({
                         "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
@@ -138,9 +142,9 @@ async function submitReport() {
                 } else {
                     console.log("Don't send leave.");
                 }
-                
+
             },
-            function (err) { console.error("Execute error", err); });
+                function (err) { console.error("Execute error", err); });
 
             clearRedfield();
             await resetData();
