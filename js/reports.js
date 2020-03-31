@@ -8,8 +8,8 @@ async function submitReport() {
     var date_start = months[date_start_val.getMonth()] + " " + date_start_val.getDate();
     var date_end = months[date_end_val.getMonth()] + " " + date_end_val.getDate();
 
-    var name = "Hazel Levesque";
-    var dev = "Dev P";
+    var name = sessionStorage.getItem("displayName");
+    var dev = sessionStorage.getItem("dev");
 
     if (date_start == "" || date_end == "") {
         alert("Please fill in all required fields.");
