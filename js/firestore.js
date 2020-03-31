@@ -55,6 +55,7 @@ async function checkStateOut(){
               sessionStorage.setItem("displayName",doc.data().name);
               sessionStorage.setItem("dev", doc.data().dev);
               sessionStorage.setItem("userType", doc.data().user_type);
+              sessionStorage.setItem("email", user.email);
           }
           location.href = "reports.html";
       }).catch(function(error) {
@@ -109,7 +110,55 @@ function logOut() {
 function getDisplayName(){
  document.getElementById("userName").innerHTML = sessionStorage.getItem("displayName");
 }
+async function changePassword(){
+  var user = firebase.auth().currentUser;
+  var newPassword = document.getElementById("newPassword").value;
+  var oldPassword = document.getElementById("oldPassword").value;
+  var email = sessionStorage.getItem("email");
+  console.log(email + " " + oldPassword)
+  if(newPassword.trim() == ""){
+    document.getElementById("newPasswordError").innerHTML = "enter a valid password";
+  }
+  else{
+    const credential = firebase.auth.EmailAuthProvider.credential(
+        email, 
+        oldPassword
+    );
 
+    // Prompt the user to re-provide their sign-in credentials
+
+    user.reauthenticateWithCredential(credential).then(function() {
+      // User re-authenticated.
+      user.updatePassword(newPassword).then(function() {
+      // Update successful.
+      document.getElementById("oldPasswordError").innerHTML = "";
+      document.getElementById("newPasswordError").innerHTML = "";
+      document.getElementById("newPassword").value = "";
+      document.getElementById("oldPassword").value = "";
+      alert("Password has been changed successfully!");
+    }).catch(function(error) {
+      // An error happened.
+    });
+    }).catch(function(error) {
+      // An error happened.
+      document.getElementById("oldPasswordError").innerHTML = "invalid password"
+    });
+  }
+  
+}
+
+function clearAddUser(){
+  document.getElementById("new-user-email").value = "";
+  document.getElementById("new-user-name").value = "";
+  document.getElementById("new-user-dev").value = "";
+  document.getElementById("new-user-email-error").innerHTML = ""
+}
+function clearChangePass(){
+      document.getElementById("oldPasswordError").innerHTML = "";
+      document.getElementById("newPasswordError").innerHTML = "";
+      document.getElementById("newPassword").value = "";
+      document.getElementById("oldPassword").value = "";
+}
 async function pushUser(id){
   var name = document.getElementById("new-user-name").value;
   var newDev = document.getElementById("new-user-dev").value;
@@ -134,17 +183,12 @@ async function addUser(){
   var name = document.getElementById("new-user-name").value;
   var newDev = document.getElementById("new-user-dev").value;
   document.getElementById("new-user-email-error").innerHTML = ""
-  alert(password)
+  
   firebase.auth().createUserWithEmailAndPassword(email, password)
 .then(
   (user)=>{
- // here you can use either the returned user object or       firebase.auth().currentUser. I will use the returned user object
-  console.log(user.user.uid)
    pushUser(user.user.uid)
-      // Add a new document in collection "cities"
-
-    
-})
+  })
 .catch(function(error) {
   // Handle Errors here.
   var errorCode = error.code;
