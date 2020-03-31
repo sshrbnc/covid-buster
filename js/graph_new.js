@@ -200,8 +200,7 @@ function drawTimeline(){
 
 function drawBarGraph(){
     my_bargraph = echarts.init(document.getElementById('bargraph'));
-    console.log(document.getElementById('bargraph').offsetHeight);
-    console.log(window.getComputedStyle(document.getElementById("bargraph")).getPropertyValue("height"));
+    
     let display_label = dev_teams.map(a => a.dev);
     
     let title_color = '#1D1128';//generateRandomColor(); //generateColor(123, 34, 35);
