@@ -4,16 +4,15 @@ async function submitReport() {
     var date_start_val = new Date(document.getElementById("date_start").value);
     var date_end_val = new Date(document.getElementById("date_end").value);
 
-    var date_filed = months[date_filed_val.getMonth()] + " " + date_filed_val.getDate();
-    var date_start = months[date_start_val.getMonth()] + " " + date_start_val.getDate();
-    var date_end = months[date_end_val.getMonth()] + " " + date_end_val.getDate();
-
-    var name = sessionStorage.getItem("displayName");
-    var dev = sessionStorage.getItem("dev");
-
-    if (date_start == "" || date_end == "") {
+    if (date_start_val == "Invalid Date" || date_end_val == "Invalid Date" || date_start_val == "" || date_end_val == "") {
         alert("Please fill in all required fields.");
     } else {
+        var date_filed = months[date_filed_val.getMonth()] + " " + date_filed_val.getDate();
+        var date_start = months[date_start_val.getMonth()] + " " + date_start_val.getDate();
+        var date_end = months[date_end_val.getMonth()] + " " + date_end_val.getDate();
+    
+        var name = sessionStorage.getItem("displayName");
+        var dev = sessionStorage.getItem("dev");
         var valid_submission = false;
         //GET VALUES
         var id = 0;
@@ -203,15 +202,14 @@ function editThis(reportID) {
     var date_start_val = new Date(document.getElementById("edit_date_start").value);
     var date_end_val = new Date(document.getElementById("edit_date_end").value);
 
-    var date_start = months[date_start_val.getMonth()] + " " + date_start_val.getDate();
-    var date_end = months[date_end_val.getMonth()] + " " + date_end_val.getDate();
-
-    var name = sessionStorage.getItem("displayName");
-    var dev = sessionStorage.getItem("dev");
-
-    if (date_start == "" || date_end == "") {
+    if (date_start_val == "Invalid Date" || date_end_val == "Invalid Date" || date_start_val == "" || date_end_val == "") {
         alert("Please fill in all required fields.");
     } else {
+        var date_start = months[date_start_val.getMonth()] + " " + date_start_val.getDate();
+        var date_end = months[date_end_val.getMonth()] + " " + date_end_val.getDate();
+    
+        var name = sessionStorage.getItem("displayName");
+        var dev = sessionStorage.getItem("dev");
         var valid_submission = false;
         //GET VALUES
         var id = 0;
