@@ -110,14 +110,19 @@ function logOut() {
 function getDisplayName(){
  document.getElementById("userName").innerHTML = sessionStorage.getItem("displayName");
 }
+
 async function changePassword(){
   var user = firebase.auth().currentUser;
   var newPassword = document.getElementById("newPassword").value;
   var oldPassword = document.getElementById("oldPassword").value;
   var email = sessionStorage.getItem("email");
-  console.log(email + " " + oldPassword);
-  if((newPassword.trim() == "") || (newPassword == null)){
-    document.getElementById("newPasswordError").innerHTML = "enter a valid password";
+  console.log(email + " " + oldPassword)
+  if(newPassword.length <= 7){
+    alert("Password must be 7 characters or longer.")
+  }else{
+    if((newPassword.trim() == "") || (newPassword == null)){
+      alert("Enter a valid password.")
+      document.getElementById("newPasswordError").innerHTML = "enter a valid password";
   }
   else{
     const credential = firebase.auth.EmailAuthProvider.credential(
@@ -136,15 +141,17 @@ async function changePassword(){
       document.getElementById("newPassword").value = "";
       document.getElementById("oldPassword").value = "";
       alert("Password has been changed successfully!");
+      $("#changePassForm").modal("dismiss");
     }).catch(function(error) {
       // An error happened.
     });
     }).catch(function(error) {
       // An error happened.
+      alert("Invalid password.")
       document.getElementById("oldPasswordError").innerHTML = "invalid password"
     });
   }
-  
+  }
 }
 
 function clearAddUser(){
