@@ -59,10 +59,10 @@ async function submitReport() {
             document.getElementById("symptom_error").innerHTML = "Specify current condition in 'Others' if no symptoms of COVID-19."
             alert("Please fill in all required fields.");
         }
-        if (!checkDate()) {
+        if (!checkDate(1)) {
             alert("Please enter valid date.");
         }
-        if (valid_submission && checkDate()) {
+        if (valid_submission && checkDate(1)) {
             //GET LAST ID
             var dataBatch = gapi.client.sheets.spreadsheets.values.batchGet({
                 "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
@@ -256,11 +256,11 @@ function editThis(reportID) {
             document.getElementById("edit_symptom_error").innerHTML = "Specify current condition in 'Others' if no symptoms of COVID-19."
             alert("Please fill in all required fields.");
         }
-        if (!checkDate()) {
+        if (!checkDate(2)) {
             alert("Please enter valid date.");
         }
 
-        if (valid_submission && checkDate()) {
+        if (valid_submission && checkDate(2)) {
             //GET LAST ID
             var dataBatch = gapi.client.sheets.spreadsheets.values.batchGet({
                 "spreadsheetId": "1AP8VfPAcRLv5l0zSeS6FK8_Dwqo1yXkrWPEcjlU1_g0",
