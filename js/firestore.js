@@ -116,7 +116,7 @@ async function changePassword(){
   var oldPassword = document.getElementById("oldPassword").value;
   var email = sessionStorage.getItem("email");
   console.log(email + " " + oldPassword);
-  if(newPassword.trim() == ""){
+  if((newPassword.trim() == "") || (newPassword == null)){
     document.getElementById("newPasswordError").innerHTML = "enter a valid password";
   }
   else{
@@ -185,16 +185,20 @@ async function addUser(){
   var newDev = document.getElementById("new-user-dev").value;
   document.getElementById("new-user-email-error").innerHTML = ""
   
-  firebase.auth().createUserWithEmailAndPassword(email, password)
-.then(
-  (user)=>{
-   pushUser(user.user.uid)
-  })
-.catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // ...
-});
+  if((name  == "") || (dev == "" ) || (email == "")){
+      alert("Fill in all required fields!");
+  }else{  
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then(
+    (user)=>{
+     pushUser(user.user.uid)
+    })
+  .catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    // ...
+  });
+  }
 
 }
