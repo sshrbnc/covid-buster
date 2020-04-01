@@ -50,7 +50,7 @@ async function submitReport() {
             diarrhea = true;
             valid_submission = true;
         }
-        if (document.getElementById("others").checked == true) {
+        if (document.getElementById("others").checked == true && document.getElementById("other_symptoms").value != "") {
             valid_submission = true;
             others = document.getElementById("other_symptoms").value;
         }
@@ -250,7 +250,7 @@ function editThis(reportID) {
             diarrhea = true;
             valid_submission = true;
         }
-        if (document.getElementById("edit_others").checked == true) {
+        if (document.getElementById("edit_others").checked == true && document.getElementById("edit_other_symptoms").value != "") {
             valid_submission = true;
             others = document.getElementById("edit_other_symptoms").value;
         }
