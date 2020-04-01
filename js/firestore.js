@@ -115,7 +115,7 @@ async function changePassword(){
   var newPassword = document.getElementById("newPassword").value;
   var oldPassword = document.getElementById("oldPassword").value;
   var email = sessionStorage.getItem("email");
-  console.log(email + " " + oldPassword)
+  console.log(email + " " + oldPassword);
   if(newPassword.trim() == ""){
     document.getElementById("newPasswordError").innerHTML = "enter a valid password";
   }
@@ -170,6 +170,7 @@ async function pushUser(id){
     user_type: "employee"
   })
   .then(function() {
+    alert("User successfully added!");
       console.log("Document successfully written!");
   })
   .catch(function(error) {

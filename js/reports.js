@@ -175,6 +175,9 @@ function clearRedfield() {
         checkboxes[i].checked = false;
     }
 
+    document.getElementById("other_symptoms").setAttribute("disabled", "disabled");
+    document.getElementById("edit_other_symptoms").setAttribute("disabled", "disabled");
+
     $('#sickLeaveForm').modal('hide');
 }
 
