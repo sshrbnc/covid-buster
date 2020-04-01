@@ -161,9 +161,8 @@ function populateReportsTable(){
 function fetchDetails(reportID){
     reportsData.forEach(function (report) {
         if(report.id == reportID){
+            clearRedfield();
             $('#editSickLeaveForm').modal('show');
-            // document.getElementById("edit_date_start").value = report.date_start;
-            // document.getElementById("edit_date_end").value = report.date_end;
 
             if(report.shortness_of_breath){
                 document.getElementById("edit_shortness_of_breath").checked = true;

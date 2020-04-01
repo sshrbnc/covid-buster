@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script>
-        if (!sessionStorage.getItem("displayName")){
-          location.href = "login.html";
+        if (!sessionStorage.getItem("displayName")) {
+            location.href = "login.html";
         }
-        if(sessionStorage.getItem("userType") == "employee"){
+        if (sessionStorage.getItem("userType") == "employee") {
             location.href = "reports.html"
         }
     </script>
@@ -22,127 +23,139 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.0/css/fixedColumns.dataTables.min.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js" integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"
+        integrity="sha256-4iQZ6BVL4qNKlQ27TExEhBN1HFPvAvAMbFavKKosSWQ=" crossorigin="anonymous"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin=""/>
-    
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+
     <script src="https://use.fontawesome.com/a3df52c0c9.js"></script>
 
     <link rel="stylesheet" href="css/dashboard.css">
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light py-0 py-md-0" style="padding-right: 0;">
         <a class="navbar-brand" href="#" style="color: #FAFFEA;">AWS SICK LEAVE TRACKER</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon" style="color: #FAFFEA;"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="color: #FAFFEA;"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav" style="margin-left: 60%;">
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#addUserForm" style="color: #FAFFEA;"><i class="fa fa-user-plus"></i> Add User  </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="reports.html" data-toggle="" data-target="" style="color: #FAFFEA;"><i class="fa fa-file"></i> My Reports  </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" data-toggle="modal" data-target="#sickLeaveForm" style="color: #FAFFEA;"><i class="fa fa-edit"></i> File Leave  </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="login.html" data-toggle="" onclick="logOut()" data-target="#" style="color: #FAFFEA;"><i class="fa fa-sign-out" ></i>&nbsp;Logout</a>
-            </li>
-          </ul>
+            <ul class="navbar-nav" style="margin-left: 60%;">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#addUserForm"
+                        style="color: #FAFFEA;"><i class="fa fa-user-plus"></i> Add User </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="reports.html" data-toggle="" data-target="" style="color: #FAFFEA;"><i
+                            class="fa fa-file"></i> My Reports </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#sickLeaveForm"
+                        style="color: #FAFFEA;"><i class="fa fa-edit"></i> File Leave </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.html" data-toggle="" onclick="logOut()" data-target="#"
+                        style="color: #FAFFEA;"><i class="fa fa-sign-out"></i>&nbsp;Logout</a>
+                </li>
+            </ul>
         </div>
     </nav>
     <div class="container-fluid" style="color: black; padding-right: 0;">
         <!-- <div class="data-container" style="color: #fff;"> -->
-            <div class="row row1">
-                <div class="col-4" style="padding: 5px;">
-                    <div class="row" style="padding-bottom: 5px; height: 30%;">
-                        <div class="col-sm" style="height: 180px; padding: 0 5px 0 0;">                        
-                            <div class="card mb-0" style="height: 100%;"> 
-                                <div class="card-header collapsed" style="padding: 5px;">
-                                    <a class="card-title" style="color: black;"> <strong>ON SICK LEAVE TODAY</strong> </a>                                    
-                                </div> 
-                                <span id="sl_today" style="font-size: 90px;"></span> 
-                            </div>  
+        <div class="row row1">
+            <div class="col-4" style="padding: 5px;">
+                <div class="row" style="padding-bottom: 5px; height: 30%;">
+                    <div class="col-sm" style="height: 180px; padding: 0 5px 0 0;">
+                        <div class="card mb-0" style="height: 100%;">
+                            <div class="card-header collapsed" style="padding: 5px;">
+                                <a class="card-title" style="color: black;"> <strong>ON SICK LEAVE TODAY</strong> </a>
+                            </div>
+                            <span id="sl_today" style="font-size: 90px;"></span>
                         </div>
-                        <div class="col-sm" style="height: 180px; padding: 0;">                        
-                            <div class="card mb-0" style="height: 100%;">
-                                <div class="card-header collapsed" style="padding: 5px;">
-                                    <a class="card-title" style="color: black;"> <strong>TOTAL SICK LEAVE</strong> <span style="font-size: 10px;">(since Mar 16)</span></a>                                    
-                                </div> 
-                                <span id="total_sl" style="font-size: 90px;"></span> 
-                            </div>  
-                        </div>                        
                     </div>
-                    <div class="row" style="height: 70%;">
-                        <div class="col-sm" style="height: 423px; padding: 0;">                        
-                            <div class="card mb-0" style="height: 100%;">
-                                <div class="card-header collapsed" style="padding: 5px;">
-                                    <a class="card-title" style="color: black;"> <strong>EMPLOYEES ON SICK LEAVE</strong> </a>
-                                    <input type="date" id="leave_date" name="leave_date" style="float: right; width: 35%;" onchange="getOnLeave()">           
-                                </div> 
-                                <div class="card-body">
-                                    <div  style="padding-top: 3px; padding-right: 3px;">
+                    <div class="col-sm" style="height: 180px; padding: 0;">
+                        <div class="card mb-0" style="height: 100%;">
+                            <div class="card-header collapsed" style="padding: 5px;">
+                                <a class="card-title" style="color: black;"> <strong>TOTAL SICK LEAVE</strong> <span
+                                        style="font-size: 10px;">(since Mar 16)</span></a>
+                            </div>
+                            <span id="total_sl" style="font-size: 90px;"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="height: 70%;">
+                    <div class="col-sm" style="height: 423px; padding: 0;">
+                        <div class="card mb-0" style="height: 100%;">
+                            <div class="card-header collapsed" style="padding: 5px;">
+                                <a class="card-title" style="color: black;"> <strong>EMPLOYEES ON SICK LEAVE</strong>
+                                </a>
+                                <input type="date" id="leave_date" name="leave_date" style="float: right; width: 35%;"
+                                    onchange="getOnLeave()">
+                            </div>
+                            <div class="card-body">
+                                <div style="padding-top: 3px; padding-right: 3px;">
                                     <!-- <form action="#"> -->
-                                        <!-- <input type="date" id="leave_date" name="leave_date" style="float: center;" onchange="getOnLeave()"> -->
+                                    <!-- <input type="date" id="leave_date" name="leave_date" style="float: center;" onchange="getOnLeave()"> -->
                                     <!-- </form>  -->
                                 </div>
-                                    <div id="employee_list" style="width:100%">
-                                        
-                                    </div>
+                                <div id="employee_list" style="width:100%">
+
                                 </div>
-                            </div>  
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-8" style="padding-top: 5px; padding-right: 3px;">
-                    <!-- <div class="row"> -->
-                        <div class="col-sm" style="height: 300px; padding: 0 0 5px 0;">                        
-                            <div class="card mb-0" style="height: 100%;">
-                                <div class="card-header collapsed" style="padding: 5px;">
-                                    <a class="card-title" style="color: black;"><strong>TRENDS</strong> </a>                                    
-                                </div> 
-                                <div class="card-body" style="padding: 3px;">
-                                    <!-- TREND GRAPH HERE -->
-                                    <div id="timeline" style="height: 100%;"></div>
-                                </div>
-                            </div>  
-                        </div>
-                    <!-- </div> -->
-                    <!-- <div class="row"> -->
-                        <div class="col-sm" style="height: 307px; padding: 0;"> 
-                            <div class="card mb-0" style="height: 100%;">
-                                <div class="card-header collapsed" style="padding: 5px;">
-                                    <a class="card-title" style="color: black;"> <strong>GRAPHS</strong> </a>                                    
-                                </div> 
-                                <div class="card-body"> 
-                                    <div class="row" style="height: 100%;">
-                                        <div class="col-sm">
-                                            <!-- other graph -->
-                                            <div id="bargraph" style="height: 100%;"></div>
-                                        </div>
-                                        <div class="col-sm">
-                                            <!-- pie graph -->
-                                            <div id="doughnut" style="height: 100%;"></div>
-                                        </div>     
-                                    </div>                               
-                                </div>
-                            </div>  
-                        </div>
-                    <!-- </div> -->
-                </div>
             </div>
+            <div class="col-8" style="padding-top: 5px; padding-right: 3px;">
+                <!-- <div class="row"> -->
+                <div class="col-sm" style="height: 300px; padding: 0 0 5px 0;">
+                    <div class="card mb-0" style="height: 100%;">
+                        <div class="card-header collapsed" style="padding: 5px;">
+                            <a class="card-title" style="color: black;"><strong>TRENDS</strong> </a>
+                        </div>
+                        <div class="card-body" style="padding: 3px;">
+                            <!-- TREND GRAPH HERE -->
+                            <div id="timeline" style="height: 100%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+                <!-- <div class="row"> -->
+                <div class="col-sm" style="height: 307px; padding: 0;">
+                    <div class="card mb-0" style="height: 100%;">
+                        <div class="card-header collapsed" style="padding: 5px;">
+                            <a class="card-title" style="color: black;"> <strong>GRAPHS</strong> </a>
+                        </div>
+                        <div class="card-body">
+                            <div class="row" style="height: 100%;">
+                                <div class="col-sm">
+                                    <!-- other graph -->
+                                    <div id="bargraph" style="height: 100%;"></div>
+                                </div>
+                                <div class="col-sm">
+                                    <!-- pie graph -->
+                                    <div id="doughnut" style="height: 100%;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- </div> -->
+            </div>
+        </div>
         <!-- </div> -->
     </div>
 
     <!-- Report Modal -->
-    <div class="modal fade" id="sickLeaveForm" tabindex="-1" role="dialog" aria-labelledby="sickLeaveFormTitle" aria-hidden="true">
+    <div class="modal fade" id="sickLeaveForm" tabindex="-1" role="dialog" aria-labelledby="sickLeaveFormTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="padding: 7px; background-color: #1D1128; color: #fff;">
@@ -150,26 +163,31 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="color: #fff;">&times;</span>
                     </button>
-                    </div>
+                </div>
                 <div class="modal-body">
                     <form>
                         <div style="column-count: 2;">
                             <div class="form-group">
-                                <label for="date_start">Date Start<span style="color:red">*</span><span id="date_error" style="color:red;font-size:12px"></span></label>
-                                <input type="date" onchange="checkDate()" class="form-control" id="date_start">
+                                <label for="date_start">Date Start<span style="color:red">*</span><span id="date_error"
+                                        style="color:red;font-size:12px"></span></label>
+                                <input type="date" onchange="checkDate(1)" class="form-control" id="date_start">
                             </div>
                             <div class="form-group">
                                 <label for="date_end">Date End<span style="color:red">*</span></label>
-                                <input type="date" onchange="checkDate()" class="form-control" id="date_end">
+                                <input type="date" onchange="checkDate(1)" class="form-control" id="date_end">
                             </div>
                         </div>
-                        
+
                         <div class="form-group">
-                            <label for="exampleFormControlInput1"><strong><center>Symptoms</center></strong><span id="symptom_error" style="font-size:12px;color:red"></span></label><br>
+                            <label for="exampleFormControlInput1"><strong>
+                                    <center>Symptoms</center>
+                                </strong><span id="symptom_error" style="font-size:12px;color:red"></span></label><br>
                             <div class="form-check">
                                 <div style="column-count: 2;">
-                                    <input class="form-check-input" type="checkbox" name="shortness_of_breath" id="shortness_of_breath">
-                                    <label class="form-check-label" for="shortness_of_breath">Shortness of Breath</label><br>
+                                    <input class="form-check-input" type="checkbox" name="shortness_of_breath"
+                                        id="shortness_of_breath">
+                                    <label class="form-check-label" for="shortness_of_breath">Shortness of
+                                        Breath</label><br>
                                     <input class="form-check-input" type="checkbox" name="fever" id="fever">
                                     <label class="form-check-label" for="fever">Fever</label><br>
                                     <input class="form-check-input" type="checkbox" name="dry_cough" id="dry_cough">
@@ -178,14 +196,16 @@
                                     <label class="form-check-label" for="fatigue">Fatigue</label><br>
                                     <input class="form-check-input" type="checkbox" name="sore_throat" id="sore_throat">
                                     <label class="form-check-label" for="sore_throat">Sore Throat</label><br>
-                                    <input class="form-check-input" type="checkbox" name="nasal_congestion" id="nasal_congestion">
+                                    <input class="form-check-input" type="checkbox" name="nasal_congestion"
+                                        id="nasal_congestion">
                                     <label class="form-check-label" for="nasal_congestion">Nasal Congestion</label><br>
                                     <input class="form-check-input" type="checkbox" name="runny_nose" id="runny_nose">
                                     <label class="form-check-label" for="runny_nose">Runny Nose</label><br>
                                     <input class="form-check-input" type="checkbox" name="diarrhea" id="diarrhea">
                                     <label class="form-check-label" for="diarrhea">Diarrhea</label><br>
                                 </div>
-                                <input class="form-check-input" type="checkbox" name="others" id="others" onclick="setOthers()">
+                                <input class="form-check-input" type="checkbox" name="others" id="others"
+                                    onclick="setOthers()">
                                 <label class="form-check-label" for="others">Others (Please specify) </label><br>
                                 <input type="text" id="other_symptoms" disabled>
                             </div>
@@ -193,14 +213,17 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
-                <button type="button" class="btn btn-primary" onclick="submitReport()" style="border: none; background-color: #1D1128;">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="clearRedfield()">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="submitReport()"
+                        style="border: none; background-color: #1D1128;">Submit</button>
                 </div>
             </div>
         </div>
     </div>
-<!-- Add User Modal -->
-    <div class="modal fade" id="addUserForm" tabindex="-1" role="dialog" aria-labelledby="addUserFormTitle" aria-hidden="true">
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserForm" tabindex="-1" role="dialog" aria-labelledby="addUserFormTitle"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -208,30 +231,34 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="color: #fff;">&times;</span>
                     </button>
-                    </div>
+                </div>
                 <div class="modal-body">
                     <form>
-                      <div class="form-group">
-                        <label for="new-user-email">Email address<span style="color:red;font-size:10px" id="new-user-email-error"></span></label>
-                        <input type="email" class="form-control" id="new-user-email" placeholder="name@awsys-i.com">
-                      </div>
-                      <div class="form-group">
-                        <label for="new-user-name">Name</label>
-                        <input type="text" class="form-control" id="new-user-name" placeholder="James J. Johnathan">
-                      </div>
-                      <div class="form-group">
-                        <label for="new-user-dev">Dev</label>
-                        <input type="text" class="form-control" id="new-user-dev" placeholder="Dev B">
-                      </div>
-                      <div class="form-group">
-                        <label for="new-user-pass">Default Password</label>
-                        <input class="form-control" id="new-user-password" type="text" placeholder="Awsys#123" readonly>
-                      </div>
+                        <div class="form-group">
+                            <label for="new-user-email">Email address<span style="color:red;font-size:10px"
+                                    id="new-user-email-error"></span></label>
+                            <input type="email" class="form-control" id="new-user-email" placeholder="name@awsys-i.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-user-name">Name</label>
+                            <input type="text" class="form-control" id="new-user-name" placeholder="James J. Johnathan">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-user-dev">Dev</label>
+                            <input type="text" class="form-control" id="new-user-dev" placeholder="Dev B">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-user-pass">Default Password</label>
+                            <input class="form-control" id="new-user-password" type="text" placeholder="Awsys#123"
+                                readonly>
+                        </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearRedfield()">Close</button>
-                <button type="button" class="btn btn-primary" onclick="addUser()" data-dismiss="modal" style="border: none; background-color: #1D1128;">Submit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="clearRedfield()">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addUser()" data-dismiss="modal"
+                        style="border: none; background-color: #1D1128;">Submit</button>
                 </div>
             </div>
         </div>
@@ -245,34 +272,37 @@
 
     <!-- ECharts JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.7.0/echarts-en.min.js"></script>
-    
+
     <!-- Datatables -->
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.3.0/js/dataTables.fixedColumns.min.js"></script>
-    
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdn.datatables.net/fixedcolumns/3.3.0/js/dataTables.fixedColumns.min.js"></script>
+
     <!-- Google API -->
     <script src="https://apis.google.com/js/api.js"></script>
-    
+
     <!-- Custom JS -->
     <script src="js/sheets.js"></script>
 
     <script src="js/firestore.js"></script>
-    
+
     <script src="js/dashboard.js"></script>
     <script src="js/reports.js"></script> <!-- Imported for report submission function -->
     <script src="js/dataloader_new.js"></script>
     <script src="js/windowloader_new.js"></script>
     <script src="js/graph_new.js"></script>
 
-    <script>  
-        $(window).resize(function() {
-        if (document.documentElement.clientWidth <= 1024) {    
-            location.href = "mobile.html";
-        }
+    <script>
+        $(window).resize(function () {
+            if (document.documentElement.clientWidth <= 1024) {
+                location.href = "mobile.html";
+            }
         }).resize();
     </script>
 
 </body>
+
 </html>
