@@ -174,7 +174,8 @@ function clearRedfield() {
     for (var i = 0; i < checkboxes.length; i++) {
         checkboxes[i].checked = false;
     }
-
+    document.getElementById("other_symptoms").value = "";
+    document.getElementById("edit_other_symptoms").value = "";
     document.getElementById("other_symptoms").setAttribute("disabled", "disabled");
     document.getElementById("edit_other_symptoms").setAttribute("disabled", "disabled");
 

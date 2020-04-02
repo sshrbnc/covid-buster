@@ -484,7 +484,7 @@
 
     window.onload = function () {
       if (sessionStorage.getItem("userType") != "employee") {
-        document.getElementById("dashboard").innerHTML = '<a class="nav-link t-nav" href="dashboard.html" ><i class="fa fa-pie-chart" aria-hidden="true"></i> Dashboard  </a>'
+        document.getElementById("dashboard").innerHTML = '<a class="nav-link t-nav" href="dashboard.html" ><i class="fa fa-pie-chart" aria-hidden="false"></i> Dashboard  </a>'
       }
       getDisplayName();
     };

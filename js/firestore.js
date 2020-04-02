@@ -141,7 +141,7 @@ async function changePassword(){
       document.getElementById("newPassword").value = "";
       document.getElementById("oldPassword").value = "";
       alert("Password has been changed successfully!");
-      $("#changePassForm").modal("dismiss");
+      $("#changePassForm").modal("hide");
     }).catch(function(error) {
       // An error happened.
     });
@@ -166,6 +166,7 @@ function clearChangePass(){
       document.getElementById("newPassword").value = "";
       document.getElementById("oldPassword").value = "";
 }
+
 async function pushUser(id){
   var name = document.getElementById("new-user-name").value;
   var newDev = document.getElementById("new-user-dev").value;
@@ -177,6 +178,7 @@ async function pushUser(id){
     user_type: "employee"
   })
   .then(function() {
+    clearAddUser();
     alert("User successfully added!");
       console.log("Document successfully written!");
   })
@@ -192,18 +194,21 @@ async function addUser(){
   var newDev = document.getElementById("new-user-dev").value;
   document.getElementById("new-user-email-error").innerHTML = ""
   
-  if((name  == "") || (dev == "" ) || (email == "")){
+  if((name  == "") || (newDev == "" ) || (email == "")){
       alert("Fill in all required fields!");
   }else{  
     firebase.auth().createUserWithEmailAndPassword(email, password)
   .then(
     (user)=>{
+    
      pushUser(user.user.uid)
     })
   .catch(function(error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
+    console.log(errorCode + " " + errorMessage);
+    alert("Invalid email format");
     // ...
   });
   }
