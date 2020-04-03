@@ -1,7 +1,7 @@
 var reportsData = "";
 
 window.addEventListener("load", async () => {
-    await authenticate().then(loadClient);
+    await loadClient();
     await init();
 });
 

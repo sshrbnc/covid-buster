@@ -29,17 +29,18 @@ let db = firebase.firestore();
 
 async function logIn(e) {
   e.preventDefault();
+    await authenticate().then(loadClient);
     var email = document.getElementById("login-username").value;
     var password = document.getElementById("password").value;
     firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // ...
-     alert(error.message + " " + error.code)
-      if((error.code == "auth/user-not-found" )||( error.code == "auth/wrong-password")){
-        $("#login-password-label").html("email <span style='color:red'>email and password don't match.</span>");
-      }
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // ...
+        alert(error.message + " " + error.code)
+        if((error.code == "auth/user-not-found" )||( error.code == "auth/wrong-password")){
+          $("#login-password-label").html("email <span style='color:red'>email and password don't match.</span>");
+        }
     });
 
 }
